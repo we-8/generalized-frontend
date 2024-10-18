@@ -1,0 +1,91 @@
+.app__signin-form-main-div {
+  display: flex;
+  justify-content: center;
+  height: 100vh; /* Full viewport height */
+}
+
+.app__signin-form-main-div2 {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centers form vertically */
+  align-items: center; /* Centers form horizontally */
+}
+
+.app__signin-form-main-div2 form {
+  background-color: var(--bg-color-secondary);
+  border-radius: 20px;
+  width: 80%; /* Form width */
+  display: flex;
+  flex-direction: column;
+}
+
+.app__signin-form-section {
+  width: 100%;
+  margin-bottom: 1rem; /* Space between form fields */
+}
+
+.app__signin-img-section {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+}
+
+.app__signin-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Style for the two headings (left aligned) */
+.app__signin-text {
+  text-align: left; /* Aligns the text headers to the left */
+  width: 100%;
+  margin: 0 0 10px 0;
+}
+
+.app__signin-text2 {
+  color: yellow;
+  text-align: left; /* Aligns the text headers to the left */
+  width: 100%;
+  margin: 0 0 10px 0; /* Ceylon Rich Products text in yellow */
+}
+
+/* Pill-shaped button styles for both buttons */
+button {
+  background-color: black; /* Black background */
+  color: yellow; /* Yellow text */
+  border: none;
+  border-radius: 50px; /* Pill-shaped curved edges */
+  padding: 10px 30px; /* More padding for a wider button */
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect for buttons */
+button:hover {
+  background-color: #333; /* Slightly lighter black on hover */
+}
+
+/* Style for the "already have an account?" section */
+.signin-signup-section {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Aligns text and button to the left */
+  width: 100%;
+}
+
+.signin-signup-button {
+  padding: 5px 15px; /* Smaller padding to make it more compact */
+  font-size: 14px; /* Smaller font size */
+  margin-left: 1rem;
+}
+
+.signin-login-button {
+  margin-top: 1rem;
+  text-align: left;
+  width: auto;
+}
