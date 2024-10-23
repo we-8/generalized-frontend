@@ -1,12 +1,12 @@
 import Image from "next/image";
-import HomePage from "@/pages/HomePage";
+
 
 export default function Home() {
   return (
-      <main className="overflow-hidden">
-        <HomePage/>
+      <div>
+        dfgfghghfg fddsf d
 
-      </main>
+      </div>
      
      
 
