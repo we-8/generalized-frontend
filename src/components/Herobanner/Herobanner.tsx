@@ -1,11 +1,25 @@
-import '../../styles/components-css/Herobanner.css'
+import React from 'react';
+import '../../styles/components-css/Herobanner.css';
+import { StaticImageData } from 'next/image';
 
-const Herobanner = () => {
+type imageProp={
+  backgroundImage:string | StaticImageData,
+  title:string,
+  description:string
+}
+
+const Herobanner:React.FC<imageProp> = ({backgroundImage,title,description}) => {
   return (
-    <div className='app__herobanner--main-div'>
-      grhfghjfgh fhero fg
+    <div className='app__herobanner--main-div '>
+      <div className='app__herobanner--img' style={{backgroundImage: `url(${typeof backgroundImage === 'string' ? backgroundImage : backgroundImage.src})`}}></div>
+      <div className='app__herobanner--details'>
+         <div>
+          <p className='herobanner__title'>{title}</p>
+          <p className='herobanner_description'>{description}</p>
+         </div>
+        </div>
     </div>
-  )
+  ) 
 }
 
 export default Herobanner;

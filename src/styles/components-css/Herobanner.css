@@ -1,0 +1,38 @@
+.app__herobanner--main-div{
+  position: relative;
+  
+}
+.app__herobanner--img{
+  width: 100%;
+  height: 80vh;
+  position: relative;
+  overflow: hidden;
+  background-position:center;
+  background-size:cover;
+  background-repeat: no-repeat;
+  object-fit: contain;
+  opacity: 0.9;
+}
+
+.app__herobanner--details{
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  top: 30%;
+  left: 0;
+  color: var(--font-color-primary);
+  display: flex;
+  justify-content: center;
+}
+.app__herobanner--details div{
+  width: 70%;
+
+}
+.herobanner__title{
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.herobanner_description{
+  font-size: 1.2rem;
+}

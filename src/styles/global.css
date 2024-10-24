@@ -16,3 +16,7 @@
   color: var(--font-color-primary);
   
 }
+
+.section__padding{
+  padding: 2rem 4rem;
+}
