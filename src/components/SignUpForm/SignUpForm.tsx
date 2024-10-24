@@ -2,7 +2,7 @@ import { useState } from "react";
 import InputFieldItem from "../InputField";
 import "./SignUpForm.css";
 import Image from "next/image";
-import { signuppageimg } from "@/assets";
+import { test1 } from "@/assets";
 
 interface SignInFormData {
   username: string;
@@ -24,7 +24,7 @@ const SignInForm: React.FC = () => {
       <div className="app__signup-img-section">
         <Image
           className="app__signup-img"
-          src={signuppageimg}
+          src={test1}
           alt="picture"
           width={100} // Set the width and height for Next.js Image component
           height={200}

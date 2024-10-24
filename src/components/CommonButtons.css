@@ -1,0 +1,7 @@
+.app__CommonButton1 button{
+  background-color: var(--bg-color-primary);
+  color: #fff;
+  padding: 1rem 1.2rem;
+  font-size: 0.8rem;
+  border-radius: 10px;
+}
