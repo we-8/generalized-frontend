@@ -15,7 +15,19 @@
   border:none;
   margin-top: 1rem;
 }
-
+.app__OrderNow2{
+  width: 100%;
+}
+.app__OrderNow2 button{
+  background-color: var(--bg-color-primary);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  font-size: 0.7rem;
+  border-radius: 10px;
+  border:none;
+  margin-top: 1rem;
+  width:70%;
+}
 @media screen and (max-width:650px) {
   .app__CommonButton1 button{
     padding:0.8rem 1rem;

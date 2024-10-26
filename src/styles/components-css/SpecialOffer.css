@@ -1,6 +1,6 @@
 .app__specialOffer--main-div {
   position: relative;
-  margin: 2rem 0 4rem 0;
+  margin: 2rem 0 2rem 0;
   padding: 2rem 4rem;
 }
 .app__specialOffer--item-div{
@@ -8,8 +8,10 @@
   height: auto;
   background-color: aqua;
   border-radius: 20px;
-  margin: 0rem 1rem !important;
   padding: 1rem 2rem;
+}
+.app__specialOffer--main-div .slick-slider {
+  padding-left:4%;
 }
 .offer-details{
   display: flex; 
@@ -29,6 +31,10 @@
 }
 .app__specialOffer-img .specialOffer-image{
   width: 10rem;
+}
+.app__specialOffer-img .specialOffer-image:hover{
+  transform: scale(1.2);
+  transition: 0.3s ease-in;
 }
 .prev-button{
   position: absolute;
@@ -66,12 +72,16 @@
   }
   .app__specialOffer--main-div {
     padding: 1rem 0;
+    margin: 1rem;
   }
   .app__specialOffer-img .specialOffer-image{
     width: 16rem;
   }
   .offer-newprice, .offer-oldprice{
     text-align: center;
+  }
+  .app__specialOffer--main-div .slick-slider {
+    padding-left:8%;
   }
 }
 

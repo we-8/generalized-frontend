@@ -45,7 +45,7 @@ const SpecialOffers = () => {
       <Slider ref={sliderRef} {...settings}>
         {products.map((product, index) => (
           <div className="app__specialOffer--item-div" key={index}>
-            <div className="app__specialOffer--details">
+            
               <p className='offer-title'>{product.productName}</p>
               <div className='offer-details'>
                 <div className='offer-prices'>
@@ -58,7 +58,7 @@ const SpecialOffers = () => {
                 </div>
               </div>
               
-            </div>
+            
             
           </div>
         ))}

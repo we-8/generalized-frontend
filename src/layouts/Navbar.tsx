@@ -23,9 +23,9 @@ const Navbar = () => {
       <div className='app__navbar--links-div'>
         <ul className='app_navbar--links-list'>
           <li className='p__text'> <Link href="/">Home</Link></li>
-          <li className='p__text'><Link href='/'>Products</Link></li>
+          <li className='p__text'><Link href='/product'>Products</Link></li>
           <li className='p__text'><Link href='/about-us'>About Us</Link></li>
-          <li className='p__text'><Link href='/ContactUs'>Contact Us</Link></li>
+          <li className='p__text'><Link href='/contact-us'>Contact Us</Link></li>
         </ul>
       </div>
       <div className='app__navbar--services'>
@@ -44,9 +44,9 @@ const Navbar = () => {
               <div className='app__navbar--smallscreen-links-div'>
                 <ul className='app_navbar--smallscrenn-links-list'>
                   <li className='p__text'> <Link href="/">Home</Link></li>
-                  <li className='p__text'><Link href='/'>Products</Link></li>
+                  <li className='p__text'><Link href='/product'>Products</Link></li>
                   <li className='p__text'><Link href='/about-us'>About Us</Link></li>
-                  <li className='p__text'><Link href='/ContactUs'>Contact Us</Link></li>
+                  <li className='p__text'><Link href='/contact-us'>Contact Us</Link></li>
                   {loggedIn ? (<p />):(
                     <p className='p__text'><Link href='/'>Sign In</Link></p>
                   )}

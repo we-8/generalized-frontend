@@ -47,14 +47,13 @@
   width: 50%;
   align-items: center;
   justify-content: center;
-  margin-left: 2rem;
+  margin-left: 1rem;
 
 }
 .app__home--Who-we-are .who-image{
-  width:40%;
+  width:45%;
   height: auto;
   border-radius: 20px;
-  flex: 1;
   border: 3px solid var(--bg-color-primary);
 }
 
@@ -80,6 +79,9 @@
   }
 }
 @media screen and (max-width:850px) {
+  .app__home--category-item{
+    margin-bottom: 0;
+  }
   .app__home--category-section{
     margin-top: 0;
     margin-bottom: 0;
