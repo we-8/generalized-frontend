@@ -1,7 +1,7 @@
 .app__specialOffer--main-div {
   position: relative;
-  margin: 2rem 0;
-  padding: 2rem 8rem;
+  margin: 2rem 0 4rem 0;
+  padding: 2rem 4rem;
 }
 .app__specialOffer--item-div{
   max-width: 90% !important;
@@ -27,10 +27,8 @@
   font-size: 1.4rem;
   font-weight: 600;
 }
-
 .app__specialOffer-img .specialOffer-image{
   width: 10rem;
- 
 }
 .prev-button{
   position: absolute;
@@ -51,7 +49,29 @@
 @media screen and (max-width:1500px) {
   .app__specialOffer--item-div{
     width: 100% !important;
-    background-color: red;
+  }
+}
+@media screen and (max-width:1024px){
+  .offer-details{
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  .offer-title{
+    text-align: center;
+  }
+}
+@media screen and (max-width:650px){
+  .prev-button , .next-button{
+    display: none;
+  }
+  .app__specialOffer--main-div {
+    padding: 1rem 0;
+  }
+  .app__specialOffer-img .specialOffer-image{
+    width: 16rem;
+  }
+  .offer-newprice, .offer-oldprice{
+    text-align: center;
   }
 }
 

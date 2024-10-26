@@ -5,6 +5,7 @@ import { test2 } from '@/assets';
 import Image from 'next/image';
 import { IoIosArrowBack,IoIosArrowForward } from "react-icons/io";
 import { OrderNow } from '../CommonButtons';
+import {TitleL} from '@/components';
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -30,15 +31,16 @@ const SpecialOffers = () => {
     slidesToScroll: 2,
     pauseOnHover: true,
     responsive: [
-      { breakpoint: 1440, settings: { slidesToShow: 2, slidesToScroll: 2, infinite: true,  }},
-      { breakpoint: 1024, settings: { slidesToShow: 2, slidesToScroll: 2, infinite: true } },
-      { breakpoint: 600, settings: { slidesToShow: 2, slidesToScroll: 2, initialSlide: 2 }},
-      { breakpoint: 480, settings: { slidesToShow: 1, slidesToScroll: 1 }},
+      { breakpoint: 1440, settings: { slidesToShow: 2, slidesToScroll: 2, infinite: true,initialSlide: 1  }},
+      { breakpoint: 1024, settings: { slidesToShow: 2, slidesToScroll: 2, infinite: true ,initialSlide: 1} },
+      { breakpoint: 600, settings: { slidesToShow: 1, slidesToScroll: 1, initialSlide: 1 }},
+      { breakpoint: 480, settings: { slidesToShow: 1, slidesToScroll: 1 ,initialSlide: 1}},
     ],
   };
 
   return (
     <div className="app__specialOffer--main-div">
+      <TitleL title='Special Offers'/>
       <button className='prev-button' onClick={() => sliderRef.current?.slickPrev()}><IoIosArrowBack color="red" fontWeight={600} size={40}/></button>
       <Slider ref={sliderRef} {...settings}>
         {products.map((product, index) => (

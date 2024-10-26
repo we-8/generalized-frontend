@@ -1,7 +1,26 @@
-.app__main-title p{
+.app__main-title-center p{
   font-weight: bold;
   font-size: 1.8rem;
   text-align: center;
   margin-bottom: 1rem;
+}
+.app__main-title-left p{
+  font-weight: bold;
+  font-size: 1.8rem;
+  text-align: left;
+  margin-bottom: 1rem;
 
+}
+.app__main-title-right p{
+  font-weight: bold;
+  font-size: 1.8rem;
+  text-align: right;
+  margin-bottom: 1rem;
+
+}
+
+@media screen and (max-width:650px) {
+  .app__main-title-right p,.app__main-title-left p,.app__main-title-center p{
+    text-align: center;
+  }
 }
