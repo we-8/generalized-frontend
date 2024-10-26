@@ -3,7 +3,7 @@
 }
 .app__herobanner--img{
   width: 100%;
-  height: 80vh;
+  height: 40rem;
   position: relative;
   overflow: hidden;
   background-position:center;
@@ -34,4 +34,29 @@
 
 .herobanner_description{
   font-size: 1.2rem;
+}
+
+@media screen and (max-width:650px) {
+  .app__herobanner--details{
+    top:10%
+  }
+  .herobanner__title{
+    font-size: 3rem;
+  }
+}
+@media screen and (max-width:450px) {
+  .app__herobanner--details{
+    top:10%
+  }
+  .herobanner__title{
+    font-size: 2rem;
+    text-align: left;
+  }
+  .herobanner_description{
+    font-size: 1rem;
+    text-align: left;
+  }
+  .app__herobanner--img{
+    height: 30rem;
+  }
 }

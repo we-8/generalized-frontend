@@ -22,5 +22,7 @@
 @media screen and (max-width:650px) {
   .app__main-title-right p,.app__main-title-left p,.app__main-title-center p{
     text-align: center;
+    font-size: 1.4rem;
+    margin-bottom: 0.2rem;
   }
 }
