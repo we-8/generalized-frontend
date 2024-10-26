@@ -18,10 +18,14 @@
 }
 
 .section__padding{
-  padding: 2rem 8rem;
+  padding: 2rem 5rem;
 }
 
-
+@media screen and (max-width:850px) {
+  .section__padding{
+    padding: 2rem 4rem;
+  }
+}
 @media screen and (max-width:650px) {
   .section__padding{
     padding: 1rem;
