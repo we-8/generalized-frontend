@@ -1,0 +1,57 @@
+.app__specialOffer--main-div {
+  position: relative;
+  margin: 2rem 0;
+  padding: 2rem 8rem;
+}
+.app__specialOffer--item-div{
+  max-width: 90% !important;
+  height: auto;
+  background-color: aqua;
+  border-radius: 20px;
+  margin: 0rem 1rem !important;
+  padding: 1rem 2rem;
+}
+.offer-details{
+  display: flex; 
+  justify-content: space-between;
+}
+.offer-prices{
+  flex: 1;
+  padding: 1rem 0;
+}
+.offer-oldprice{
+  font-size: 1.2rem;
+  opacity: 0.7;
+}
+.offer-newprice{
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.app__specialOffer-img .specialOffer-image{
+  width: 10rem;
+ 
+}
+.prev-button{
+  position: absolute;
+  bottom:45%;;
+  left:30px;
+}
+.next-button{
+  position: absolute;
+  bottom: 45%;
+  right: 30px;
+}
+.offer-title{
+  font-size: 1.8rem;
+  font-weight:600;
+  font-family:var(--base-font);
+}
+
+@media screen and (max-width:1500px) {
+  .app__specialOffer--item-div{
+    width: 100% !important;
+    background-color: red;
+  }
+}
+

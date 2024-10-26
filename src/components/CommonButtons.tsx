@@ -15,6 +15,13 @@ const CommonButtons1:React.FC<buttonProps> = ({title}) => {
     </div>
   )
 }
+const OrderNow:React.FC<buttonProps> = ({title}) =>{
+  return(
+    <div className='app__OrderNow'>
+      <button>{title}</button>
+    </div>
+  )
+}
 
 
-export {CommonButtons, CommonButtons1};
+export {CommonButtons, CommonButtons1 ,OrderNow};

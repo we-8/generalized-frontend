@@ -4,4 +4,14 @@
   padding: 1rem 1.2rem;
   font-size: 0.8rem;
   border-radius: 10px;
+  border: none;
+}
+.app__OrderNow button{
+  background-color: var(--bg-color-primary);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  font-size: 0.7rem;
+  border-radius: 10px;
+  border:none;
+  margin-top: 1rem;
 }
