@@ -32,6 +32,7 @@ const LatestProducts = () => {
     responsive: [
       { breakpoint: 1440, settings: { slidesToShow: 2, slidesToScroll: 2, infinite: true,initialSlide: 1  }},
       { breakpoint: 1024, settings: { slidesToShow: 2, slidesToScroll: 2, infinite: true ,initialSlide: 1} },
+      { breakpoint: 768, settings: { slidesToShow: 2, slidesToScroll: 1, initialSlide: 1 }},
       { breakpoint: 600, settings: { slidesToShow: 1, slidesToScroll: 1, initialSlide: 1 }},
       { breakpoint: 480, settings: { slidesToShow: 1, slidesToScroll: 1 ,initialSlide: 1}},
     ],
@@ -40,7 +41,7 @@ const LatestProducts = () => {
   return (
     <div className='app__latestProducts--main-div'>
       <TitleL title="What's New"/>
-      <button className='prev-button' onClick={() => sliderRef.current?.slickPrev()}><IoIosArrowBack color="red" fontWeight={600} size={40}/></button>
+      <button className='prev-buttonL' onClick={() => sliderRef.current?.slickPrev()}><IoIosArrowBack color="red" fontWeight={600} size={40}/></button>
       <Slider ref={sliderRef} {...settings}>
         {products.map((product, index) => (
           <div className='app__latestProduct--item-div' key={index}>
@@ -59,7 +60,7 @@ const LatestProducts = () => {
           
         ))}
       </Slider>
-      <button className='next-button' onClick={() => sliderRef.current?.slickNext()}><IoIosArrowForward color="red" fontWeight={600} size={40}/></button>
+      <button className='next-buttonL' onClick={() => sliderRef.current?.slickNext()}><IoIosArrowForward color="red" fontWeight={600} size={40}/></button>
 
     </div>
   )

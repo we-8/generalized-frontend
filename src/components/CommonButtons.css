@@ -28,6 +28,12 @@
   margin-top: 1rem;
   width:70%;
 }
+@media screen and (max-width:1050px){
+  .app__OrderNow2 button{
+    margin-bottom: 2rem;
+    margin-top: 0.5rem;
+  }
+}
 @media screen and (max-width:650px) {
   .app__CommonButton1 button{
     padding:0.8rem 1rem;
