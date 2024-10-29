@@ -10,7 +10,7 @@
   background-size:cover;
   background-repeat: no-repeat;
   object-fit: contain;
-  opacity: 0.9;
+  opacity: 1;
 }
 
 .app__herobanner--details{

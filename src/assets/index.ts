@@ -7,9 +7,13 @@ import test1 from './images/testimg.jpg'
 import who from './images/who.jpg';
 import test2 from './images/specialtest.png';
 import test3 from './images/test2.jpg';
+import person from './images/person.jpg';
+
+
 export{
   testImage,
   test2,
+  person,
   who,
   test1,
   test3,

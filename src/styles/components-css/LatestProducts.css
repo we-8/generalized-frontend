@@ -7,7 +7,8 @@
   max-width: 100% !important;
   height: auto;
   border-radius: 20px;
-  padding: 1rem 2rem;
+  padding: 0rem 2rem;
+  margin-top: 2rem;
 }
 .app__latestProduct--item-div .item__card{
   position: relative;
@@ -15,9 +16,10 @@
 .app__latestProduct--item-div .product-image{
   border-radius: 20px;
 }
-.app__latestProduct--item-div:hover{
+/* .app__latestProduct--item-div:hover{
   transform: scale(1.1);
-}
+  transition: 0.2s ease-in;
+} */
 .prev-buttonL{
   position: absolute;
   bottom:45%;;
@@ -115,7 +117,6 @@
   .app__latestProduct--item-div .product-image{
     border-radius:18px;
     width: 100%;
-  
     z-index: 1;
   }
 }
@@ -127,14 +128,17 @@
     margin: 0;
     padding: 1rem;
   }
+  .app__latestProducts--main-div{
+    padding: 2rem;
+  }
 }
 
 @media screen and (max-width:650px) {
   .app__latestProducts--main-div{
-    padding: 1rem 0;
+    padding:  0;
     margin: 1rem;
   }
   .app__latestProduct--item-div{
-    padding:0rem 2rem;
+    padding:0rem 0.5rem;
   }
 }

@@ -45,7 +45,6 @@ const LatestProducts = () => {
       <Slider ref={sliderRef} {...settings}>
         {products.map((product, index) => (
           <div className='app__latestProduct--item-div' key={index}>
-             <div className="overlay"></div>
             <div className='item__card'>
               <Image className='product-image' src={product.image} alt="new product image" />
               <p className='static__p'>{product.productName}</p>

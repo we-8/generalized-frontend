@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Herobanner , Title ,Description , CommonButtons1 ,SpecialOffers,LatestProducts} from "@/components";
+import { Herobanner , Title,PeopleReview ,Description , CommonButtons1 ,SpecialOffers,LatestProducts} from "@/components";
 import { hero2,test1, who} from "@/assets";
 import '../styles/main-pages-css/HomePage.css';
 
@@ -59,6 +59,9 @@ export default function Home() {
         </div>
         <div>
           <LatestProducts/>
+        </div>
+        <div>
+          <PeopleReview/>
         </div>
         
       </div>

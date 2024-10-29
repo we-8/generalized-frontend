@@ -1,0 +1,74 @@
+.app__peopleReview--main-div{
+  position: relative;
+  margin: 2rem 0 2rem 0;
+  padding: 2rem 4rem;
+  
+}
+.app_peopleReview-inside-div{
+  background-color: var(--bg-color-trinary);
+  border-radius: 20px;
+  margin-top: 2.5rem;
+}
+.app__review--stars{
+  display: flex;
+  gap:0.3rem;
+  margin-top: 1rem;
+}
+.app__peopleReview--item-div{
+  max-width: 100% !important;
+  height: auto;
+  border-radius: 20px;
+  padding: 0rem 1rem;
+  margin-top:2rem ;
+}
+.latest-review-p{
+  padding: 2rem 2rem 0 2rem;
+  font-weight:500;
+  font-size: 1.2rem;
+}
+.peopleReview-item-inside{
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+.review-title{
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
+.review-description{
+  font-size: 1rem;
+  opacity: 0.8;
+  margin: 0.5rem 0;
+}
+.review-image{
+  width: 50px;
+  border-radius: 50%;
+}
+.review-person-details{
+  display: flex;
+  align-items: center;
+  gap:1rem;
+}
+.review-person-name{
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+@media screen and (max-width:850px) {
+  .app__peopleReview--main-div{
+    padding: 2rem;
+  }
+  .app_peopleReview-inside-div{
+    margin-top: 0;
+  }
+}
+@media screen and (max-width:650px) {
+  .app_peopleReview-inside-div{
+    border-radius: 0;
+  }
+  .app__peopleReview--main-div{
+    padding: 0rem;
+  }
+}

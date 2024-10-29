@@ -45,8 +45,8 @@ const SpecialOffers = () => {
       <Slider ref={sliderRef} {...settings}>
         {products.map((product, index) => (
           <div className="app__specialOffer--item-div" key={index}>
-            
-              <p className='offer-title'>{product.productName}</p>
+             <div className='item-inside'>
+             <p className='offer-title'>{product.productName}</p>
               <div className='offer-details'>
                 <div className='offer-prices'>
                   <p className='offer-oldprice'><del>Rs {product.old_price}</del></p>
@@ -57,6 +57,7 @@ const SpecialOffers = () => {
                   <Image className="specialOffer-image" src={product.image} alt="special offer image" />
                 </div>
               </div>
+             </div>
               
             
             
