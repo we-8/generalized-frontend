@@ -5,10 +5,14 @@ import SpecialOffers from './SpecialOffer/SpecialOffer';
 import { CommonButtons ,CommonButtons1 ,OrderNow,OrderNow2 } from './CommonButtons';
 import LatestProducts from './LatestProducts/LatestProducts';
 import PeopleReview from './PeopleReview/PeopleReview';
+import SearchBar from './SearchBar/SearchBar';
+
+
 export{
   Herobanner,
   Herobanner2,
   OrderNow,
+  SearchBar,
   PeopleReview,
   OrderNow2,
   LatestProducts,
