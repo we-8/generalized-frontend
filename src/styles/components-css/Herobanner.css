@@ -16,19 +16,19 @@
 .app__herobanner--details{
   width: 100%;
   text-align: center;
-  position: absolute;
-  top: 30%;
-  left: 0;
   color: var(--font-color-primary);
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 .app__herobanner--details div{
-  width: 70%;
+  width: 80%;
 
 }
 .herobanner__title{
-  font-size: 3rem;
+  font-size: 3.5rem;
   font-weight: bold;
 }
 
@@ -37,26 +37,18 @@
 }
 
 @media screen and (max-width:650px) {
-  .app__herobanner--details{
-    top:10%
-  }
+  
   .herobanner__title{
     font-size: 3rem;
   }
 }
-@media screen and (max-width:450px) {
-  .app__herobanner--details{
-    top:10%
-  }
+@media screen and (max-width:450px) {s
   .herobanner__title{
-    font-size: 2rem;
-    text-align: left;
+    font-size: 2.3rem;
+    text-align: center;
   }
   .herobanner_description{
     font-size: 1rem;
-    text-align: left;
-  }
-  .app__herobanner--img{
-    height: 35rem;
+    text-align: center;
   }
 }

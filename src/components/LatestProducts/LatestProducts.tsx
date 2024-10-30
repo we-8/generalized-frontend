@@ -14,11 +14,11 @@ import Slider from "react-slick";
 const LatestProducts = () => {
   const sliderRef = useRef<Slider | null>(null); 
   const products = [
-    { productName: 'Cashews', new_price: 'Rs 2450', description: 'A dialog is a type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made...', image: test3 },
+    { productName: 'Cashews', new_price: 'Rs 2450', description: 'A dialog is a 23234 32432 dfdgfg  gfgdfgdf gdfg fd  type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made...', image: test3 },
     { productName: 'Almonds', new_price: 'Rs 3500', description: 'A dialog is a type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made...', image: test3 },
-    { productName: 'Almonds1', new_price: 'Rs 3500',description: 'A dialog is a type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made...', image: test3 },
+    { productName: 'Almonds1', new_price: 'Rs 3500',description: 'A dialog is a type of modal  gdfg dgfdgdfgfdg dfgfd gdf gdfg gdfg window that appears in front of app content to provide critical information, or prompt for a decision to be made...', image: test3 },
     { productName: 'Almonds2', new_price: 'Rs 3500', description: 'A dialog is a type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made...', image: test3 },
-    { productName: 'Almonds3', new_price: 'Rs 3500', description: 'A dialog is a type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made...', image: test3 },
+    { productName: 'Almonds3', new_price: 'Rs 3500', description: 'Apearovide critical information, or prompt for a decision to be made...', image: test3 },
   
   ];
 
@@ -50,7 +50,7 @@ const LatestProducts = () => {
               <p className='static__p'>{product.productName}</p>
               <div className='static__div'>
                 <p className='static__div-title'>{product.productName}</p>
-                <p className='static__div-description'>{product.description}</p>
+                <p className='static__div-description'>{product.description.length>140 ? (product.description.slice(0,140)+'...'):(product.description)}</p>
                 <p className='static__div-price'>{product.new_price}</p>
                 <OrderNow2 title='Order Now'/>
               </div>

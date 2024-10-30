@@ -22,12 +22,12 @@
 } */
 .prev-buttonL{
   position: absolute;
-  bottom:45%;;
+  bottom:35%;;
   left:30px;
 }
 .next-buttonL{
   position: absolute;
-  bottom: 45%;
+  bottom: 35%;
   right: 30px;
 }
 .static__p{

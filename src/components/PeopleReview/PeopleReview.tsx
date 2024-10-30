@@ -16,11 +16,11 @@ const PeopleReview = () => {
 
   const sliderRef = useRef<Slider | null>(null); 
   const reviews = [
-    { productName: 'Cashews',name: 'John Doe', description: 'A dialog is a type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made...', image: person , date:'2024/04/23' ,starRating:4 },
-    { productName: 'Almonds',name: 'John Doe', description: 'A dialog is a type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made...', image: person , date:'2024/04/23',starRating:3 },
-    { productName: 'Almonds1',name: 'John Doe',description: 'A dialog is a type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made...', image: person , date:'2024/04/23' ,starRating:1},
-    { productName: 'Almonds2',name: 'John Doe', description: 'A dialog is a type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made...', image: person, date:'2024/04/23',starRating:5},
-    { productName: 'Almonds3',name: 'John Doe', description: 'A dialog is a type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made...', image: person, date:'2024/04/23',starRating:2},
+    { productName: 'Cashews',name: 'John Doe', description: 'A dialog is a type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made', image: person , date:'2024/04/23' ,starRating:4 },
+    { productName: 'Almonds',name: 'John Doe', description: 'A dia to provide critical information, or prompt for a decision to be made', image: person , date:'2024/04/23',starRating:3 },
+    { productName: 'Almonds1',name: 'John Doe',description: 'A dialog is a type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made', image: person , date:'2024/04/23' ,starRating:1},
+    { productName: 'Almonds2',name: 'John Doe', description: 'A dialog is a type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made', image: person, date:'2024/04/23',starRating:5},
+    { productName: 'Almonds3',name: 'John Doe', description: 'A dialog is a type of modalwindow that appears in front of window that appears in front of window that appears in front of window that appears in front ofwindow that appears in front of window that appears in front of window that appears in front of app content to provide critical information, or prompt for a decision to be made', image: person, date:'2024/04/23',starRating:2},
   
   ];
 
@@ -57,7 +57,7 @@ const PeopleReview = () => {
               </div>
               <div className='review-details'>
                 <p className='review-title'>{review.productName}</p>
-                <p className='review-description'>{review.description}</p>
+                <p className='review-description'>{review.description.length} {review.description.length>140 ? (review.description.slice(0,100)+'...'):(review.description)}</p>
                 <div className='review-person-details'>
                   <Image className='review-image' src={review.image} alt="reviewed person image" />
                   <div>

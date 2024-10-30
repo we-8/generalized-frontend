@@ -11,13 +11,15 @@ type imageProp={
 const Herobanner:React.FC<imageProp> = ({backgroundImage,title,description}) => {
   return (
     <div className='app__herobanner--main-div '>
-      <div className='app__herobanner--img' style={{backgroundImage: `url(${typeof backgroundImage === 'string' ? backgroundImage : backgroundImage.src})`}}></div>
+      <div className='app__herobanner--img' style={{backgroundImage: `url(${typeof backgroundImage === 'string' ? backgroundImage : backgroundImage.src})`}}>
       <div className='app__herobanner--details'>
          <div>
           <p className='herobanner__title'>{title}</p>
           <p className='herobanner_description'>{description}</p>
          </div>
-        </div>
+      </div>
+      </div>
+      
     </div>
   ) 
 }
