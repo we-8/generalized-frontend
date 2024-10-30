@@ -1,4 +1,4 @@
-import Herobanner from './Herobanner/Herobanner';
+import { Herobanner, Herobanner2 } from './Herobanner/Herobanner';
 import {Title,TitleL,TitleR} from './Title';
 import Description from './Description';
 import SpecialOffers from './SpecialOffer/SpecialOffer';
@@ -7,6 +7,7 @@ import LatestProducts from './LatestProducts/LatestProducts';
 import PeopleReview from './PeopleReview/PeopleReview';
 export{
   Herobanner,
+  Herobanner2,
   OrderNow,
   PeopleReview,
   OrderNow2,

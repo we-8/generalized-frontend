@@ -8,7 +8,8 @@ import who from './images/who.jpg';
 import test2 from './images/specialtest.png';
 import test3 from './images/test2.jpg';
 import person from './images/person.jpg';
-
+import hero3 from './images/hero3.jpg';
+import hero4 from './images/hero4.jpg';
 
 export{
   testImage,
@@ -20,5 +21,7 @@ export{
   logo,
   cart,
   hero,
-  hero2
+  hero2,
+  hero3,
+  hero4
 }

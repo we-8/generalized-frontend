@@ -17,7 +17,7 @@
   width: 100%;
   text-align: center;
   color: var(--font-color-primary);
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.2);
   height: 100%;
   display: flex;
   justify-content: center;
@@ -31,6 +31,10 @@
   font-size: 3.5rem;
   font-weight: bold;
 }
+.herobanner__title2{
+  font-size: 7rem;
+  font-weight: 400;
+}
 
 .herobanner_description{
   font-size: 1.2rem;
@@ -41,6 +45,11 @@
   .herobanner__title{
     font-size: 3rem;
   }
+
+  .herobanner__title2{
+    font-size: 5.5rem;
+
+  }
 }
 @media screen and (max-width:450px) {s
   .herobanner__title{
@@ -50,5 +59,9 @@
   .herobanner_description{
     font-size: 1rem;
     text-align: center;
+  }
+  .herobanner__title2{
+    font-size: 4rem;
+
   }
 }
