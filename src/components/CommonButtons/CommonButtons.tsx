@@ -29,6 +29,13 @@ const OrderNow2:React.FC<buttonProps> = ({title}) =>{
     </div>
   )
 }
+const AddtoCart:React.FC<buttonProps> = ({title}) =>{
+  return(
+    <div className='app__AddtoCart'>
+      <button>{title}</button>
+    </div>
+  )
+}
 
 
-export {CommonButtons, CommonButtons1 ,OrderNow , OrderNow2};
+export {CommonButtons, CommonButtons1 ,OrderNow , OrderNow2, AddtoCart};

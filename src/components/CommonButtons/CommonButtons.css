@@ -28,6 +28,14 @@
   margin-top: 1rem;
   width:70%;
 }
+.app__AddtoCart{
+  width:80%;
+  background-color: var(--bg-color-primary);
+  text-align: center;
+  padding: 0.4rem 0;
+  border-radius:20px;
+  color: #fff;
+}
 @media screen and (max-width:1050px){
   .app__OrderNow2 button{
     margin-bottom: 2rem;
