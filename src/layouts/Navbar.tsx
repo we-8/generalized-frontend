@@ -29,7 +29,7 @@ const Navbar = () => {
         </ul>
       </div>
       <div className='app__navbar--services'>
-        <Image src={cart} alt="cart image" width={25}/>
+        <Image className='navbar-logo' src={cart} alt="cart image"/>
         <div/>
         {loggedIn ? (<FaUserCircle fontSize={25} color='#fff' />):(
           <p className='p__text'><Link href='/'>Sign In</Link></p>

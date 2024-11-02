@@ -8,6 +8,7 @@ import PeopleReview from './PeopleReview/PeopleReview';
 import SearchBar from './SearchBar/SearchBar';
 import ProductSection from './ProductSection/ProductSection';
 
+
 export{
   Herobanner,
   Herobanner2,

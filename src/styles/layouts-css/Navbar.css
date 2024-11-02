@@ -5,6 +5,9 @@
   align-items: center;
   justify-content: space-between;
 }
+.navbar-logo{
+  width: 25px;
+}
 .app_navbar--links-list{
   display: flex;
   gap: 1.5rem;

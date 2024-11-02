@@ -5,6 +5,7 @@ import '../styles/main-pages-css/HomePage.css';
 
 
 
+
 type Category = {
   title: string;
 };
