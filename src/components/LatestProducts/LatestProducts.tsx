@@ -1,8 +1,8 @@
 'use client'
 import '../../styles/components-css/LatestProducts.css';
 import { test3 } from '@/assets';
-import { TitleL } from '../Title';
-import { OrderNow2 } from '../CommonButtons';
+import { TitleL } from '../Title/Title';
+import { OrderNow2 } from '../CommonButtons/CommonButtons';
 import React,{ useRef } from 'react';
 import Image from 'next/image';
 import { IoIosArrowBack,IoIosArrowForward } from "react-icons/io";

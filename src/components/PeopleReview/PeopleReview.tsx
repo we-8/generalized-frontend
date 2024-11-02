@@ -5,7 +5,7 @@ import React,{ useRef } from 'react';
 import { IoIosArrowBack,IoIosArrowForward } from "react-icons/io";
 import { IoStarSharp } from "react-icons/io5";
 import { person } from '@/assets';
-import { TitleL } from '../Title';
+import { TitleL } from '../Title/Title';
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

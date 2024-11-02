@@ -4,7 +4,7 @@ import '../../styles/components-css/SpecialOffer.css';
 import { test2 } from '@/assets';
 import Image from 'next/image';
 import { IoIosArrowBack,IoIosArrowForward } from "react-icons/io";
-import { OrderNow } from '../CommonButtons';
+import { OrderNow } from '../CommonButtons/CommonButtons';
 import {TitleL} from '@/components';
 
 import "slick-carousel/slick/slick.css";

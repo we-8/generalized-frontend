@@ -1,5 +1,5 @@
 import { useState } from "react";
-import InputFieldItem from "../InputField";
+import InputFieldItem from "../InputField/InputField";
 import "./SignUpForm.css";
 import Image from "next/image";
 import { test1 } from "@/assets";
