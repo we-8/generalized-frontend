@@ -36,3 +36,27 @@
 .details-type-value{
   font-size: 0.9rem;
 }
+
+@media screen and (max-width:850px) {
+  .details-item{
+    margin-top: 0;
+    margin-bottom: 0;
+    width: 100%;
+  }
+  .app__contactUs--details-div{
+    margin: 4rem 0 4rem 0;
+    padding-top: 2rem;
+  }
+}
+@media screen and (max-width:450px){
+  .app_contactUs-details-section{
+    padding: 0 1rem;
+  }
+  .details-type{
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+  .details-type-value{
+    font-size: 0.7rem;
+  }
+} 
