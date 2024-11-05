@@ -1,8 +1,10 @@
 import { Herobanner2 } from "@/components";
+import { useState } from "react";
 import { hero4 } from "@/assets";
 import { FaLocationDot , FaPhone} from "react-icons/fa6";
 import { BsGlobe } from "react-icons/bs";
 import '../../styles/main-pages-css/ContactUs.css'
+import ContactUsForm from "@/components/ContactUsForm/ContactUsForm";
 
 
 const ContactUs= () => {
@@ -26,6 +28,7 @@ const ContactUs= () => {
       <div>
       <Herobanner2 backgroundImage={hero4} title="Contact Us" description="Body text for your whole article or post. We’ll put in some lorem ipsum to show how a filled-out page might look:" />
       </div>
+      <ContactUsForm/>
       <div className="app__contactUs--details-div">
         <div className="app_contactUs-details-section">
           {details.map((details,index)=>(
