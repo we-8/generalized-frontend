@@ -1,8 +1,10 @@
+import SignInForm from "@/components/SignInForm/SignInForm";
+
 
 const SignIn = () => {
   return (
     <div>
-      signin
+      <SignInForm/>
       
     </div>
   );
