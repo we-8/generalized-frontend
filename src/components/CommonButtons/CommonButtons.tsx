@@ -36,6 +36,13 @@ const AddtoCart:React.FC<buttonProps> = ({title}) =>{
     </div>
   )
 }
+const RemoveButton:React.FC<buttonProps> = ({title}) =>{
+  return(
+    <div className='app__Remove'>
+      <button>{title}</button>
+    </div>
+  )
+}
 
 
-export {CommonButtons, CommonButtons1 ,OrderNow , OrderNow2, AddtoCart};
+export {CommonButtons, CommonButtons1 ,OrderNow , OrderNow2, AddtoCart ,RemoveButton};
