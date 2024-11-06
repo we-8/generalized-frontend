@@ -8,6 +8,15 @@
   margin: 0 1rem;
 }
 .app__cart--product-details{
+  display: flex;
+
+}
+/* .app__cart--product-summary{
+  position: fixed;
+  top:30px;
+  right:30px
+} */
+.app__cart--ordered-items{
   background-color: #fff;
   border-radius: 20px;
   padding: 2rem 3rem;
@@ -42,4 +51,9 @@
   border-radius: 5px;
   font-size: 0.8rem;
   padding: 0.2rem;
+}
+.cart-dropdown option{
+  background-color: #fff;
+  color: black;
+  outline: none;
 }

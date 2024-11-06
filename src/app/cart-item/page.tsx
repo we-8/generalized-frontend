@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../styles/main-pages-css/Cart.css'
-import { TitleL } from '@/components';
+import { TitleL,RemoveButton } from '@/components';
 import { Cashew } from '@/assets';
 import Image from 'next/image';
 
@@ -76,10 +76,14 @@ const Cart = () => {
                   <p className='cart-item-total-price'>{item.total}</p>
                   <p className='cart-item-singel-price'>{item.per_item} / per item</p>
                 </div>
+                <RemoveButton title="Remove" />
                 </div>
                 <div className='item-line'/>
               </div>
             ))}
+          </div>
+          <div className='app__cart--product-summary'>
+            dfdgfdfdgf
           </div>
         </div>
       </div>

@@ -36,6 +36,18 @@
   border-radius:20px;
   color: #fff;
 }
+.app__Remove{
+  border: 2px solid var(--bg-color-primary);
+  font-size: 1rem;
+  padding: 0.2rem 1rem;
+  font-weight: 400;
+}
+.app__Remove:hover{
+  background-color: var(--bg-color-primary);
+  color: #fff;
+  transition: 0.2s ease-in;
+}
+
 @media screen and (max-width:1050px){
   .app__OrderNow2 button{
     margin-bottom: 2rem;

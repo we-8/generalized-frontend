@@ -66,9 +66,8 @@
 } */
 
 /* Hover effect for buttons */
-button:hover {
-  background-color: #333; /* Slightly lighter black on hover */
-}
+/* button:hover {
+
 
 /* Style for the "already have an account?" section */
 .signin-signup-section {
