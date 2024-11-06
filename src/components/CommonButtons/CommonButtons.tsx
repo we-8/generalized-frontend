@@ -50,6 +50,14 @@ const CheckOut:React.FC<buttonProps> = ({title}) =>{
     </div>
   )
 }
+const BackToShop:React.FC<buttonProps> = ({title}) =>{
+  return(
+    <div className='app__BackToShop'>
+      <button>{title}</button>
+    </div>
+  )
+}
 
 
-export {CommonButtons, CommonButtons1 ,OrderNow , OrderNow2, AddtoCart ,RemoveButton, CheckOut};
+
+export {BackToShop,CommonButtons, CommonButtons1 ,OrderNow , OrderNow2, AddtoCart ,RemoveButton, CheckOut};

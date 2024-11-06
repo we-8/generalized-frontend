@@ -48,6 +48,20 @@
   transition: 0.2s ease-in;
 }
 
+.app__CheckOut{
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  padding: 0.2rem 0;
+  border-radius: 10px;
+}
+.app__BackToShop{
+  background-color: var(--bg-color-trinary);
+  color: #000;
+  text-align: center;
+  padding: 0.2rem 0;
+  border-radius: 10px;
+}
 @media screen and (max-width:1050px){
   .app__OrderNow2 button{
     margin-bottom: 2rem;

@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../styles/main-pages-css/Cart.css'
-import { TitleL,RemoveButton } from '@/components';
+import { TitleL,RemoveButton ,CheckOut,BackToShop} from '@/components';
 import { Cashew } from '@/assets';
 import Image from 'next/image';
 
@@ -120,6 +120,10 @@ const Cart = () => {
             <div className='summary-shipping-value-div'>
               <p className='summary-shipping-value-label'>Total price:</p>
               <p className='summary-shipping-value'>$50.00</p>
+            </div>
+            <div className='checkout-buttons'>
+              <CheckOut title='Proceed to Checkout'/>
+              <BackToShop title='Skip to Shop' />
             </div>
           </div>
         </div>
