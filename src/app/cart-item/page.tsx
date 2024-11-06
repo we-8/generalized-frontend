@@ -41,10 +41,31 @@ const Cart = () => {
       total:'$ 450.00',
       per_item:'$ 150.00',
       image:Cashew
+    },
+    {
+      name:'Lorem ipsum dolor sit ',
+      description:'amet, adipiscing  incididunt ut labore et dolor',
+      total:'$ 450.00',
+      per_item:'$ 150.00',
+      image:Cashew
+    },
+    {
+      name:'Lorem ipsum dolor sit ',
+      description:'amet, adipiscing  incididunt ut labore et dolor',
+      total:'$ 450.00',
+      per_item:'$ 150.00',
+      image:Cashew
+    },
+    {
+      name:'Lorem ipsum dolor sit ',
+      description:'amet, adipiscing  incididunt ut labore et dolor',
+      total:'$ 450.00',
+      per_item:'$ 150.00',
+      image:Cashew
     }
   ]
   return (
-    <div className='app__cart--main-div section__padding'>
+    <div className='app__cart--main-div'>
       <TitleL title='Your shopping cart' />
       <div className='app__cart--details-main-div'>
         <div></div>
@@ -83,7 +104,23 @@ const Cart = () => {
             ))}
           </div>
           <div className='app__cart--product-summary'>
-            dfdgfdfdgf
+            <div className='summary-total-value-div'>
+              <p className='summary-total-value-label'>Total price:</p>
+              <p className='summary-total-value'>$450.00</p>
+            </div>
+            <div className='summary-discount-value-div'>
+              <p className='summary-discount-value-label'>Discount:</p>
+              <p className='summary-total-value'>$150.00</p>
+            </div>
+            <div className='summary-shipping-value-div'>
+              <p className='summary-shipping-value-label'>Shipping cost:</p>
+              <p className='summary-shipping-value'>$50.00</p>
+            </div>
+            <div className='summary-line'/>
+            <div className='summary-shipping-value-div'>
+              <p className='summary-shipping-value-label'>Total price:</p>
+              <p className='summary-shipping-value'>$50.00</p>
+            </div>
           </div>
         </div>
       </div>
