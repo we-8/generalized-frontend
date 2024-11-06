@@ -53,17 +53,17 @@
   margin: 0 0 10px 0; /* Ceylon Rich Products text in yellow */
 }
 
-/* Pill-shaped button styles for both buttons */
-button {
-  background-color: black; /* Black background */
-  color: yellow; /* Yellow text */
+
+/* button {
+  background-color: black; 
+  color: yellow; 
   border: none;
-  border-radius: 50px; /* Pill-shaped curved edges */
-  padding: 10px 30px; /* More padding for a wider button */
+  border-radius: 50px; 
+  padding: 10px 30px; 
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s ease;
-}
+} */
 
 /* Hover effect for buttons */
 button:hover {

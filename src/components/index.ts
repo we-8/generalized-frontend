@@ -6,12 +6,14 @@ import { CommonButtons ,CommonButtons1 ,OrderNow,OrderNow2,AddtoCart } from './C
 import LatestProducts from './LatestProducts/LatestProducts';
 import PeopleReview from './PeopleReview/PeopleReview';
 import SearchBar from './SearchBar/SearchBar';
+import SignInForm from './SignInForm/SignInForm';
 import ProductSection from './ProductSection/ProductSection';
 
 
 export{
   Herobanner,
   Herobanner2,
+  SignInForm,
   ProductSection,
   OrderNow,
   SearchBar,

@@ -10,9 +10,11 @@ import test3 from './images/test2.jpg';
 import person from './images/person.jpg';
 import hero3 from './images/hero3.jpg';
 import hero4 from './images/hero4.jpg';
+import Cashew from './images/cashew.png'
 
 export{
   testImage,
+  Cashew,
   test2,
   person,
   who,
