@@ -8,10 +8,12 @@ import PeopleReview from './PeopleReview/PeopleReview';
 import SearchBar from './SearchBar/SearchBar';
 import SignInForm from './SignInForm/SignInForm';
 import ProductSection from './ProductSection/ProductSection';
+import RadioButton from './RadioButton/RadioButton';
 
 
 export{
   Herobanner,
+  RadioButton,
   Herobanner2,
   SignInForm,
   ProductSection,
@@ -31,5 +33,4 @@ export{
   RemoveButton,
   CheckOut,
   BackToShop
-
 }

@@ -75,3 +75,14 @@
   background-color: black;
   margin-bottom: 1rem;
 }
+
+.app__cart--currency-select{
+  background-color:#fff ;
+  border-radius: 20px;
+  width:300px;
+  height:auto;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}

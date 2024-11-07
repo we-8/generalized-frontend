@@ -34,13 +34,13 @@ const Navbar = () => {
         {loggedIn ? (<FaUserCircle fontSize={25} color='#fff' />):(
           <p className='p__text'><Link href='/'>Sign In</Link></p>
         )}
-        <FiAlignJustify className='burger-menu' fontSize={25} color='#fff' onClick={()=>{setToggle(true)}}/>
+        <FiAlignJustify className='burger-menu' fontSize={25} color='#181510' onClick={()=>{setToggle(true)}}/>
       </div>
       <div className='app_navbar--smallscreen'>
         
           {toggle && (
             <div className='app__navbar-smallscreen-overlay'>
-              <IoMdClose className='overlay-close' fontSize={25} color='#fff' onClick={()=>{setToggle(false)}} />
+              <IoMdClose className='overlay-close' fontSize={25} color='#181510' onClick={()=>{setToggle(false)}} />
               <div className='app__navbar--smallscreen-links-div'>
                 <ul className='app_navbar--smallscrenn-links-list'>
                   <li className='p__text'> <Link href="/">Home</Link></li>

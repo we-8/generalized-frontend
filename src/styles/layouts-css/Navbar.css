@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  
 }
 .navbar-logo{
   width: 25px;
@@ -11,6 +12,7 @@
 .app_navbar--links-list{
   display: flex;
   gap: 1.5rem;
+  
 }
 .app__navbar--services{
   display:flex;
@@ -52,6 +54,10 @@
   gap: 2rem;
   display:flex;
   flex-direction: column;
+  
+}
+.app_navbar--links-list li{
+  color: var(--font-color-secondary);
 }
 .app_navbar--smallscreen , .burger-menu {
   display: none;

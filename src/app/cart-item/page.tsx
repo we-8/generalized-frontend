@@ -1,10 +1,34 @@
-import React from 'react';
+'use client'
+import React, { useState } from 'react';
 import '../../styles/main-pages-css/Cart.css'
-import { TitleL,RemoveButton ,CheckOut,BackToShop} from '@/components';
+import { TitleL,RemoveButton ,CheckOut,BackToShop,RadioButton} from '@/components';
 import { Cashew } from '@/assets';
 import Image from 'next/image';
 
 const Cart = () => {
+  
+  const RadioButtons =[
+    {
+      htmlfor:"LKR",
+      label:"LKR",
+      value:"LKR"
+    },
+    {
+      htmlfor:"EUR",
+      label:"EUR",
+      value:"EUR"
+    },
+    {
+      htmlfor:"USD",
+      label:"USD",
+      value:"USD"
+    },
+    {
+      htmlfor:"AUD",
+      label:"AUD",
+      value:"AUD"
+    }
+  ]
 
   const Cartitem =[
     {
@@ -64,11 +88,14 @@ const Cart = () => {
       image:Cashew
     }
   ]
+  const handleOptionChange = (value: string) => {
+    setSelectedValue(value);
+  };
+  const [selectedValue,setSelectedValue] = useState('')
   return (
     <div className='app__cart--main-div'>
       <TitleL title='Your shopping cart' />
       <div className='app__cart--details-main-div'>
-        <div></div>
         <div className='app__cart--product-details'>
           <div className='app__cart--ordered-items'>
             {Cartitem.map((item,index)=>(
@@ -103,6 +130,7 @@ const Cart = () => {
               </div>
             ))}
           </div>
+          <div>
           <div className='app__cart--product-summary'>
             <div className='summary-total-value-div'>
               <p className='summary-total-value-label'>Total price:</p>
@@ -125,7 +153,16 @@ const Cart = () => {
               <CheckOut title='Proceed to Checkout'/>
               <BackToShop title='Skip to Shop' />
             </div>
+
           </div>
+            <div className='app__cart--currency-select'>
+              <TitleL title='Currency'/>
+              {RadioButtons.map((item,index)=>(
+                <RadioButton key={index}  value={item.value} htmlfor={item.htmlfor} label={item.label} checked={selectedValue == item.value} onChange={() => handleOptionChange(item.value)}/>
+              ))}
+            </div>
+          </div>
+          
         </div>
       </div>
 

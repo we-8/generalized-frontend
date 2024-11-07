@@ -1,7 +1,7 @@
 .app__footer-main_div{
   background-color: var(--bg-color-primary);
   font-family: var(--base-font);
-  color: white;
+  color: var(--font-color-secondary);
   padding: 2rem 4rem 0 4rem;
 }
 .app__footer-upper-section{

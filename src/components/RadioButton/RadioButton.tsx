@@ -2,18 +2,19 @@ import React from 'react'
 import './RadioButton.css'
 
 type RadioButtonProps = {
-  name: string,
+
   htmlfor:string,
   value: string;
   checked: boolean;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: () => void;
   label: string;
 }
 const RadioButton:React.FC<RadioButtonProps> = ({label,htmlfor,value,checked,onChange}) => {
   return (
     <div className='app__radioButton'>
-      <label htmlFor={htmlfor}>{label}
+      <label htmlFor={htmlfor}>
         <input type='radio' name={htmlfor} value={value} checked={checked} onChange={onChange} />
+        {label}
       </label>
     </div>
   )
