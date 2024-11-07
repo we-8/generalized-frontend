@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { logo ,cart} from '@/assets';
 import '../styles/layouts-css/Navbar.css'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FiAlignJustify } from "react-icons/fi";
 import { IoMdClose } from "react-icons/io";
 import { FaUserCircle } from "react-icons/fa";
@@ -14,6 +14,7 @@ const Navbar = () => {
 
   const [toggle, setToggle] = useState(false);
   const [loggedIn , setLoggedIn] = useState(true);
+
 
   return (
     <div className='app__navbar--main-div'>
@@ -31,7 +32,7 @@ const Navbar = () => {
       <div className='app__navbar--services'>
         <Image className='navbar-logo' src={cart} alt="cart image"/>
         <div/>
-        {loggedIn ? (<FaUserCircle fontSize={25} color='#fff' />):(
+        {loggedIn ? (<FaUserCircle fontSize={25} color='#181510' />):(
           <p className='p__text'><Link href='/'>Sign In</Link></p>
         )}
         <FiAlignJustify className='burger-menu' fontSize={25} color='#181510' onClick={()=>{setToggle(true)}}/>

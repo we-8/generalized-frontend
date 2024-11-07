@@ -40,7 +40,7 @@ const PeopleReview = () => {
   };
   return (
     <div className="app__peopleReview--main-div">
-      <button className='prev-button' onClick={() => sliderRef.current?.slickPrev()}><IoIosArrowBack color="red" fontWeight={600} size={40}/></button>
+      <button className='prev-button' onClick={() => sliderRef.current?.slickPrev()}><IoIosArrowBack color="#FFCF2C" fontWeight={600} size={40}/></button>
         <TitleL title='What People Say'/>
         <div className='app_peopleReview-inside-div'>
         <p className='latest-review-p'>Latest reviews</p>
@@ -51,7 +51,7 @@ const PeopleReview = () => {
               <div className='app__review--stars'>
                 {
                 [...Array(review.starRating)].map((_,index) =>(
-                  <IoStarSharp key={index} fontSize={25} color='#AD49E1' />
+                  <IoStarSharp key={index} fontSize={25} color='#FFCF2C' />
                 ))
                 }
               </div>
@@ -72,7 +72,7 @@ const PeopleReview = () => {
         ))}
         </Slider>
         </div>
-      <button className='next-button' onClick={() => sliderRef.current?.slickNext()}><IoIosArrowForward color="red" fontWeight={600} size={40}/></button>
+      <button className='next-button' onClick={() => sliderRef.current?.slickNext()}><IoIosArrowForward color="#FFCF2C" fontWeight={600} size={40}/></button>
     </div>
   )
 }

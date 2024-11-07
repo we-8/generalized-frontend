@@ -41,7 +41,7 @@ const SpecialOffers = () => {
   return (
     <div className="app__specialOffer--main-div">
       <TitleL title='Special Offers'/>
-      <button className='prev-button' onClick={() => sliderRef.current?.slickPrev()}><IoIosArrowBack color="red" fontWeight={600} size={40}/></button>
+      <button className='prev-button' onClick={() => sliderRef.current?.slickPrev()}><IoIosArrowBack color="#FFCF2C" fontWeight={600} size={40}/></button>
       <Slider ref={sliderRef} {...settings}>
         {products.map((product, index) => (
           <div className="app__specialOffer--item-div" key={index}>
@@ -64,7 +64,7 @@ const SpecialOffers = () => {
           </div>
         ))}
       </Slider>
-      <button className='next-button' onClick={() => sliderRef.current?.slickNext()}><IoIosArrowForward color="red" fontWeight={600} size={40}/></button>
+      <button className='next-button' onClick={() => sliderRef.current?.slickNext()}><IoIosArrowForward color="#FFCF2C" fontWeight={600} size={40}/></button>
     </div>
   );
 };

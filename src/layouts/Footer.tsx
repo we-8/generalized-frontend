@@ -1,8 +1,8 @@
-import { logo } from "@/assets";
+import { logo,Tiktok,Youtube,Instagram,Facebook } from "@/assets";
 import Image from 'next/image';
 import '../styles/layouts-css/Footer.css'
-const Footer = () => {
 
+const Footer = () => {
 
   return (
     <div className='app__footer--main-div'>
@@ -12,23 +12,23 @@ const Footer = () => {
           <Image src={logo} alt="logo"/>
           <p className='description'>To deliver an outstanding quality service that: Customers are satisfied with and recommend to friends and family.
           We care your dreams.</p>
-          {/* <div className='social-media'>
+          <div className='social-media'>
             <div className='social-media-icon-div'>
-              <img src={Images.facebook} alt="facebook image"/>
+              <Image src={Youtube} alt="youtube image"/>
             </div>
             <div className='social-media-icon-div'>
-              <img src={Images.twiitter} alt="twitter image"/>
+              <Image src={Instagram} alt="instagram image"/>
             </div>
             <div className='social-media-icon-div'>
-              <img src={Images.instagram} alt="instagram image"/>
+              <Image src={Tiktok} alt="tiktok image"/>
             </div>
             <div className='social-media-icon-div'>
-              <img src={Images.youtube} alt="youtube image"/>
+              <Image src={Facebook} alt="facebook image"/>
             </div>
-          </div> */}
+          </div>
         </div>
         <div className='app__footer-upper-elements'>
-          <p className='title'>My Account</p>
+          <p className='footer-title'>My Account</p>
           <div className='links'>
             <a href='#'>My Account</a>
             <a href='#'>Contact</a>
@@ -38,7 +38,7 @@ const Footer = () => {
           </div>
         </div>
         <div className='app__footer-upper-elements'>
-          <p className='title'>Services</p>
+          <p className='footer-title'>Services</p>
           <div className='links'>
             <a href='#'>Delivery</a>
             <a href='#'>Warrenty</a>
@@ -48,7 +48,7 @@ const Footer = () => {
           </div>
         </div>
         <div className='app__footer-upper-elements'>
-          <p className='title'>Contact Info</p>
+          <p className='footer-title'>Contact Info</p>
           <div className='Info'>
             <p>Address : 142/1/1 Kotugoda rd, Mukalangamuwa, Seeduwa</p>
             <p>Phone : +94(0) 741002005</p>
@@ -57,6 +57,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
+      <div className="footer-line"/>
       <div className='app__footer-lower-section'>
         <p>Ceylon Rich Products © 2024</p>
       </div>

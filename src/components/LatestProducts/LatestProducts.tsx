@@ -41,7 +41,7 @@ const LatestProducts = () => {
   return (
     <div className='app__latestProducts--main-div'>
       <TitleL title="What's New"/>
-      <button className='prev-buttonL' onClick={() => sliderRef.current?.slickPrev()}><IoIosArrowBack color="red" fontWeight={600} size={40}/></button>
+      <button className='prev-buttonL' onClick={() => sliderRef.current?.slickPrev()}><IoIosArrowBack color="#FFCF2C" fontWeight={600} size={40}/></button>
       <Slider ref={sliderRef} {...settings}>
         {products.map((product, index) => (
           <div className='app__latestProduct--item-div' key={index}>
@@ -59,7 +59,7 @@ const LatestProducts = () => {
           
         ))}
       </Slider>
-      <button className='next-buttonL' onClick={() => sliderRef.current?.slickNext()}><IoIosArrowForward color="red" fontWeight={600} size={40}/></button>
+      <button className='next-buttonL' onClick={() => sliderRef.current?.slickNext()}><IoIosArrowForward color="#FFCF2C" fontWeight={600} size={40}/></button>
 
     </div>
   )

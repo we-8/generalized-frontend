@@ -74,4 +74,7 @@
     padding:0.8rem 1rem;
     font-size: 0.7rem;
   }
+  .app__Remove{
+    margin-bottom: 1rem;
+  }
 }

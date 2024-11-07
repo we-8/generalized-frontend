@@ -130,36 +130,38 @@ const Cart = () => {
               </div>
             ))}
           </div>
-          <div>
-          <div className='app__cart--product-summary'>
-            <div className='summary-total-value-div'>
-              <p className='summary-total-value-label'>Total price:</p>
-              <p className='summary-total-value'>$450.00</p>
-            </div>
-            <div className='summary-discount-value-div'>
-              <p className='summary-discount-value-label'>Discount:</p>
-              <p className='summary-total-value'>$150.00</p>
-            </div>
-            <div className='summary-shipping-value-div'>
-              <p className='summary-shipping-value-label'>Shipping cost:</p>
-              <p className='summary-shipping-value'>$50.00</p>
-            </div>
-            <div className='summary-line'/>
-            <div className='summary-shipping-value-div'>
-              <p className='summary-shipping-value-label'>Total price:</p>
-              <p className='summary-shipping-value'>$50.00</p>
-            </div>
-            <div className='checkout-buttons'>
-              <CheckOut title='Proceed to Checkout'/>
-              <BackToShop title='Skip to Shop' />
-            </div>
+          <div className='app__cart--lower-section'>
+            <div className='app__cart--product-summary'>
+              <div className='summary-total-value-div'>
+                <p className='summary-total-value-label'>Total price:</p>
+                <p className='summary-total-value'>$450.00</p>
+              </div>
+              <div className='summary-discount-value-div'>
+                <p className='summary-discount-value-label'>Discount:</p>
+                <p className='summary-total-value'>$150.00</p>
+              </div>
+              <div className='summary-shipping-value-div'>
+                <p className='summary-shipping-value-label'>Shipping cost:</p>
+                <p className='summary-shipping-value'>$50.00</p>
+              </div>
+              <div className='summary-line'/>
+              <div className='summary-shipping-value-div'>
+                <p className='summary-shipping-value-label'>Total price:</p>
+                <p className='summary-shipping-value'>$50.00</p>
+              </div>
+              <div className='checkout-buttons'>
+                <CheckOut title='Proceed to Checkout'/>
+                <BackToShop title='Skip to Shop' />
+              </div>
 
-          </div>
+            </div>
             <div className='app__cart--currency-select'>
               <TitleL title='Currency'/>
-              {RadioButtons.map((item,index)=>(
-                <RadioButton key={index}  value={item.value} htmlfor={item.htmlfor} label={item.label} checked={selectedValue == item.value} onChange={() => handleOptionChange(item.value)}/>
-              ))}
+             <div className='currency-buttons'>
+                {RadioButtons.map((item,index)=>(
+                  <RadioButton key={index}  value={item.value} htmlfor={item.htmlfor} label={item.label} checked={selectedValue == item.value} onChange={() => handleOptionChange(item.value)}/>
+                ))}
+             </div>
             </div>
           </div>
           

@@ -10,11 +10,19 @@ import test3 from './images/test2.jpg';
 import person from './images/person.jpg';
 import hero3 from './images/hero3.jpg';
 import hero4 from './images/hero4.jpg';
-import Cashew from './images/cashew.png'
+import Cashew from './images/cashew.png';
+import Facebook from './images/facebook.png';
+import Tiktok from './images/tiktok.png';
+import Instagram from './images/instagram.png';
+import Youtube from './images/youtube.png'
 
 export{
   testImage,
   Cashew,
+  Facebook,
+  Tiktok,
+  Instagram,
+  Youtube,
   test2,
   person,
   who,
