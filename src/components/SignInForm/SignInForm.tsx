@@ -94,7 +94,16 @@ const SignInForm: React.FC = () => {
                     className="error-message"
                   />
                 </div>
-
+                <div className="form-checkbox-forget-main-div">
+                  <div className="form-checkbox-div">
+                    <input type="checkbox"  />
+                    <span className="checkmark"></span>
+                    <label className="container">
+                    Remember me
+                    </label>
+                  </div>
+                  <p>Forget Password ?</p>
+                </div>
                 <div className="signin-signup-section">
                   <p>Don't have an account?</p>
                   <button type="button" className="signin-signup-button">

@@ -18,7 +18,19 @@
   flex-direction: column;
 
 }
-
+.form-checkbox-forget-main-div{
+  display: flex;
+  justify-content: space-between;
+  margin-right: 8rem;
+  font-size: 0.8rem;
+  margin-top:0.5rem;
+}
+.form-checkbox-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap:0.2rem;
+}
 .app__signin-form-section {
   width: 100%;
   margin-bottom: 1rem; 
