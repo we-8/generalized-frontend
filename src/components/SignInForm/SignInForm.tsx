@@ -1,8 +1,9 @@
 'use client'
 import { useState } from "react";
 import "./SignInForm.css";
+import { TitleL,TitleYellow,} from "../Title/Title";
 import Image from "next/image";
-import { hero } from "@/assets";
+import { hero ,who} from "@/assets";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
@@ -33,14 +34,12 @@ const SignInForm: React.FC = () => {
   };
 
   return (
-    <div className="app__signin-form-main-div section__padding">
+    <div className="app__signin-form-main-div">
       <div className="app__signin-img-section">
         <Image
           className="app__signin-img"
-          src={hero}
+          src={who}
           alt="picture"
-          width={100}
-          height={200}
         />
       </div>
       <div className="app__signin-form-main-div2">
@@ -50,60 +49,68 @@ const SignInForm: React.FC = () => {
           onSubmit={handleSubmit}
         >
           {({ errors, touched }) => (
-            <Form>
+            <>
               <div>
-                <h1 className="app__signin-text">Welcome to</h1>
+                <TitleL title="Welcome to" />
               </div>
               <div>
-                <h1 className="app__signin-text2">Ceylon Rich Products</h1>
+                <TitleYellow title="Ceylon Rich Products"/>
               </div>
-              <div className="app__signin-form-section">
-                <label htmlFor="username">Username</label>
-                <Field
-                  name="username"
-                  type="text"
-                  placeholder="Enter Your Username"
-                  className={`app__inputField-main-div-input ${
-                    errors.username && touched.username ? "input-error" : ""
-                  }`}
-                />
-                <ErrorMessage
-                  name="username"
-                  component="div"
-                  className="error-message"
-                />
-              </div>
-
-              <div className="app__signin-form-section">
-                <label htmlFor="password">Password</label>
-                <Field
-                  name="password"
-                  type="password"
-                  placeholder="Enter Your Password"
-                  className={`app__inputField-main-div-input ${
-                    errors.password && touched.password ? "input-error" : ""
-                  }`}
-                />
-                <ErrorMessage
-                  name="password"
-                  component="div"
-                  className="error-message"
-                />
-              </div>
-
-              <div className="signin-signup-section">
-                <p>Don't have an account?</p>
-                <button type="button" className="signin-signup-button">
-                  Sign Up
-                </button>
-              </div>
-
               <div>
-                <button type="submit" className="signin-login-button">
-                  Log in
-                </button>
+                <p className="form-title-description">Register your account</p>
               </div>
-            </Form>
+              <div className="app__signin-form">
+                <Form>
+                <div className="app__signin-form-section">
+                  <label htmlFor="username">Name</label>
+                  <Field
+                    name="username"
+                    type="text"
+                    placeholder="Enter Your Username"
+                    className={`app__inputField-main-div-input ${
+                      errors.username && touched.username ? "input-error" : ""
+                    }`}
+                  />
+                  <ErrorMessage
+                    name="username"
+                    component="div"
+                    className="error-message"
+                  />
+                </div>
+
+                <div className="app__signin-form-section">
+                  <label htmlFor="password">Password</label>
+                  <Field
+                    name="password"
+                    type="password"
+                    placeholder="Enter Your Password"
+                    className={`app__inputField-main-div-input ${
+                      errors.password && touched.password ? "input-error" : ""
+                    }`}
+                  />
+                  <ErrorMessage
+                    name="password"
+                    component="div"
+                    className="error-message"
+                  />
+                </div>
+
+                <div className="signin-signup-section">
+                  <p>Don't have an account?</p>
+                  <button type="button" className="signin-signup-button">
+                    Sign Up
+                  </button>
+                </div>
+
+                <div>
+                  <button type="submit" className="signin-login-button">
+                    Log in
+                  </button>
+                </div>
+              </Form>
+              </div>
+             
+            </>
           )}
         </Formik>
       </div>

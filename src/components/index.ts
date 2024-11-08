@@ -1,5 +1,5 @@
 import { Herobanner, Herobanner2 } from './Herobanner/Herobanner';
-import {Title,TitleL,TitleR} from './Title/Title';
+import {Title,TitleL,TitleR ,TitleYellow} from './Title/Title';
 import Description from './Description/Description';
 import SpecialOffers from './SpecialOffer/SpecialOffer';
 import {BackToShop, CommonButtons ,CommonButtons1 ,OrderNow,OrderNow2,AddtoCart , RemoveButton , CheckOut} from './CommonButtons/CommonButtons';
@@ -28,6 +28,7 @@ export{
   Title,
   TitleL,
   TitleR,
+  TitleYellow,
   Description,
   SpecialOffers,
   RemoveButton,

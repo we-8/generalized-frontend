@@ -1,4 +1,5 @@
-import "./InputField.css";
+import './InputField.css';
+
 type InputFieldProps = {
   htmlFor: string;
   label: string;
@@ -9,21 +10,13 @@ type InputFieldProps = {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-const InputFieldItem: React.FC<InputFieldProps> = ({
-  htmlFor,
-  label,
-  name,
-  type,
-  value,
-  placeholder,
-  onChange,
-}) => {
+const InputFieldItem: React.FC<InputFieldProps> = ({htmlFor,label,name,type,value,placeholder,onChange,}) => {
   return (
-    <div>
-      <div className="app__label-main-div">
+    <div className="app__inputField-main-div">
+      <div className="app__inputField--label">
         <label htmlFor={htmlFor}>{label}</label>
       </div>
-      <div className="app__inputField-main-div">
+      <div className="app__inputField--input" >
         <input
           type={type}
           value={value}

@@ -1,36 +1,37 @@
 .app__signin-form-main-div {
   display: flex;
   justify-content: center;
-  height: 100vh; /* Full viewport height */
+  height: 100vh;
+  font-family: var(--base-font);
+  
 }
 
 .app__signin-form-main-div2 {
   width: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* Centers form vertically */
-  align-items: center; /* Centers form horizontally */
+  padding: 6rem 0 0 4rem;
 }
 
 .app__signin-form-main-div2 form {
-  background-color: var(--bg-color-secondary);
-  border-radius: 20px;
-  width: 80%; /* Form width */
+  width: 100%;
   display: flex;
+  height: 100%;
   flex-direction: column;
+
 }
 
 .app__signin-form-section {
   width: 100%;
-  margin-bottom: 1rem; /* Space between form fields */
+  margin-bottom: 1rem; 
+  display: flex;
+  flex-direction: column;
 }
-
+.form-title-description{
+  font-size: 1rem;
+  opacity: 0.6;
+  margin-top: -1rem;
+}
 .app__signin-img-section {
   width: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0;
 }
 
 .app__signin-img {
@@ -38,48 +39,33 @@
   height: 100%;
   object-fit: cover;
 }
-
-/* Style for the two headings (left aligned) */
 .app__signin-text {
-  text-align: left; /* Aligns the text headers to the left */
+  text-align: left;
   width: 100%;
   margin: 0 0 10px 0;
 }
-
+.app__signin-form{
+  margin-top:3rem;
+}
 .app__signin-text2 {
   color: yellow;
-  text-align: left; /* Aligns the text headers to the left */
+  text-align: left;
   width: 100%;
-  margin: 0 0 10px 0; /* Ceylon Rich Products text in yellow */
+  margin: 0 0 10px 0;
 }
-
-
-/* button {
-  background-color: black; 
-  color: yellow; 
-  border: none;
-  border-radius: 50px; 
-  padding: 10px 30px; 
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
-} */
-
-/* Hover effect for buttons */
-/* button:hover {
-
-
-/* Style for the "already have an account?" section */
 .signin-signup-section {
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* Aligns text and button to the left */
+  justify-content: flex-start;
   width: 100%;
+  
 }
-
+.app__signin-form-section label{
+  font-weight:500;
+}
 .signin-signup-button {
-  padding: 5px 15px; /* Smaller padding to make it more compact */
-  font-size: 14px; /* Smaller font size */
+  padding: 5px 15px;
+  font-size: 14px; 
   margin-left: 1rem;
 }
 
@@ -90,12 +76,13 @@
 }
 
 .app__inputField-main-div-input {
-  width: 95%;
+  width: 80%;
   height: 2.5rem;
   padding: 0 1rem;
   outline: none;
   border-radius: 10px;
   margin-top: 0.5rem;
+  border: 2px solid var(--bg-color-primary);
 }
 .app__inputField-main-div {
   width: 100%;
