@@ -1,0 +1,90 @@
+.app__AboutUs--main-div {
+    font-family: var(--base-font);
+}
+
+.app__Aboutus--Who-we-are {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+.app__Aboutus--Who-we-are-details {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; 
+    justify-content: center;
+    padding-right: 1rem;
+    text-align: right; 
+}
+
+.who-image {
+    width: 45%; 
+    height: auto;
+    border-radius: 20px;
+    border: 3px solid var(--bg-color-primary);
+    margin-left: 1rem;
+}
+
+.aboutUs__container_left {
+    font-family: var(--base-font);
+}
+
+.aboutUs__section_left {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+.aboutUs__text_left {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Aligns text to the left */
+    justify-content: center;
+    padding-left: 1rem;
+    text-align: left; /* Aligns paragraph text to the left */
+}
+
+.aboutUs__image_left {
+    width: 45%;
+    height: auto;
+    border-radius: 20px;
+    border: 3px solid var(--bg-color-primary);
+    margin-right: 1rem;
+}
+
+@media screen and (max-width: 1050px) {
+    .aboutUs__section_left {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .aboutUs__text_left,
+    .aboutUs__image_left {
+        width: 100%;
+        margin-right: 0;
+        padding-left: 0;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+
+@media screen and (max-width: 1050px) {
+    .app__Aboutus--Who-we-are {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .app__Aboutus--Who-we-are-details,
+    .who-image {
+        width: 100%;
+        margin-left: 0;
+        padding-right: 0;
+        text-align: right; 
+        align-items: center; 
+    }
+}
