@@ -3,33 +3,53 @@
   justify-content: center;
   height: 100vh;
   font-family: var(--base-font);
-  
+  padding-right: 8rem;
 }
-
 .app__signin-form-main-div2 {
   width: 50%;
   padding: 6rem 0 0 4rem;
 }
-
 .app__signin-form-main-div2 form {
   width: 100%;
   display: flex;
   height: 100%;
   flex-direction: column;
-
 }
 .form-checkbox-forget-main-div{
   display: flex;
   justify-content: space-between;
-  margin-right: 8rem;
-  font-size: 0.8rem;
-  margin-top:0.5rem;
+  font-size: 0.9rem;
+  margin-top:0.7rem;
+  cursor: pointer;
 }
 .form-checkbox-div{
   display: flex;
   justify-content: center;
   align-items: center;
   gap:0.2rem;
+}
+.new-account-section{
+  display: flex;
+  gap: 1rem;
+  font-size: 0.9rem;
+  margin-top:0.7rem;
+  margin-bottom: 1.5rem;
+}
+.signin-break-section{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+.signin-break-section p{
+  margin: 0 0.5rem;
+}
+.signin-break-section div{
+  height: 2px;
+  background-color: var(--font-color-secondary);
+  width: 40%;
+  opacity: 0.5;
 }
 .app__signin-form-section {
   width: 100%;
@@ -45,7 +65,6 @@
 .app__signin-img-section {
   width: 50%;
 }
-
 .app__signin-img {
   width: 100%;
   height: 100%;
@@ -57,20 +76,13 @@
   margin: 0 0 10px 0;
 }
 .app__signin-form{
-  margin-top:3rem;
+  margin-top:2rem;
 }
 .app__signin-text2 {
   color: yellow;
   text-align: left;
   width: 100%;
   margin: 0 0 10px 0;
-}
-.signin-signup-section {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-  
 }
 .app__signin-form-section label{
   font-weight:500;
@@ -80,15 +92,13 @@
   font-size: 14px; 
   margin-left: 1rem;
 }
-
 .signin-login-button {
   margin-top: 1rem;
   text-align: left;
   width: auto;
 }
-
 .app__inputField-main-div-input {
-  width: 80%;
+  width: 100%;
   height: 2.5rem;
   padding: 0 1rem;
   outline: none;

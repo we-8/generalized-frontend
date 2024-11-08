@@ -63,6 +63,34 @@
   border-radius: 10px;
   margin-top: 1rem;
 }
+.app__Login{
+  background-color: var(--font-color-secondary);
+  color: #fff;
+  text-align: center;
+  padding: 0.6rem 0;
+  border-radius: 20px;
+  margin: 0 1rem;
+}
+.app__Google{
+  background-color: var(--bg-color-trinary);
+  text-align: center;
+  padding: 0.6rem 0;
+  border-radius: 20px;
+  color: #000;
+  margin: 1rem 1rem;
+}
+.app__Google button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+.google-img{
+  width:20px;
+}
+
+
 @media screen and (max-width:1050px){
   .app__OrderNow2 button{
     margin-bottom: 2rem;

@@ -1,4 +1,6 @@
 import './CommonButtons.css';
+import { Google } from '@/assets';
+import Image from 'next/image';
 
 type buttonProps = {
   title:string
@@ -57,7 +59,20 @@ const BackToShop:React.FC<buttonProps> = ({title}) =>{
     </div>
   )
 }
+const Login:React.FC<buttonProps> = ({title}) =>{
+  return(
+    <div className='app__Login'>
+      <button>{title}</button>
+    </div>
+  )
+}
+const GoogleButton:React.FC<buttonProps> = ({title}) =>{
+  return(
+    <div className='app__Google'>
+      <button><Image className='google-img' src={Google} alt="google button"/>{title}</button>
+    </div>
+  )
+}
 
 
-
-export {BackToShop,CommonButtons, CommonButtons1 ,OrderNow , OrderNow2, AddtoCart ,RemoveButton, CheckOut};
+export {GoogleButton,Login,BackToShop,CommonButtons, CommonButtons1 ,OrderNow , OrderNow2, AddtoCart ,RemoveButton, CheckOut};

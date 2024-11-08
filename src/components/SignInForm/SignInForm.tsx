@@ -2,12 +2,13 @@
 import { useState } from "react";
 import "./SignInForm.css";
 import { TitleL,TitleYellow,} from "../Title/Title";
+import { Login ,GoogleButton } from "../CommonButtons/CommonButtons";
 import Image from "next/image";
 import { hero ,who} from "@/assets";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
-interface SignInFormData {
+type SignInFormData = {
   username: string;
   email: string;
   password: string;
@@ -97,24 +98,29 @@ const SignInForm: React.FC = () => {
                 <div className="form-checkbox-forget-main-div">
                   <div className="form-checkbox-div">
                     <input type="checkbox"  />
-                    <span className="checkmark"></span>
                     <label className="container">
+                    <span className="checkmark"></span>
                     Remember me
                     </label>
                   </div>
                   <p>Forget Password ?</p>
                 </div>
                 <div className="signin-signup-section">
-                  <p>Don't have an account?</p>
-                  <button type="button" className="signin-signup-button">
-                    Sign Up
-                  </button>
-                </div>
-
-                <div>
-                  <button type="submit" className="signin-login-button">
-                    Log in
-                  </button>
+                  <div className="new-account-section">
+                    <p>Don't have an account ?</p>
+                    <p>Sign up</p>
+                  </div>
+                  <div className="login-button">
+                    <Login title="LOGIN" />
+                  </div>
+                  <div className="signin-break-section">
+                    <div/>
+                    <p>OR</p>
+                    <div/>
+                  </div>
+                  <div className="google-login">
+                    <GoogleButton title="Sign in with Google"/>
+                  </div>
                 </div>
               </Form>
               </div>

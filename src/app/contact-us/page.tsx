@@ -34,9 +34,9 @@ const ContactUs= () => {
           {details.map((details,index)=>(
             <div className="details-item" key={index}>
               <div className="details-icon">
-                {details.type === 'Address' && <FaLocationDot color="#AD49E1" fontSize={45}  />}
-                {details.type === 'E-mail' && <BsGlobe color="#AD49E1" fontSize={45}   />}
-                {details.type === 'Phone' && <FaPhone color="#AD49E1" fontSize={45} />}
+                {details.type === 'Address' && <FaLocationDot color="#FFCF2C" fontSize={45}  />}
+                {details.type === 'E-mail' && <BsGlobe color="#FFCF2C" fontSize={45}   />}
+                {details.type === 'Phone' && <FaPhone color="#FFCF2C" fontSize={45} />}
               </div>
               <div className="details-values">
                 <p className="details-type">{details.type}</p>

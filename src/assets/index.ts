@@ -14,10 +14,12 @@ import Cashew from './images/cashew.png';
 import Facebook from './images/facebook.png';
 import Tiktok from './images/tiktok.png';
 import Instagram from './images/instagram.png';
-import Youtube from './images/youtube.png'
+import Youtube from './images/youtube.png';
+import Google from './images/google.png';
 
 export{
   testImage,
+  Google,
   Cashew,
   Facebook,
   Tiktok,
