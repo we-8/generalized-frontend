@@ -16,9 +16,10 @@ import Tiktok from './images/tiktok.png';
 import Instagram from './images/instagram.png';
 import Youtube from './images/youtube.png';
 import Google from './images/google.png';
-
+import Quote from './images/double-quotes.png';
 export{
   testImage,
+  Quote,
   Google,
   Cashew,
   Facebook,

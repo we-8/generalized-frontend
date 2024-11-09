@@ -1,6 +1,6 @@
 import { Herobanner, Herobanner2 } from './Herobanner/Herobanner';
 import {Title,TitleL,TitleR ,TitleYellow} from './Title/Title';
-import Description from './Description/Description';
+import {DescriptionL,DescriptionR,Description} from './Description/Description';
 import SpecialOffers from './SpecialOffer/SpecialOffer';
 import {ProductFilter,GoogleButton,Login,BackToShop, CommonButtons ,CommonButtons1 ,OrderNow,OrderNow2,AddtoCart , RemoveButton , CheckOut} from './CommonButtons/CommonButtons';
 import LatestProducts from './LatestProducts/LatestProducts';
@@ -31,6 +31,8 @@ export{
   TitleR,
   TitleYellow,
   Description,
+  DescriptionL,
+  DescriptionR,
   SpecialOffers,
   RemoveButton,
   CheckOut,

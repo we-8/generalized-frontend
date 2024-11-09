@@ -1,0 +1,40 @@
+.app__aboutUs--theStory-section{
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  font-family: var( --base-font);
+}
+.story-section-image{
+  width:50%;
+  object-fit: cover;
+  border-radius: 20px;
+  border: 4px solid var(--bg-color-primary);
+}
+.story-section-line{
+  height: 4px;
+  width: 20%;
+  background-color: var(--font-color-secondary);
+  margin: 4rem 0 2rem 0;
+}
+.app__aboutUs-quote-section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.quote-section-image{
+  width: 80px;
+}
+.quote-section-line{
+  height: 4px;
+  width: 35%;
+  background-color: var(--bg-color-primary);
+}
+.quote_p{
+  font-size:2rem;
+  font-weight:400;
+  font-style: italic;
+  font-family:Arial, Helvetica, sans-serif;
+  margin: 4rem 0;
+}

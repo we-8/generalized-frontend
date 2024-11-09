@@ -3,9 +3,6 @@ import { Herobanner , Title,PeopleReview ,Description , CommonButtons1 ,SpecialO
 import { hero2,test1, who} from "@/assets";
 import '../styles/main-pages-css/HomePage.css';
 
-
-
-
 type Category = {
   title: string;
 };
