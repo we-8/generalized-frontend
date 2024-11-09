@@ -51,7 +51,9 @@
   width: 100%;
   flex: 1;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 1rem;
+  margin-top: 2rem;
 }
 .app__product--filter-search{
   display: flex;

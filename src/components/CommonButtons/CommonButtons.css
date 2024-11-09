@@ -89,7 +89,22 @@
 .google-img{
   width:20px;
 }
-
+.app__filterbutton{
+  background-color: var(--font-color-primary);
+  width:100px;
+  padding:0.3rem;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+.app__filterbutton:hover{
+  background-color: var(--font-color-secondary);
+  color: #fff;
+}
+/* .app__filterbutton .selected button{
+  background-color: red;
+  color: #fff;
+} */
 
 @media screen and (max-width:1050px){
   .app__OrderNow2 button{

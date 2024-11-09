@@ -6,8 +6,9 @@ type buttonProps = {
   title:string
 }
 type filterButtonProps = {
-  title:string
-  onClick:(title:string) =>void
+  title:string,
+  onClick:(title:string) =>void,
+  isSelected: boolean
 }
 const CommonButtons:React.FC<buttonProps> = () => {
   return (
@@ -77,10 +78,10 @@ const GoogleButton:React.FC<buttonProps> = ({title}) =>{
     </div>
   )
 }
-const ProductFilter:React.FC<filterButtonProps> = ({title,onClick}) =>{
+const ProductFilter:React.FC<filterButtonProps> = ({title,isSelected,onClick}) =>{
   return(
-    <div className='app__Google'>
-      <button onClick={()=> onClick(title)}>{title}</button>
+    <div onClick={()=> onClick(title)} className={`app__filterbutton ${isSelected ? 'selected' : ''}`}>
+      <button>{title}</button>
     </div>
   )
 }

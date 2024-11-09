@@ -34,7 +34,7 @@ const ProductSection = () => {
           <div className='app__product--filter-button'>
             {tags.map((tags,index)=>(
               <>
-                <ProductFilter key={index} title={tags} onClick={handleBrandClick} />
+                <ProductFilter key={index} title={tags}  isSelected={selectedBrand === tags} onClick={handleBrandClick} />
               </>
             ))}
           </div>
