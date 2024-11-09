@@ -10,5 +10,19 @@ const Description:React.FC<descriptionProps> = ({description}) => {
     </div>
   )
 }
+const DescriptionL:React.FC<descriptionProps> = ({description}) => {
+  return (
+    <div className="app__description-left">
+      <p>{description}</p>
+    </div>
+  )
+}
+const DescriptionR:React.FC<descriptionProps> = ({description}) => {
+  return (
+    <div className="app__description-right">
+      <p>{description}</p>
+    </div>
+  )
+}
 
-export default Description;
+export {Description,DescriptionL,DescriptionR};
