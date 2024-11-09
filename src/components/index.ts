@@ -2,7 +2,7 @@ import { Herobanner, Herobanner2 } from './Herobanner/Herobanner';
 import {Title,TitleL,TitleR ,TitleYellow} from './Title/Title';
 import Description from './Description/Description';
 import SpecialOffers from './SpecialOffer/SpecialOffer';
-import {GoogleButton,Login,BackToShop, CommonButtons ,CommonButtons1 ,OrderNow,OrderNow2,AddtoCart , RemoveButton , CheckOut} from './CommonButtons/CommonButtons';
+import {ProductFilter,GoogleButton,Login,BackToShop, CommonButtons ,CommonButtons1 ,OrderNow,OrderNow2,AddtoCart , RemoveButton , CheckOut} from './CommonButtons/CommonButtons';
 import LatestProducts from './LatestProducts/LatestProducts';
 import PeopleReview from './PeopleReview/PeopleReview';
 import SearchBar from './SearchBar/SearchBar';
@@ -25,6 +25,7 @@ export{
   LatestProducts,
   CommonButtons,
   CommonButtons1,
+  ProductFilter,
   Title,
   TitleL,
   TitleR,

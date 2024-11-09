@@ -1,3 +1,7 @@
+.app__product--main-div{
+  font-family: var(--base-font);
+  background-color: var(--bg-color-trinary);;
+}
 .app__product--filter-div{
   background-color: var(--bg-color-primary);
   display: flex;

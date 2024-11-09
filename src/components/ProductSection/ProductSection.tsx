@@ -1,13 +1,14 @@
 'use client'
 import React,{useState} from 'react'
 import SearchBar from '../SearchBar/SearchBar';
-import { AddtoCart } from '../CommonButtons/CommonButtons';
+import { AddtoCart , ProductFilter } from '../CommonButtons/CommonButtons';
 import '../../styles/components-css/ProductSection.css';
 import { test3 } from '@/assets';
 import Image from 'next/image';
 
 const ProductSection = () => {
   const [searchInput,setSearchInput] = useState('')
+  const [selectedBrand, setSelectedBrand] = useState<string | null>('All');
 
   const products = [
     { productName: 'Cashews', new_price: 'Rs 2450', description: 'A dialog is a 23234 32432 dfdgfg  gfgdf gdf gdfg fd  type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made...', image: test3 },
@@ -17,14 +18,27 @@ const ProductSection = () => {
     { productName: 'Almonds3', new_price: 'Rs 3500', description: 'Apearovide critical information, or prompt for a decision to be made...', image: test3 },
   
   ];
+  const tags = ['All', 'Cashews','Almonds','Almonds1','Almonds2','Almonds3']
 
+  const handleBrandClick = (title: string) => {
+    setSelectedBrand(title);
+    console.log(selectedBrand);
+  };
   return (
     <div className='app__product--main-div'>
       <div className="app__product--filter-div section__padding">
         <div className="app__product--filter-search">
           <SearchBar value={searchInput} onChange={setSearchInput}/>
         </div>
-        <div className='app__product--filter-tags'></div>
+        <div className='app__product--filter-tags'>
+          <div className='app__product--filter-button'>
+            {tags.map((tags,index)=>(
+              <>
+                <ProductFilter key={index} title={tags} onClick={handleBrandClick} />
+              </>
+            ))}
+          </div>
+        </div>
       </div>
       <div className='app__product--product-section section__padding'>
         {products.map((product, index) =>(

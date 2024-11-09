@@ -5,6 +5,10 @@ import Image from 'next/image';
 type buttonProps = {
   title:string
 }
+type filterButtonProps = {
+  title:string
+  onClick:(title:string) =>void
+}
 const CommonButtons:React.FC<buttonProps> = () => {
   return (
     <div>CommonButtons</div>
@@ -73,6 +77,13 @@ const GoogleButton:React.FC<buttonProps> = ({title}) =>{
     </div>
   )
 }
+const ProductFilter:React.FC<filterButtonProps> = ({title,onClick}) =>{
+  return(
+    <div className='app__Google'>
+      <button onClick={()=> onClick(title)}>{title}</button>
+    </div>
+  )
+}
 
 
-export {GoogleButton,Login,BackToShop,CommonButtons, CommonButtons1 ,OrderNow , OrderNow2, AddtoCart ,RemoveButton, CheckOut};
+export {ProductFilter,GoogleButton,Login,BackToShop,CommonButtons, CommonButtons1 ,OrderNow , OrderNow2, AddtoCart ,RemoveButton, CheckOut};
