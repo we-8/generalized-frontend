@@ -26,6 +26,8 @@
     font-size:0.8rem;
     opacity: 0.6;
     margin-bottom: 1rem ;
-  
+  }
+  .app__description-left p , .app__description-right p{
+    text-align: center;
   }
 }
