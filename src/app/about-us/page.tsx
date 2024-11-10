@@ -23,6 +23,14 @@ const AboutUs = ()=> {
           <p className="quote_p">Every journey begins with a single step and a good snack ...</p>
           <div className="quote-section-line" />
         </div>
+        <div className="app__aboutUs--commitment-section section__padding">
+          <Image className="story-section-image" src={test3} alt="Our Commitment" />
+          <div className="app__aboutUs--commitment-details">
+            <div className="story-section-line"/>
+            <TitleR title="Our Commitment" />
+            <DescriptionR description="Excepteur efficient emerging, minim veniam anim aute carefully curated Ginza conversation exquisite perfect nostrud nisi intricate Content. Qui  international first-class nulla ut. Punctual adipisicing, essential lovely queen tempor eiusmod irure. Exclusive izakaya charming Scandinavian impeccable aute quality of life soft power pariatur Melbourne occaecat discerning. Qui wardrobe aliquip, et Porter destination Toto remarkable officia Helsinki excepteur Basset hound. Zürich sleepy perfect consectetur."/>
+          </div>
+        </div>
         
       </div>  
   );
