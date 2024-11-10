@@ -24,5 +24,12 @@ const TitleR:React.FC<titleProps> = ({title}) => {
     </div>
   )
 }
+const TitleYellow:React.FC<titleProps> = ({title}) => {
+  return (
+    <div className='app__main-title-Yellow'>
+      <p>{title}</p>
+    </div>
+  )
+}
 
-export {Title,TitleL,TitleR};
+export {Title,TitleL,TitleR,TitleYellow};

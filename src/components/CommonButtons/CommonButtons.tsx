@@ -1,7 +1,14 @@
 import './CommonButtons.css';
+import { Google } from '@/assets';
+import Image from 'next/image';
 
 type buttonProps = {
   title:string
+}
+type filterButtonProps = {
+  title:string,
+  onClick:(title:string) =>void,
+  isSelected: boolean
 }
 const CommonButtons:React.FC<buttonProps> = () => {
   return (
@@ -36,6 +43,48 @@ const AddtoCart:React.FC<buttonProps> = ({title}) =>{
     </div>
   )
 }
+const RemoveButton:React.FC<buttonProps> = ({title}) =>{
+  return(
+    <div className='app__Remove'>
+      <button>{title}</button>
+    </div>
+  )
+}
+const CheckOut:React.FC<buttonProps> = ({title}) =>{
+  return(
+    <div className='app__CheckOut'>
+      <button>{title}</button>
+    </div>
+  )
+}
+const BackToShop:React.FC<buttonProps> = ({title}) =>{
+  return(
+    <div className='app__BackToShop'>
+      <button>{title}</button>
+    </div>
+  )
+}
+const Login:React.FC<buttonProps> = ({title}) =>{
+  return(
+    <div className='app__Login'>
+      <button>{title}</button>
+    </div>
+  )
+}
+const GoogleButton:React.FC<buttonProps> = ({title}) =>{
+  return(
+    <div className='app__Google'>
+      <button><Image className='google-img' src={Google} alt="google button"/>{title}</button>
+    </div>
+  )
+}
+const ProductFilter:React.FC<filterButtonProps> = ({title,isSelected,onClick}) =>{
+  return(
+    <div onClick={()=> onClick(title)} className={`app__filterbutton ${isSelected ? 'selected' : ''}`}>
+      <button>{title}</button>
+    </div>
+  )
+}
 
 
-export {CommonButtons, CommonButtons1 ,OrderNow , OrderNow2, AddtoCart};
+export {ProductFilter,GoogleButton,Login,BackToShop,CommonButtons, CommonButtons1 ,OrderNow , OrderNow2, AddtoCart ,RemoveButton, CheckOut};

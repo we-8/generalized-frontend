@@ -1,102 +1,110 @@
 .app__signin-form-main-div {
   display: flex;
   justify-content: center;
-  height: 100vh; /* Full viewport height */
+  height: 100vh;
+  font-family: var(--base-font);
+  padding-right: 8rem;
 }
-
 .app__signin-form-main-div2 {
   width: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* Centers form vertically */
-  align-items: center; /* Centers form horizontally */
+  padding: 6rem 0 0 4rem;
 }
-
 .app__signin-form-main-div2 form {
-  background-color: var(--bg-color-secondary);
-  border-radius: 20px;
-  width: 80%; /* Form width */
+  width: 100%;
   display: flex;
+  height: 100%;
   flex-direction: column;
 }
-
-.app__signin-form-section {
-  width: 100%;
-  margin-bottom: 1rem; /* Space between form fields */
+.form-checkbox-forget-main-div{
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  margin-top:0.7rem;
+  cursor: pointer;
 }
-
-.app__signin-img-section {
-  width: 50%;
+.form-checkbox-div{
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0;
+  gap:0.2rem;
 }
-
+.new-account-section{
+  display: flex;
+  gap: 1rem;
+  font-size: 0.9rem;
+  margin-top:0.7rem;
+  margin-bottom: 1.5rem;
+}
+.signin-break-section{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+.signin-break-section p{
+  margin: 0 0.5rem;
+}
+.signin-break-section div{
+  height: 2px;
+  background-color: var(--font-color-secondary);
+  width: 40%;
+  opacity: 0.5;
+}
+.app__signin-form-section {
+  width: 100%;
+  margin-bottom: 1rem; 
+  display: flex;
+  flex-direction: column;
+}
+.form-title-description{
+  font-size: 1rem;
+  opacity: 0.6;
+  margin-top: -1rem;
+}
+.app__signin-img-section {
+  width: 50%;
+}
 .app__signin-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-
-/* Style for the two headings (left aligned) */
 .app__signin-text {
-  text-align: left; /* Aligns the text headers to the left */
+  text-align: left;
   width: 100%;
   margin: 0 0 10px 0;
 }
-
+.app__signin-form{
+  margin-top:2rem;
+}
 .app__signin-text2 {
   color: yellow;
-  text-align: left; /* Aligns the text headers to the left */
+  text-align: left;
   width: 100%;
-  margin: 0 0 10px 0; /* Ceylon Rich Products text in yellow */
+  margin: 0 0 10px 0;
 }
-
-/* Pill-shaped button styles for both buttons */
-button {
-  background-color: black; /* Black background */
-  color: yellow; /* Yellow text */
-  border: none;
-  border-radius: 50px; /* Pill-shaped curved edges */
-  padding: 10px 30px; /* More padding for a wider button */
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
+.app__signin-form-section label{
+  font-weight:500;
 }
-
-/* Hover effect for buttons */
-button:hover {
-  background-color: #333; /* Slightly lighter black on hover */
-}
-
-/* Style for the "already have an account?" section */
-.signin-signup-section {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start; /* Aligns text and button to the left */
-  width: 100%;
-}
-
 .signin-signup-button {
-  padding: 5px 15px; /* Smaller padding to make it more compact */
-  font-size: 14px; /* Smaller font size */
+  padding: 5px 15px;
+  font-size: 14px; 
   margin-left: 1rem;
 }
-
 .signin-login-button {
   margin-top: 1rem;
   text-align: left;
   width: auto;
 }
-
 .app__inputField-main-div-input {
-  width: 95%;
+  width: 100%;
   height: 2.5rem;
   padding: 0 1rem;
   outline: none;
   border-radius: 10px;
   margin-top: 0.5rem;
+  border: 2px solid var(--bg-color-primary);
 }
 .app__inputField-main-div {
   width: 100%;

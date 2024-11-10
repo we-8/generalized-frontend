@@ -1,10 +1,19 @@
-.app__inputField-main-div input {
+.app__inputField-main-div{
+  font-family: var(--base-font);
+  background-color: red !important;
+}
+.app__inputField--input input {
   width: 95%;
   height: 2.5rem;
   padding: 0 1rem;
   outline: none;
   border-radius: 10px;
   margin-top: 0.5rem;
+  border-color: aqua;
+}
+.app__inputField--label label{
+  font-weight: 600;
+  background-color: red;
 }
 .app__inputField-main-div {
   width: 100%;

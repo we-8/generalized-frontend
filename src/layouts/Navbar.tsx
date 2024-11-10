@@ -1,9 +1,10 @@
-"use client";
-import Image from "next/image";
-import Link from "next/link";
-import { logo, cart } from "@/assets";
-import "../styles/layouts-css/Navbar.css";
-import { useState } from "react";
+
+'use client'
+import Image from 'next/image';
+import Link from 'next/link';
+import { logo ,cart} from '@/assets';
+import '../styles/layouts-css/Navbar.css'
+import { useEffect, useState } from 'react';
 import { FiAlignJustify } from "react-icons/fi";
 import { IoMdClose } from "react-icons/io";
 import { FaUserCircle } from "react-icons/fa";
@@ -11,6 +12,7 @@ import { FaUserCircle } from "react-icons/fa";
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const [loggedIn, setLoggedIn] = useState(true);
+
 
   return (
     <div className="app__navbar--main-div">
@@ -35,6 +37,7 @@ const Navbar = () => {
           
         </ul>
       </div>
+
       <div className="app__navbar--services">
         <Image className="navbar-logo" src={cart} alt="cart image" />
         <div />
@@ -89,6 +92,7 @@ const Navbar = () => {
                   </p>
                 )}
               </ul>
+      
             </div>
           </div>
         )}

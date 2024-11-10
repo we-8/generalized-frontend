@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  
 }
 .navbar-logo{
   width: 25px;
@@ -11,6 +12,7 @@
 .app_navbar--links-list{
   display: flex;
   gap: 1.5rem;
+  
 }
 .app__navbar--services{
   display:flex;
@@ -21,7 +23,7 @@
 .app__navbar--services div{
   width: 1.5px;
   height: 30px;
-  background-color:white;
+  background-color:var(--font-color-secondary);
 }
 
 .app__navbar-smallscreen-overlay{
@@ -52,6 +54,17 @@
   gap: 2rem;
   display:flex;
   flex-direction: column;
+  color: var(--font-color-secondary);
+}
+.app_navbar--smallscrenn-links-list li{
+  color: var(--font-color-secondary);
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+.app_navbar--links-list li{
+  color: var(--font-color-secondary);
+  font-weight: 500;
+  font-size: 1.1rem;
 }
 .app_navbar--smallscreen , .burger-menu {
   display: none;
@@ -63,6 +76,7 @@
   }
   .app_navbar--smallscreen{
     display:flex;
+   
   }
   .burger-menu{
     display: flex;
