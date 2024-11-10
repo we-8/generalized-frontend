@@ -60,7 +60,7 @@ const ProfilePage: React.FC = () => {
             <input type="text" value="Address 1" readOnly />
           </div>
 
-          <button type="submit" disabled>
+          <button type="submit" className="profile-form-button" disabled>
             Save Changes
           </button>
         </form>
