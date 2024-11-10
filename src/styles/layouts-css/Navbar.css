@@ -1,0 +1,84 @@
+.app__navbar--main-div{
+  background-color: var(--bg-color-primary);
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.navbar-logo{
+  width: 25px;
+}
+.app_navbar--links-list{
+  display: flex;
+  gap: 1.5rem;
+}
+.app__navbar--services{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+.app__navbar--services div{
+  width: 1.5px;
+  height: 30px;
+  background-color:white;
+}
+
+.app__navbar-smallscreen-overlay{
+  position:fixed;
+  height: 50vh;
+  width: 100%;
+  z-index: 3;
+  border-radius: 20px;
+  top:0;
+  left: 0;
+  background-color: var(--bg-color-primary);
+}
+.overlay-close{
+  right: 20px;
+  top:10px;
+  position: absolute;
+}
+.app__navbar--smallscreen-links-div{
+  margin: auto;
+  width: 50%;
+  height: 100%;
+  text-align:center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.app_navbar--smallscrenn-links-list{
+  gap: 2rem;
+  display:flex;
+  flex-direction: column;
+}
+.app_navbar--smallscreen , .burger-menu {
+  display: none;
+}
+
+@media screen and (max-width:1150px) {
+  .app__navbar--links-div{
+    display: none;
+  }
+  .app_navbar--smallscreen{
+    display:flex;
+  }
+  .burger-menu{
+    display: flex;
+  }
+  .app__navbar--logo{
+    flex: 1;
+  }
+  .app__navbar--services .p__text{
+    display: none;
+  }
+  
+}
+
+@media screen and (max-width:650px) {
+
+
+
+  
+}
