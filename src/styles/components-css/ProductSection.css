@@ -13,6 +13,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 30px;
+  padding-bottom: 4rem;
 }
 .app__product--single-product{
   width: 350px;
