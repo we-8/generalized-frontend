@@ -1,0 +1,157 @@
+.profile-container {
+  display: flex;
+  padding: 20px 200px;
+  background-color: #fff0f5;
+  gap: 20px;
+}
+
+.profile-sidebar {
+  flex: 1;
+  background-color: rgba(212, 212, 212, 0.3);
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.profile-sidebar h2 {
+  margin: 10px 0;
+  color: #000;
+  font-weight: bold;
+}
+
+.profile-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 50px;
+}
+
+.profile-form label {
+  font-size: 14px;
+  color: #000;
+  width: 30%; /* Set a fixed width for labels */
+  text-align: right; /* Align text to the right */
+  padding-right: 10px;
+}
+
+.profile-form .form-row {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.profile-form input {
+  width: 70%; /* Set width for input fields */
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+}
+
+
+.profile-form-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #ffbf00;
+  border: none;
+  color: #000;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: not-allowed; /* Disabled */
+  margin-top: 30px;
+}
+
+.order-history {
+  flex: 1.5;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  
+}
+
+.order-card {
+  background-color: rgba(212, 212, 212, 0.3);
+  padding: 30px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.order-card h3 {
+  margin: 0;
+  color: #000;
+}
+
+.order-details {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.order-item-image {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+}
+
+.order-status {
+  font-size: 0.9em;
+  padding: 3px 6px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.delivered {
+  background-color: #a0e7a0;
+  color: #006400;
+}
+
+.canceled {
+  background-color: #ffcccc;
+  color: #a30000;
+}
+
+.on-the-way {
+  background-color: #ffeaa7;
+  color: #ff8500;
+}
+
+.order-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.order-actions button {
+  padding: 6px 12px;
+  border: 1px solid #ffbf00;
+  border-radius: 5px;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.order-actions button:hover {
+  background-color: #ffcc33;
+}
+
+
+@media screen and (max-width: 650px) {
+  .profile-container {
+    flex-direction: column;
+  }
+}
