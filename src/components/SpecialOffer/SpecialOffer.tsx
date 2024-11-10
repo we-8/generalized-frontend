@@ -1,7 +1,7 @@
 'use client';
 import React, { useRef } from 'react';
 import '../../styles/components-css/SpecialOffer.css';
-import { test2 } from '@/assets';
+import { test2 ,Cashew } from '@/assets';
 import Image from 'next/image';
 import { IoIosArrowBack,IoIosArrowForward } from "react-icons/io";
 import { OrderNow } from '../CommonButtons/CommonButtons';
@@ -15,11 +15,11 @@ const SpecialOffers = () => {
   const sliderRef = useRef<Slider | null>(null); 
 
   const products = [
-    { productName: 'Cashews', new_price: '2450', old_price: '3000', image: test2 },
-    { productName: 'Almonds', new_price: '3500', old_price: '4000', image: test2 },
-    { productName: 'Almonds1', new_price: '3500', old_price: '4000', image: test2 },
-    { productName: 'Almonds2', new_price: '3500', old_price: '4000', image: test2 },
-    { productName: 'Almonds3', new_price: '3500', old_price: '4000', image: test2 },
+    { productName: 'Cashews', new_price: '2450', old_price: '3000', image: Cashew },
+    { productName: 'Almonds', new_price: '3500', old_price: '4000', image: Cashew },
+    { productName: 'Almonds1', new_price: '3500', old_price: '4000', image: Cashew },
+    { productName: 'Almonds2', new_price: '3500', old_price: '4000', image: Cashew },
+    { productName: 'Almonds3', new_price: '3500', old_price: '4000', image: Cashew },
   
   ];
 
