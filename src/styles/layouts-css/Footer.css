@@ -63,6 +63,8 @@
   padding-bottom: 1rem;
   color: var(--font-color-secondary);
   font-size: 1rem;
+  display: flex;
+  justify-content: center;
 }
 .app__footer-lower-section a {
   margin-left: 2rem;
@@ -72,7 +74,10 @@
   background-color:var(--font-color-secondary);
   margin-top: 0.5rem;
 }
-
+.lower-section-p1{
+  text-align: left;
+  flex: 1;
+}
 @media screen and (max-width:1440px) {
   .app__footer-upper-elements{
     margin-top: 1rem;
