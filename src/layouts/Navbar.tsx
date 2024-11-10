@@ -17,7 +17,7 @@ const Navbar = () => {
   return (
     <div className="app__navbar--main-div">
       <div className="app__navbar--logo">
-        <Image src={logo} alt="website logo" width={120} height={120} />
+        <Image src={logo} alt="website logo" width={75} />
       </div>
       <div className="app__navbar--links-div">
         <ul className="app_navbar--links-list">
@@ -42,7 +42,7 @@ const Navbar = () => {
         <Image className="navbar-logo" src={cart} alt="cart image" />
         <div />
         {loggedIn ? (
-          <FaUserCircle fontSize={25} color="#fff" />
+          <FaUserCircle fontSize={25} color="#181510" />
         ) : (
           <p className="p__text">
             <Link href="/">Sign In</Link>
@@ -51,7 +51,7 @@ const Navbar = () => {
         <FiAlignJustify
           className="burger-menu"
           fontSize={25}
-          color="#fff"
+          color="#181510"
           onClick={() => {
             setToggle(true);
           }}
@@ -63,7 +63,7 @@ const Navbar = () => {
             <IoMdClose
               className="overlay-close"
               fontSize={25}
-              color="#fff"
+              color="#181510"
               onClick={() => {
                 setToggle(false);
               }}
