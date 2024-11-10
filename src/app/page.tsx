@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Herobanner , Title,PeopleReview ,Description , CommonButtons1 ,SpecialOffers,LatestProducts} from "@/components";
-import { hero2,test1, who} from "@/assets";
+import { hero2,test1, who ,Cashew} from "@/assets";
 import '../styles/main-pages-css/HomePage.css';
 
 type Category = {
