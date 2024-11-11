@@ -31,6 +31,7 @@
   width: 30%;
   background-color: var(--bg-color-primary);
   border-radius: 20px;
+  flex: 1;
 }
 .quote_p{
   font-size:2rem;
@@ -63,9 +64,6 @@
     align-items: center;
     gap: 0;
   }
-  .app__aboutUs--commitment-details{
-    align-items: normal;
-  }
   .story-section-image{
     width:90%;
   }
@@ -83,5 +81,12 @@
   .quote_p{
     text-align: center;
     font-size: 1.5rem;
+  }
+  .app__aboutUs--commitment-details ,.app__aboutUs--theStory-details{
+    margin-top: 2rem;
+    display: block;
+  }
+  .story-section-line{
+    display: none;
   }
 }
