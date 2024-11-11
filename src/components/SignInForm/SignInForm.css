@@ -7,7 +7,7 @@
 }
 .app__signin-form-main-div2 {
   width: 50%;
-  padding: 6rem 0 0 4rem;
+  padding: 8rem 0 0 4rem;
 }
 .app__signin-form-main-div2 form {
   width: 100%;
@@ -27,6 +27,9 @@
   justify-content: center;
   align-items: center;
   gap:0.2rem;
+}
+.app__signin-img-section{
+  width: 55%;
 }
 .new-account-section{
   display: flex;
@@ -115,12 +118,25 @@
   .app__signin-img {
     display: none ;
   }
+  .app__signin-img-section{
+    width: 0;
+  }
   .app__signin-form-main-div2 {
     width: 80%;
     padding: 8rem 0 0 0rem;
   }
   .app__signin-form-main-div{
     padding-right: 0;
+  }
+  .form-title-description{
+    margin-top: 1rem;
+    font-weight: 0.8rem;
+  }
+}
+@media screen and (max-width:650px) {
+  .form-title-description{
+    text-align: center;
+    font-weight: 0.7rem;
   }
 }
 @media screen and (max-width:450px) {

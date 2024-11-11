@@ -111,6 +111,22 @@ const SignUpForm: React.FC = () => {
                       className="error-message"
                     />
                   </div>
+                  <div className="app__signup-form-section">
+                    <label htmlFor="confirm-password">Confirm Password</label>
+                    <Field
+                      name="confirm-password"
+                      type="confirm-password"
+                      placeholder="Confirm Your Password"
+                      className={`app__inputField-main-div-input ${
+                        errors.password && touched.password ? "input-error" : ""
+                      }`}
+                    />
+                    <ErrorMessage
+                      name="confirm-password"
+                      component="div"
+                      className="error-message"
+                    />
+                  </div>
 
                   <div className="signup-signin-section">
                     <div className="have-account-section">
