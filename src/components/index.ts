@@ -9,9 +9,11 @@ import SearchBar from './SearchBar/SearchBar';
 import SignInForm from './SignInForm/SignInForm';
 import ProductSection from './ProductSection/ProductSection';
 import RadioButton from './RadioButton/RadioButton';
+import ProductDetails from './SingleProductDetails/ProductDetails';
 
 
 export{
+  ProductDetails,
   Herobanner,
   RadioButton,
   Herobanner2,
