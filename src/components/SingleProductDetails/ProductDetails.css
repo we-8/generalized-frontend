@@ -106,8 +106,14 @@
   font-size: 18px;
   margin: 0 10px;
 }
-@media screen and (max-width: 650px) {
-  .app__singleproduct-main-div {
+@media screen and (max-width: 1050px) {
+  .app__singleproduct-item-div {
     flex-direction: column;
+  }
+}
+@media screen and (max-width: 650px) {
+  .app__singleproduct-quantity-addtocart-div {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }

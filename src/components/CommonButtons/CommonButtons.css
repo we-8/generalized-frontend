@@ -123,4 +123,7 @@
   .app__Remove {
     margin-bottom: 1rem;
   }
+  .app__singleProductCart {
+    width: 100%;
+  }
 }
