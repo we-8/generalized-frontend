@@ -1,10 +1,12 @@
 import React from 'react';
-import { ProductDetails } from '@/components';
+import { ProductDetails,SimilarProducts } from '@/components';
+
 
 const SingleProduct = () => {
   return (
     <div>
       <ProductDetails />
+      <SimilarProducts/>
     </div>
   )
 }

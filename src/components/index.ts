@@ -10,10 +10,12 @@ import SignInForm from './SignInForm/SignInForm';
 import ProductSection from './ProductSection/ProductSection';
 import RadioButton from './RadioButton/RadioButton';
 import ProductDetails from './SingleProductDetails/ProductDetails';
+import SimilarProducts from './SimilarProducts/SimilarProducts';
 
 
 export{
   ProductDetails,
+  SimilarProducts,
   AddtoCartSingleProdocut,
   Herobanner,
   RadioButton,
