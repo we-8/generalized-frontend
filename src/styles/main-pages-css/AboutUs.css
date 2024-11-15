@@ -27,8 +27,8 @@
   width: 80px;
 }
 .quote-section-line{
-  height: 2px;
-  width: 35%;
+  height: 4px;
+  width: 30%;
   background-color: var(--bg-color-primary);
   border-radius: 20px;
   flex: 1;
@@ -51,4 +51,42 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+}
+
+@media screen and (max-width:1050px) {
+  .app__aboutUs--theStory-section{
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+  .app__aboutUs--commitment-section{
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+  .story-section-image{
+    width:90%;
+  }
+  .story-section-line{
+    margin: 2rem 0 1rem 0;
+  }
+  .quote_p{
+    margin: 2rem 0;
+  }
+}
+@media screen and (max-width:650px){
+  .story-section-image{
+    width:100%;
+  }
+  .quote_p{
+    text-align: center;
+    font-size: 1.5rem;
+  }
+  .app__aboutUs--commitment-details ,.app__aboutUs--theStory-details{
+    margin-top: 2rem;
+    display: block;
+  }
+  .story-section-line{
+    display: none;
+  }
 }

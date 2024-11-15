@@ -6,11 +6,11 @@
 
 :root{
   --base-font:'Poppins', sans-serif;
+  --font-color-secondary:#181510;
   --bg-color-primary:#FFCF2C;
+  --font-color-primary:#ffffff;
   --bg-color-secondary:#EBD3F8;
   --bg-color-trinary:#EEEEEE;
-  --font-color-secondary:#181510;
-  --font-color-primary:#ffffff;
 }
 .p__text{
   font-family: var(--base-font);

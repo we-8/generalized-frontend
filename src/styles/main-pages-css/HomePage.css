@@ -30,21 +30,14 @@
   width: 100%;
   font-size: 1.7rem;
   font-family: var(--base-font);
-  color:var(--font-color-primary) ;
-  background-color:rgba(0, 0, 0, 0.5);
-  opacity: 0;
+  color:var(--font-color-secondary) ;
   border-radius: 20px;
-  position: absolute;
-  top:0%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin-top: -2.5rem;
 }
-.app__home--category-item:hover .category-title{
+/* .app__home--category-item:hover .category-title{
   opacity: 1;
   transition: 0.2s ease-in;
-}
+} */
 
 /* who we are */
 .app__home--Who-we-are{

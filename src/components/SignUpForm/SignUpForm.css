@@ -1,115 +1,98 @@
-/* Main container styling */
 .app__signup-form-main-div {
   display: flex;
   justify-content: center;
-  height: 100vh; /* Full viewport height */
+  height: 100vh;
+  font-family: var(--base-font);
+  padding-right: 8rem;
 }
-
-/* Form container */
 .app__signup-form-main-div2 {
   width: 50%;
+  padding:1rem 0 0 4rem;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centers form vertically */
-  align-items: center; /* Centers form horizontally */
+  justify-content: center;
 }
-
 .app__signup-form-main-div2 form {
-  background-color: var(--bg-color-secondary);
-  border-radius: 20px;
-  width: 80%; /* Form width */
-  display: flex;
-  flex-direction: column;
-}
-
-/* Form section styling */
-.app__signup-form-section {
   width: 100%;
-  margin-bottom: 1rem; /* Space between form fields */
+  height: 100%;
 }
-
-/* Styling for error messages */
-.error-message {
-  color: red;
-  font-size: 0.875rem;
-  margin-top: 0.25rem;
-  text-align: left;
-}
-
-/* Image section styling */
-.app__signup-img-section {
-  width: 50%;
+.have-account-section{
   display: flex;
+  gap: 1rem;
+  font-size: 0.9rem;
+  margin-top:0.7rem;
+  margin-bottom: 1.5rem;
+}
+.signup-break-section{
+  display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 0;
+  margin-top: 1rem;
 }
-
+.signup-break-section p{
+  margin: 0 0.5rem;
+}
+.signup-break-section div{
+  height: 2px;
+  background-color: var(--font-color-secondary);
+  width: 40%;
+  opacity: 0.5;
+}
+.app__signup-form-section {
+  width: 100%;
+  margin-bottom: 1rem; 
+  display: flex;
+  flex-direction: column;
+}
+.form-title-description{
+  font-size: 1rem;
+  opacity: 0.6;
+  margin-top: -1rem;
+}
+.app__signup-img-section {
+  width: 55%;
+}
 .app__signup-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-
-/* Style for the two headings (left aligned) */
 .app__signup-text {
-  text-align: left; /* Aligns the text headers to the left */
+  text-align: left;
   width: 100%;
   margin: 0 0 10px 0;
 }
-
+.app__signup-form{
+  margin-top:2rem;
+}
 .app__signup-text2 {
   color: yellow;
-  text-align: left; /* Aligns the text headers to the left */
+  text-align: left;
   width: 100%;
   margin: 0 0 10px 0;
-   /* Ceylon Rich Products text in yellow */
 }
-
-/* Pill-shaped button styles for both buttons */
-button {
-  background-color: black; /* Black background */
-  color: yellow; /* Yellow text */
-  border: none;
-  border-radius: 50px; /* Pill-shaped curved edges */
-  padding: 10px 30px; /* More padding for a wider button */
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
+.app__signup-form-section label{
+  font-weight:500;
 }
-
-/* Hover effect for buttons */
-button:hover {
-  background-color: #333; /* Slightly lighter black on hover */
-}
-
-/* Style for the "already have an account?" section */
-.signup-signin-section {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start; /* Aligns text and button to the left */
-  width: 100%;
-}
-
 .signup-signin-button {
-  padding: 5px 15px; /* Smaller padding to make it more compact */
-  font-size: 14px; /* Smaller font size */
+  padding: 5px 15px;
+  font-size: 14px; 
   margin-left: 1rem;
 }
-
 .signup-login-button {
   margin-top: 1rem;
   text-align: left;
   width: auto;
 }
-
 .app__inputField-main-div-input {
-  width: 95%;
+  width: 100%;
   height: 2.5rem;
   padding: 0 1rem;
   outline: none;
   border-radius: 10px;
   margin-top: 0.5rem;
+  border: 2px solid var(--bg-color-primary);
 }
 .app__inputField-main-div {
   width: 100%;
@@ -118,9 +101,27 @@ button:hover {
   margin-top: 1rem;
 }
 
-/* Responsive adjustments */
-@media screen and (max-width: 650px) {
-  .app__signup-img-section {
-    width: 0%;
+@media screen and (max-width:1050px) {
+  .app__signup-img{
+    display: none ;
+  }
+  .app__signup-img-section{
+    width: 0;
+  }
+  .app__signup-form-main-div2{
+    width: 80%;
+    padding: 0;
+  }
+  .app__signup-form-main-div{
+    padding-right: 0;
+  }
+  .form-title-description{
+    font-weight: 0.8rem;
+  }
+}
+@media screen and (max-width:650px) {
+  .form-title-description{
+    text-align: center;
+    font-weight: 0.7rem;
   }
 }

@@ -1,4 +1,4 @@
-.app__CommonButton1 button{
+.app__CommonButton1 button {
   background-color: var(--bg-color-primary);
   color: #fff;
   padding: 1rem 1.2rem;
@@ -6,56 +6,56 @@
   border-radius: 10px;
   border: none;
 }
-.app__OrderNow button{
+.app__OrderNow button {
   background-color: var(--bg-color-primary);
   color: #fff;
   padding: 0.5rem 1rem;
   font-size: 0.7rem;
   border-radius: 10px;
-  border:none;
+  border: none;
   margin-top: 1rem;
 }
-.app__OrderNow2{
+.app__OrderNow2 {
   width: 100%;
 }
-.app__OrderNow2 button{
+.app__OrderNow2 button {
   background-color: var(--bg-color-primary);
   color: #fff;
   padding: 0.5rem 1rem;
   font-size: 0.7rem;
   border-radius: 10px;
-  border:none;
+  border: none;
   margin-top: 1rem;
-  width:70%;
+  width: 70%;
 }
-.app__AddtoCart{
-  width:80%;
+.app__AddtoCart {
+  width: 80%;
   background-color: var(--bg-color-primary);
   text-align: center;
   padding: 0.4rem 0;
-  border-radius:20px;
+  border-radius: 20px;
   color: #fff;
 }
-.app__Remove{
+.app__Remove {
   border: 2px solid var(--bg-color-primary);
   font-size: 0.8rem;
   padding: 0.2rem 0.8rem;
   font-weight: 400;
 }
-.app__Remove:hover{
+.app__Remove:hover {
   background-color: var(--bg-color-primary);
   color: #fff;
   transition: 0.2s ease-in;
 }
 
-.app__CheckOut{
+.app__CheckOut {
   background-color: #000;
   color: #fff;
   text-align: center;
   padding: 0.2rem 0;
   border-radius: 10px;
 }
-.app__BackToShop{
+.app__BackToShop {
   background-color: var(--bg-color-trinary);
   color: #000;
   text-align: center;
@@ -63,7 +63,7 @@
   border-radius: 10px;
   margin-top: 1rem;
 }
-.app__Login{
+.app__Login {
   background-color: var(--font-color-secondary);
   color: #fff;
   text-align: center;
@@ -71,7 +71,7 @@
   border-radius: 20px;
   margin: 0 1rem;
 }
-.app__Google{
+.app__Google {
   background-color: var(--bg-color-trinary);
   text-align: center;
   padding: 0.6rem 0;
@@ -79,45 +79,51 @@
   color: #000;
   margin: 1rem 1rem;
 }
-.app__Google button{
+.app__Google button {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1rem;
   width: 100%;
 }
-.google-img{
-  width:20px;
+.google-img {
+  width: 20px;
 }
-.app__filterbutton{
+.app__filterbutton {
   background-color: var(--font-color-primary);
-  width:100px;
-  padding:0.3rem;
+  width: 100px;
+  padding: 0.3rem;
   border-radius: 20px;
   text-align: center;
   font-size: 0.9rem;
 }
-.app__filterbutton:hover{
+.app__filterbutton:hover {
   background-color: var(--font-color-secondary);
-  color: #fff;
+  color: var(--font-color-primary);
 }
-/* .app__filterbutton .selected button{
-  background-color: red;
-  color: #fff;
-} */
-
-@media screen and (max-width:1050px){
-  .app__OrderNow2 button{
+.app__singleProductCart {
+  background-color: var(--bg-color-primary);
+  color: var(--font-color-primary);
+  padding: 0.4rem 2rem;
+  border-radius: 10px;
+  width: 50%;
+  text-align: center;
+}
+@media screen and (max-width: 1050px) {
+  .app__OrderNow2 button {
     margin-bottom: 2rem;
     margin-top: 0.5rem;
   }
 }
-@media screen and (max-width:650px) {
-  .app__CommonButton1 button{
-    padding:0.8rem 1rem;
+@media screen and (max-width: 650px) {
+  .app__CommonButton1 button {
+    padding: 0.8rem 1rem;
     font-size: 0.7rem;
   }
-  .app__Remove{
+  .app__Remove {
     margin-bottom: 1rem;
+  }
+  .app__singleProductCart {
+    width: 100%;
   }
 }

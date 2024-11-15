@@ -59,7 +59,8 @@ const Footer = () => {
       </div>
       <div className="footer-line"/>
       <div className='app__footer-lower-section'>
-        <p>Ceylon Rich Products © 2024</p>
+        <p className="lower-section-p1">Ceylon Rich Products © 2024</p>
+        <p className="lower-section-p2">Designed & developed We8</p>
       </div>
     </div>
 
