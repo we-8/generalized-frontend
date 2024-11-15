@@ -1,9 +1,10 @@
 "use client";
 import Image from "next/image";
-import { testImage,Cashew } from "@/assets";
+import { Cashew } from "@/assets";
+import { AddtoCartSingleProdocut } from "../CommonButtons/CommonButtons";
 import "./ProductDetails.css";
 import { useState } from "react";
-import { features } from "process";
+
 
 const ProductDetails: React.FC = () => {
   const [quantity, setQuantity] = useState(1);
@@ -32,8 +33,8 @@ const ProductDetails: React.FC = () => {
     <div className="app__singleproduct-main-div">
       {
         productlist.map((item,index)=>(
-          <>
-            <div key={index} className="app__singleproduct-img-div">
+          <div key={index} className="app__singleproduct-item-div">
+            <div  className="app__singleproduct-img-div">
           <Image
             className="app__single-product-img"
             src={item.img}
@@ -53,7 +54,7 @@ const ProductDetails: React.FC = () => {
           </div>
           <div className="app__singleproduct-productdetails-features">
             {item.features.map((feature,indexkey)=>(
-              <p key={indexkey}>{feature}</p>
+              <p key={indexkey}>- {feature}</p>
             ))}
           </div>
           <div className="app__singleproduct-price-div">
@@ -62,9 +63,6 @@ const ProductDetails: React.FC = () => {
           <div className="app__singleproduct-features-div">
             <div className="app__singleproduct-features-items-div">
               <p>Availability: 10 in stock</p>
-            </div>
-            <div className="app__singleproduct-features-items-div">
-              <p>Weight: 0.75lbs</p>
             </div>
           </div>
           <div className="app__singleproduct-quantity-addtocart-div">
@@ -77,13 +75,10 @@ const ProductDetails: React.FC = () => {
                 +
               </button>
             </div>
-            <div className="app__singleproduct-button-div">
-              <button className="app__singleproduct-button">Add To Cart</button>
-              
-            </div>
+            <AddtoCartSingleProdocut title="Add To Cart" />
           </div>
         </div>
-          </>
+          </div>
         ))
       }
     </div>

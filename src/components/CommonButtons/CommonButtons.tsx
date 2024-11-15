@@ -85,6 +85,13 @@ const ProductFilter:React.FC<filterButtonProps> = ({title,isSelected,onClick}) =
     </div>
   )
 }
+const AddtoCartSingleProdocut:React.FC<buttonProps> = ({title}) =>{
+  return(
+    <div className='app__singleProductCart'>
+      <button>{title}</button>
+    </div>
+  )
+}
 
 
-export {ProductFilter,GoogleButton,Login,BackToShop,CommonButtons, CommonButtons1 ,OrderNow , OrderNow2, AddtoCart ,RemoveButton, CheckOut};
+export {AddtoCartSingleProdocut ,ProductFilter,GoogleButton,Login,BackToShop,CommonButtons, CommonButtons1 ,OrderNow , OrderNow2, AddtoCart ,RemoveButton, CheckOut};
