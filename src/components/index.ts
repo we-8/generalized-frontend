@@ -11,10 +11,12 @@ import ProductSection from './ProductSection/ProductSection';
 import RadioButton from './RadioButton/RadioButton';
 import ProductDetails from './SingleProductDetails/ProductDetails';
 import SimilarProducts from './SimilarProducts/SimilarProducts';
+import CheckOutComponent from './Checkout/CheckOut';
 
 
 export{
   ProductDetails,
+  CheckOutComponent,
   SimilarProducts,
   AddtoCartSingleProdocut,
   Herobanner,

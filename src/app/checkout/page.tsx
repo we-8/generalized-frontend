@@ -1,12 +1,12 @@
 import React from "react";
-import CheckoutComponents from "@/components/Checkout/page";
+import { CheckOutComponent } from "@/components";
 
-const checkout = () => {
+const Checkout = () => {
   return (
     <div className="app__signin--main-div">
-      <CheckoutComponents />
+      <CheckOutComponent  />
     </div>
   );
 };
 
-export default checkout;
+export default Checkout;

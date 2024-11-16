@@ -3,6 +3,7 @@ import react from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Image from "next/image";
+import Link from 'next/link';
 import { TitleL, TitleYellow } from "../Title/Title";
 import { hero } from "@/assets";
 import "./SignUpForm.css";
@@ -131,7 +132,9 @@ const SignUpForm: React.FC = () => {
                   <div className="signup-signin-section">
                     <div className="have-account-section">
                       <p>have an account ?</p>
-                      <p>Sign in</p>
+                      <p>
+                    <Link href="/sign-in">Sign In</Link>
+                  </p>
                     </div>
                     <div className="login-button">
                       <Login title="SIGN UP" />
