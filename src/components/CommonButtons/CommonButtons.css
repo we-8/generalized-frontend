@@ -109,6 +109,16 @@
   width: 50%;
   text-align: center;
 }
+.app__profileSaveChange {
+  background-color: var(--bg-color-primary);
+  text-align: center;
+  margin: 2rem 1rem;
+  padding: 0.5rem;
+  color: #fff;
+  font-weight: 500;
+  border-radius: 10px;
+}
+
 @media screen and (max-width: 1050px) {
   .app__OrderNow2 button {
     margin-bottom: 2rem;
