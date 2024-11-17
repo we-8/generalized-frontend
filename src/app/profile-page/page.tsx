@@ -84,7 +84,7 @@ const ProfilePage: React.FC = () => {
                 >
                   {order.status}
                 </span>
-                <p>{order.description}</p>
+                <p className="order-summary-description">{order.description}</p>
                 <div className="order-actions">
                   <button>Buy again</button>
                   <button>View Item</button>
