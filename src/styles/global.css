@@ -6,9 +6,9 @@
 
 :root {
   --base-font: 'Poppins', sans-serif;
+  --font-color-primary: #ffffff;
   --font-color-secondary: #181510;
   --bg-color-primary: #ffcf2c;
-  --font-color-primary: #ffffff;
   --bg-color-secondary: #ebd3f8;
   --bg-color-trinary: #eeeeee;
 }
