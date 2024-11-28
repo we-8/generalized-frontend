@@ -17,8 +17,18 @@ import Instagram from './images/instagram.png';
 import Youtube from './images/youtube.png';
 import Google from './images/google.png';
 import Quote from './images/double-quotes.png';
+import animation1 from './animations/lottie.json';
+import angryani from './animations/angry.json';
+import sadani from './animations/sad.json';
+import neutralani from './animations/neutral.json';
+import smileani from './animations/smile.json';
 export{
   testImage,
+  animation1,
+  smileani,
+  angryani,
+  neutralani,
+  sadani,
   Quote,
   Google,
   Cashew,
