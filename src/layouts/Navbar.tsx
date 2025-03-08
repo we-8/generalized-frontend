@@ -27,7 +27,7 @@ const Navbar = () => {
       </div>
       <div className="app__navbar--links-div">
         <ul className="app_navbar--links-list">
-          <li className="p__text" >
+          <li className="p__text">
             {" "}
             <Link href="/">Home</Link>
           </li>
@@ -40,14 +40,21 @@ const Navbar = () => {
           <li className="p__text">
             <Link href="/contact-us">Contact Us</Link>
           </li>
-          
+          <li className="p__text">
+            <Link href="/review-page">Review Page</Link>
+          </li>
         </ul>
       </div>
 
       <div className="app__navbar--services">
-      <Link href="/cart-item">
-        <Image className="navbar-logo" src={cart} alt="Shopping cart icon" onClick={handleCloseNavbar} />
-      </Link>
+        <Link href="/cart-item">
+          <Image
+            className="navbar-logo"
+            src={cart}
+            alt="Shopping cart icon"
+            onClick={handleCloseNavbar}
+          />
+        </Link>
         <div />
         {loggedIn ? (
           <FaUserCircle fontSize={25} color="#181510" />
@@ -90,16 +97,17 @@ const Navbar = () => {
                 <li className="p__text" onClick={handleCloseNavbar}>
                   <Link href="/contact-us">Contact Us</Link>
                 </li>
-                
+
                 {loggedIn ? (
                   <p />
                 ) : (
                   <p className="p__text">
-                    <Link href="/sign-in" onClick={handleCloseNavbar}>Sign In</Link>
+                    <Link href="/sign-in" onClick={handleCloseNavbar}>
+                      Sign In
+                    </Link>
                   </p>
                 )}
               </ul>
-      
             </div>
           </div>
         )}

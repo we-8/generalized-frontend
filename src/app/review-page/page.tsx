@@ -1,53 +1,72 @@
-'use client';
-import React, { useState, useRef } from 'react';
-import Lottie from 'react-lottie-player';
-import { AnimationItem } from 'lottie-web';  // Import the correct type from lottie-web
-import '../../styles/main-pages-css/Review.css';
-import { animation1, angryani, sadani, neutralani, smileani } from '@/assets';
+"use client";
+import React, { useState } from "react";
+import "./ReviewPage.css";
 
-const Review = () => {
-  const [hoveredKey, setHoveredKey] = useState<number | null>(null); // Track the hovered emoji key
+interface AppState {
+  rating: number | null;
+  comment: string;
+}
 
-  // Using the correct type AnimationItem from lottie-web
-  const lottieRefs = useRef<(AnimationItem | null)[]>([]); // Array of refs for each Lottie animation
+const Review: React.FC = () => {
+  const [state, setState] = useState<AppState>({
+    rating: null,
+    comment: "",
+  });
 
-  const emojiset = [
-    { key: 1, emojiAnimation: angryani },
-    { key: 2, emojiAnimation: sadani },
-    { key: 3, emojiAnimation: neutralani },
-    { key: 4, emojiAnimation: animation1 },
-    { key: 5, emojiAnimation: smileani },
-  ];
+  const handleRatingSelect = (value: number) => {
+    setState((prevState) => ({ ...prevState, rating: value }));
+  };
 
-  const handleMouseLeave = (index: number) => {
-    setHoveredKey(null); // Reset hovered key
-    const currentRef = lottieRefs.current[index]; // Access the specific ref
-    if (currentRef) {
-      currentRef.goToAndStop(0, true); // Reset to the first frame
-    }
+  const handleCommentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setState((prevState) => ({ ...prevState, comment: e.target.value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Rating:", state.rating, "Comment:", state.comment);
+    // Add your form submission logic here
   };
 
   return (
-    <div>
-      <h1>Review</h1>
-      <div className="app__review--emoji-main-div">
-        {emojiset.map((item, index) => (
-          <div
-            key={item.key}
-            className="app__review--emoji-set"
-            onMouseEnter={() => setHoveredKey(item.key)} // Set the hovered emoji key
-            onMouseLeave={() => handleMouseLeave(index)} // Call the reset function
-            style={{ cursor: 'pointer' }}
-          >
-            <Lottie
-              ref={(el) => { lottieRefs.current[index] = el ? el : null; }} // Simply assign ref
-              loop={false}
-              animationData={item.emojiAnimation}
-              play={hoveredKey === item.key} // Play only if this emoji is hovered
-              style={{ width: 80, height: 80 }}
-            />
-          </div>
-        ))}
+    <div className="main">
+      <div className="feedback-container">
+        <h1>How do you feel about this product?</h1>
+        <p>
+          Your input is valuable in helping us better understand your needs and
+          tailor our services accordingly
+        </p>
+
+        {/* Rating emojis */}
+        <div className="rating-container">
+          {[1, 2, 3, 4, 5].map((value) => (
+            <button
+              key={value}
+              className={`emoji-btn ${
+                state.rating === value ? "selected" : ""
+              }`}
+              onClick={() => handleRatingSelect(value)}
+            >
+              {value === 1 && "😠"}
+              {value === 2 && "😞"}
+              {value === 3 && "😐"}
+              {value === 4 && "😊"}
+              {value === 5 && "😄"}
+            </button>
+          ))}
+        </div>
+
+        {/* Comment textarea */}
+        <textarea
+          className="comment-box"
+          placeholder="Add a comment..."
+          value={state.comment}
+          onChange={handleCommentChange}
+        />
+
+        {/* Submit button */}
+        <button className="submit-btn" onClick={handleSubmit}>
+          Submit now
+        </button>
       </div>
     </div>
   );
