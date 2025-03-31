@@ -2,7 +2,7 @@ import { Herobanner, Herobanner2 } from './Herobanner/Herobanner';
 import {Title,TitleL,TitleR ,TitleYellow} from './Title/Title';
 import {DescriptionL,DescriptionR,Description} from './Description/Description';
 import SpecialOffers from './SpecialOffer/SpecialOffer';
-import {AddtoCartSingleProdocut,ProductFilter,GoogleButton,Login,BackToShop, CommonButtons ,CommonButtons1 ,OrderNow,OrderNow2,AddtoCart , RemoveButton , CheckOut} from './CommonButtons/CommonButtons';
+import {ProfileSaveChange,AddtoCartSingleProdocut,ProductFilter,GoogleButton,Login,BackToShop, CommonButtons ,CommonButtons1 ,OrderNow,OrderNow2,AddtoCart , RemoveButton , CheckOut} from './CommonButtons/CommonButtons';
 import LatestProducts from './LatestProducts/LatestProducts';
 import PeopleReview from './PeopleReview/PeopleReview';
 import SearchBar from './SearchBar/SearchBar';
@@ -11,10 +11,12 @@ import ProductSection from './ProductSection/ProductSection';
 import RadioButton from './RadioButton/RadioButton';
 import ProductDetails from './SingleProductDetails/ProductDetails';
 import SimilarProducts from './SimilarProducts/SimilarProducts';
+import CheckOutComponent from './Checkout/CheckOut';
 
 
 export{
   ProductDetails,
+  CheckOutComponent,
   SimilarProducts,
   AddtoCartSingleProdocut,
   Herobanner,
@@ -31,6 +33,7 @@ export{
   CommonButtons,
   CommonButtons1,
   ProductFilter,
+  ProfileSaveChange,
   Title,
   TitleL,
   TitleR,

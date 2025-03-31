@@ -3,6 +3,7 @@ import { useState } from "react";
 import "./SignInForm.css";
 import { TitleL,TitleYellow,} from "../Title/Title";
 import { Login ,GoogleButton } from "../CommonButtons/CommonButtons";
+import Link from 'next/link';
 import Image from "next/image";
 import { hero ,who} from "@/assets";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -108,7 +109,9 @@ const SignInForm: React.FC = () => {
                 <div className="signin-signup-section">
                   <div className="new-account-section">
                     <p>Don't have an account ?</p>
-                    <p>Sign up</p>
+                    <p>
+                    <Link href="/sign-up">Sign In</Link>
+                  </p>
                   </div>
                   <div className="login-button">
                     <Login title="LOGIN" />

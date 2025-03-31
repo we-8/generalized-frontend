@@ -1,5 +1,8 @@
 import React from "react";
 import "./ProfilePage.css";
+import { person } from "@/assets";
+import Image from "next/image";
+import { ProfileSaveChange } from "@/components";
 
 type Order = {
   id: number;
@@ -26,15 +29,15 @@ const orders: Order[] = [
     status: "On the way",
     description: "Lorem ipsum dolor sit amet, adipiscing elit, sed do.",
     image: "https://via.placeholder.com/50", // Replace with actual image URL
-  },
+  }
 ];
 
 const ProfilePage: React.FC = () => {
   return (
-    <div className="profile-container">
+    <div className="profile-container section__padding">
       <div className="profile-sidebar">
-        <img
-          src="https://via.placeholder.com/100"
+        <Image
+          src={person}
           alt="User Profile"
           className="profile-picture"
         />
@@ -60,9 +63,7 @@ const ProfilePage: React.FC = () => {
             <input type="text" value="Address 1" readOnly />
           </div>
 
-          <button type="submit" className="profile-form-button" disabled>
-            Save Changes
-          </button>
+          <ProfileSaveChange title="Save Changes" />
         </form>
       </div>
       <div className="order-history">
@@ -83,7 +84,7 @@ const ProfilePage: React.FC = () => {
                 >
                   {order.status}
                 </span>
-                <p>{order.description}</p>
+                <p className="order-summary-description">{order.description}</p>
                 <div className="order-actions">
                   <button>Buy again</button>
                   <button>View Item</button>

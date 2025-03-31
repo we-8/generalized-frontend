@@ -9,9 +9,15 @@ import { FiAlignJustify } from "react-icons/fi";
 import { IoMdClose } from "react-icons/io";
 import { FaUserCircle } from "react-icons/fa";
 
+
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  const handleCloseNavbar = () => {
+    setToggle(false); // Close the navbar toggle
+  };
 
 
   return (
@@ -34,18 +40,27 @@ const Navbar = () => {
           <li className="p__text">
             <Link href="/contact-us">Contact Us</Link>
           </li>
-          
+          <li className="p__text">
+            <Link href="/review-page">Review Page</Link>
+          </li>
         </ul>
       </div>
 
       <div className="app__navbar--services">
-        <Image className="navbar-logo" src={cart} alt="cart image" />
+        <Link href="/cart-item">
+          <Image
+            className="navbar-logo"
+            src={cart}
+            alt="Shopping cart icon"
+            onClick={handleCloseNavbar}
+          />
+        </Link>
         <div />
         {loggedIn ? (
           <FaUserCircle fontSize={25} color="#181510" />
         ) : (
-          <p className="p__text">
-            <Link href="/">Sign In</Link>
+          <p className="p__text" onClick={handleCloseNavbar}>
+            <Link href="/sign-in">Sign In</Link>
           </p>
         )}
         <FiAlignJustify
@@ -70,29 +85,29 @@ const Navbar = () => {
             />
             <div className="app__navbar--smallscreen-links-div">
               <ul className="app_navbar--smallscrenn-links-list">
-                <li className="p__text">
-                  {" "}
+                <li className="p__text" onClick={handleCloseNavbar}>
                   <Link href="/">Home</Link>
                 </li>
-                <li className="p__text">
+                <li className="p__text" onClick={handleCloseNavbar}>
                   <Link href="/product">Products</Link>
                 </li>
-                <li className="p__text">
+                <li className="p__text" onClick={handleCloseNavbar}>
                   <Link href="/about-us">About Us</Link>
                 </li>
-                <li className="p__text">
+                <li className="p__text" onClick={handleCloseNavbar}>
                   <Link href="/contact-us">Contact Us</Link>
                 </li>
-                
+
                 {loggedIn ? (
                   <p />
                 ) : (
                   <p className="p__text">
-                    <Link href="/">Sign In</Link>
+                    <Link href="/sign-in" onClick={handleCloseNavbar}>
+                      Sign In
+                    </Link>
                   </p>
                 )}
               </ul>
-      
             </div>
           </div>
         )}

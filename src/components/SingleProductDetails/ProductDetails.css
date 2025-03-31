@@ -12,6 +12,12 @@
   object-fit: cover;
   width: 600px;
 }
+.app__singleproduct-details-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+}
 .app__singleproduct-productname-div h1 {
   width: 75%;
   font-size: 3rem;

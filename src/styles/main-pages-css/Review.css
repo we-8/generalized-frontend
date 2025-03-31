@@ -1,0 +1,15 @@
+.app__review--emoji-main-div {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+.app__review--emoji-set {
+  background-color: var(--bg-color-trinary);
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--bg-color-primary);
+}

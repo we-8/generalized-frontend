@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Herobanner , Title,PeopleReview ,Description , CommonButtons1 ,SpecialOffers,LatestProducts} from "@/components";
 import { hero2,test1, who ,Cashew} from "@/assets";
 import '../styles/main-pages-css/HomePage.css';
+import Link from "next/link";
 
 type Category = {
   title: string;
@@ -37,7 +38,7 @@ export default function Home() {
           {categories.map((categories,index)=>(
             <div key={index} className="app__home--category-item">
               <Image className="category-image" src={test1} alt="category image"/>
-              <p className="category-title">{categories.title}</p>
+             <Link href="/single-product"><p className="category-title">{categories.title}</p></Link>
             </div>
           ))}
         </div>

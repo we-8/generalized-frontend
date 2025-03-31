@@ -93,5 +93,14 @@ const AddtoCartSingleProdocut:React.FC<buttonProps> = ({title}) =>{
   )
 }
 
+const ProfileSaveChange:React.FC<buttonProps> = ({title}) =>{
+  return(
+    <div className='app__profileSaveChange'>
+      <button>{title}</button>
+    </div>
+  )
+}
 
-export {AddtoCartSingleProdocut ,ProductFilter,GoogleButton,Login,BackToShop,CommonButtons, CommonButtons1 ,OrderNow , OrderNow2, AddtoCart ,RemoveButton, CheckOut};
+
+
+export {ProfileSaveChange,AddtoCartSingleProdocut ,ProductFilter,GoogleButton,Login,BackToShop,CommonButtons, CommonButtons1 ,OrderNow , OrderNow2, AddtoCart ,RemoveButton, CheckOut};
