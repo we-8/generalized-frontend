@@ -1,39 +1,107 @@
-import { Herobanner2, TitleR,TitleL ,DescriptionL,DescriptionR } from "@/components";
+import {
+  Herobanner2,
+  TitleR,
+  TitleL,
+  DescriptionL,
+  DescriptionR,
+} from "@/components";
 import Image from "next/image";
-import { hero2 ,test3,Quote } from "@/assets";
-import '../../styles/main-pages-css/AboutUs.css';
+import { hero2, test3, Quote } from "@/assets";
+import "../../styles/main-pages-css/AboutUs.css";
 
-const AboutUs = ()=> {
+const AboutUs = () => {
   return (
-      <div className="app__aboutUs--main-div">
-        <div>
-          <Herobanner2 backgroundImage={hero2} title="About Us" description="Body text for your whole article or post. We’ll put in some lorem ipsum to show how a filled-out page might look:" />
-        </div>
+    <div className="app__aboutUs--main-div">
+      <div>
+        <Herobanner2
+          backgroundImage={hero2}
+          title="About Us"
+          description="Body text for your whole article or post. We’ll put in some lorem ipsum to show how a filled-out page might look:"
+        />
+      </div>
 
-        <div className="app__aboutUs--theStory-section section__padding">
-          <Image className="story-section-image" src={test3} alt="our story image" />
-          <div className="app__aboutUs--theStory-details">
-            <div className="story-section-line"/>
-            <TitleL title="The Story" />
-            <DescriptionL description="Excepteur efficient emerging, minim veniam anim aute carefully curated Ginza conversation exquisite perfect nostrud nisi intricate Content. Qui  international first-class nulla ut. Punctual adipisicing, essential lovely queen tempor eiusmod irure. Exclusive izakaya charming Scandinavian impeccable aute quality of life soft power pariatur Melbourne occaecat discerning. Qui wardrobe aliquip, et Porter destination Toto remarkable officia Helsinki excepteur Basset hound. Zürich sleepy perfect consectetur."/>
-          </div>
+      <div className="app__aboutUs--theStory-section section__padding">
+        <Image
+          className="story-section-image"
+          src={test3}
+          alt="our story image"
+        />
+        <div className="app__aboutUs--theStory-details">
+          <div className="story-section-line" />
+          <TitleL title="Our Story: From Our Kitchen to Yours" />
+          <DescriptionL
+            description={
+              <div>
+                <p style={{ margin: "0.3em 0", textAlign: "justify" }}>
+                  We understand what it feels like to miss home. For many of us
+                  living overseas, food is more than just a meal. It is comfort,
+                  culture, and connection.
+                </p>
+                <p style={{ margin: "0.3em 0", textAlign: "justify" }}>
+                  That is why we started Ceylon Rich Products. Our goal is to
+                  bring real Sri Lankan food to people who crave the familiar
+                  tastes of their childhood, their families, and their island.
+                </p>
+                <p style={{ margin: "0.3em 0", textAlign: "justify" }}>
+                  What started as a small home kitchen has grown into a trusted
+                  brand loved by Sri Lankans around the world. Here is what
+                  makes us special:
+                </p>
+
+                <ul
+                  style={{
+                    margin: "0.3em 0",
+                    paddingLeft: "1.5em",
+                    listStyleType: "disc",
+                    textAlign: "left",
+                  }}
+                >
+                  <li style={{ marginBottom: "0.7em" }}>
+                    <strong>Authentic flavors.</strong> We use time-tested
+                    recipes and spice blends passed down through generations
+                  </li>
+                  <li style={{ marginBottom: "0.7em" }}>
+                    <strong>Premium quality.</strong> Our meals are freshly made
+                    in Sri Lanka and vacuum-sealed to lock in taste and
+                    freshness
+                  </li>
+                  <li style={{ marginBottom: "0.7em" }}>
+                    <strong>Unmatched convenience.</strong> You get real,
+                    ready-to-eat meals that taste homemade without spending
+                    hours in the kitchen
+                  </li>
+                </ul>
+              </div>
+            }
+          />
         </div>
-        <div className="app__aboutUs-quote-section section__padding">
-          <Image className="quote-section-image" src={Quote} alt="quote" />
-          <p className="quote_p">Every journey begins with a single step and a good snack ...</p>
-          <div className="quote-section-line" />
+      </div>
+      <div className="app__aboutUs-quote-section section__padding">
+        <Image className="quote-section-image" src={Quote} alt="quote" />
+        <p className="quote_p">
+          Every journey begins with a single step and a good snack ...
+        </p>
+        <div className="quote-section-line" />
+      </div>
+      <div className="app__aboutUs--commitment-section section__padding">
+        <Image
+          className="story-section-image"
+          src={test3}
+          alt="Our Commitment"
+        />
+        <div className="app__aboutUs--commitment-details">
+          <div className="story-section-line" />
+          <TitleR title="Our Mission" />
+          <DescriptionR description={
+    <p style={{ textAlign: "justify" }}>
+      At Ceylon Rich Products, our mission is simple but powerful. We want to bring a genuine taste of home to every Sri Lankan, no matter where life has taken them. Each bite of our food is made to remind you of family gatherings, familiar spices, and the warmth of your homeland. Feeling close to home is more than just a feeling. It is a comfort we believe everyone deserves.
+    </p>
+  }
+/>
         </div>
-        <div className="app__aboutUs--commitment-section section__padding">
-          <Image className="story-section-image" src={test3} alt="Our Commitment" />
-          <div className="app__aboutUs--commitment-details">
-            <div className="story-section-line"/>
-            <TitleR title="Our Commitment" />
-            <DescriptionR description="Excepteur efficient emerging, minim veniam anim aute carefully curated Ginza conversation exquisite perfect nostrud nisi intricate Content. Qui  international first-class nulla ut. Punctual adipisicing, essential lovely queen tempor eiusmod irure. Exclusive izakaya charming Scandinavian impeccable aute quality of life soft power pariatur Melbourne occaecat discerning. Qui wardrobe aliquip, et Porter destination Toto remarkable officia Helsinki excepteur Basset hound. Zürich sleepy perfect consectetur."/>
-          </div>
-        </div>
-        
-      </div>  
+      </div>
+    </div>
   );
-}
+};
 
-export default AboutUs
+export default AboutUs;
