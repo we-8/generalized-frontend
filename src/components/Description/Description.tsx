@@ -1,28 +1,29 @@
-import './Description.css';
+import "./Description.css";
+import { ReactNode } from "react";
 
-type descriptionProps={
-  description:string,
-}
-const Description:React.FC<descriptionProps> = ({description}) => {
+type descriptionProps = {
+  description: ReactNode;
+};
+const Description: React.FC<descriptionProps> = ({ description }) => {
   return (
     <div className="app__description">
       <p>{description}</p>
     </div>
-  )
-}
-const DescriptionL:React.FC<descriptionProps> = ({description}) => {
+  );
+};
+const DescriptionL: React.FC<descriptionProps> = ({ description }) => {
   return (
     <div className="app__description-left">
       <p>{description}</p>
     </div>
-  )
-}
-const DescriptionR:React.FC<descriptionProps> = ({description}) => {
+  );
+};
+const DescriptionR: React.FC<descriptionProps> = ({ description }) => {
   return (
     <div className="app__description-right">
       <p>{description}</p>
     </div>
-  )
-}
+  );
+};
 
-export {Description,DescriptionL,DescriptionR};
+export { Description, DescriptionL, DescriptionR };
