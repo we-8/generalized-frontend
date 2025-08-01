@@ -8,7 +8,7 @@ import {
   SpecialOffers,
   LatestProducts,
 } from "@/components";
-import { hero2, test1, who, Cashew } from "@/assets";
+import { home_banner, test1, who, Cashew, who_we_are } from "@/assets";
 import "../styles/main-pages-css/HomePage.css";
 import Link from "next/link";
 
@@ -44,7 +44,7 @@ export default function Home() {
   return (
     <div className="app__home--main-div">
       <Herobanner
-        backgroundImage={hero2}
+        backgroundImage={home_banner}
         title="Welcome to Ceylon Rich Products"
         description="The real taste of Sri Lanka, delivered fresh to your doorstep."
       />
@@ -65,7 +65,7 @@ export default function Home() {
       </div>
 
       <div className="app__home--Who-we-are section__padding">
-        <Image className="who-image" src={who} alt="Who we are section image" />
+        <Image className="who-image" src={who_we_are} alt="Who we are section image" />
         <div className="app__home--Who-we-are-details">
           <Title title="Who we are" />
           <Description
