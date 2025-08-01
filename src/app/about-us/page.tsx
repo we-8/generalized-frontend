@@ -6,7 +6,7 @@ import {
   DescriptionR,
 } from "@/components";
 import Image from "next/image";
-import { hero2, test3, Quote } from "@/assets";
+import { About_us_banner, our_story, Quote, our_comitment } from "@/assets";
 import "../../styles/main-pages-css/AboutUs.css";
 
 const AboutUs = () => {
@@ -14,7 +14,7 @@ const AboutUs = () => {
     <div className="app__aboutUs--main-div">
       <div>
         <Herobanner2
-          backgroundImage={hero2}
+          backgroundImage={About_us_banner}
           title="About Us"
           description="Body text for your whole article or post. We’ll put in some lorem ipsum to show how a filled-out page might look:"
         />
@@ -23,7 +23,7 @@ const AboutUs = () => {
       <div className="app__aboutUs--theStory-section section__padding">
         <Image
           className="story-section-image"
-          src={test3}
+          src={our_story}
           alt="our story image"
         />
         <div className="app__aboutUs--theStory-details">
@@ -86,7 +86,7 @@ const AboutUs = () => {
       <div className="app__aboutUs--commitment-section section__padding">
         <Image
           className="story-section-image"
-          src={test3}
+          src={our_comitment}
           alt="Our Commitment"
         />
         <div className="app__aboutUs--commitment-details">
