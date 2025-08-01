@@ -1,6 +1,6 @@
 import { Herobanner2 } from "@/components";
 import { useState } from "react";
-import { hero4 } from "@/assets";
+import { Contact_us_banner } from "@/assets";
 import { FaLocationDot , FaPhone} from "react-icons/fa6";
 import { BsGlobe } from "react-icons/bs";
 import '../../styles/main-pages-css/ContactUs.css'
@@ -26,7 +26,7 @@ const ContactUs= () => {
   return (
     <div className="app__contactUs--main-div">
       <div>
-      <Herobanner2 backgroundImage={hero4} title="Contact Us" description="Body text for your whole article or post. We’ll put in some lorem ipsum to show how a filled-out page might look:" />
+      <Herobanner2 backgroundImage={Contact_us_banner} title="Contact Us" description="Body text for your whole article or post. We’ll put in some lorem ipsum to show how a filled-out page might look:" />
       </div>
       
       <div className="app__contactUs--details-div">
