@@ -26,9 +26,9 @@ import home_banner from "./images/home_banner.jpg";
 import About_us_banner from "./images/About_us_banner.jpg";
 import Contact_us_banner from "./images/Contact_us_banner.jpg";
 import Products_banner from "./images/Products_banner.jpg";
-import who_we_are from "./images/who_we_are.jpg";
-import our_story from "./images/our_story.jpg";
-import our_comitment from "./images/our_comitment.jpg";
+import who_we_are from "./images/who_we_are.png";
+import our_story from "./images/our_story.png";
+import our_comitment from "./images/our_comitment.png";
 
 export {
   testImage,
