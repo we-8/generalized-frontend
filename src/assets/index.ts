@@ -26,6 +26,9 @@ import home_banner from "./images/home_banner.jpg";
 import About_us_banner from "./images/About_us_banner.jpg";
 import Contact_us_banner from "./images/Contact_us_banner.jpg";
 import Products_banner from "./images/Products_banner.jpg";
+import who_we_are from "./images/who_we_are.jpg";
+import our_story from "./images/our_story.jpg";
+import our_comitment from "./images/our_comitment.jpg";
 
 export {
   testImage,
@@ -56,4 +59,7 @@ export {
   About_us_banner,
   Contact_us_banner,
   Products_banner,
+  who_we_are,
+  our_story,
+  our_comitment,
 };
