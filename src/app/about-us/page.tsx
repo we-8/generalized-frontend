@@ -92,14 +92,80 @@ const AboutUs = () => {
         <div className="app__aboutUs--commitment-details">
           <div className="story-section-line" />
           <TitleR title="Our Mission" />
-          <DescriptionR description={
-    <p style={{ textAlign: "justify" }}>
-      At Ceylon Rich Products, our mission is simple but powerful. We want to bring a genuine taste of home to every Sri Lankan, no matter where life has taken them. Each bite of our food is made to remind you of family gatherings, familiar spices, and the warmth of your homeland. Feeling close to home is more than just a feeling. It is a comfort we believe everyone deserves.
-    </p>
-  }
-/>
+          <DescriptionR
+            description={
+              <p style={{ textAlign: "justify" }}>
+                At Ceylon Rich Products, our mission is simple but powerful. We
+                want to bring a genuine taste of home to every Sri Lankan, no
+                matter where life has taken them. Each bite of our food is made
+                to remind you of family gatherings, familiar spices, and the
+                warmth of your homeland. Feeling close to home is more than just
+                a feeling. It is a comfort we believe everyone deserves.
+              </p>
+            }
+          />
         </div>
       </div>
+      {/* new section */}
+      <div className="app__aboutUs--theStory-section section__padding">
+        <Image
+          className="story-section-image"
+          src={our_story}
+          alt="our story image"
+        />
+        <div className="app__aboutUs--theStory-details">
+          <div className="story-section-line" />
+          <TitleL title="Our Value" />
+          <DescriptionL
+            description={
+              <div>
+                <ul
+                  style={{
+                    paddingLeft: "1.5em",
+                    listStyleType: "disc",
+                    textAlign: "left",
+                  }}
+                >
+                  <li style={{ marginBottom: "1em" }}>
+                    <strong>Authentic Taste</strong>
+                    <br />
+                    We stay true to traditional Sri Lankan recipes and spices to
+                    deliver the real flavors you remember and love.
+                  </li>
+                  <li style={{ marginBottom: "1em" }}>
+                    <strong>Quality Ingredients</strong>
+                    <br />
+                    We carefully select fresh natural ingredients with no
+                    artificial preservatives or fillers. Just pure wholesome
+                    goodness.
+                  </li>
+                  <li style={{ marginBottom: "1em" }}>
+                    <strong>Home Cooked Meals</strong>
+                    <br />
+                    Every dish is prepared with the care and attention of a home
+                    kitchen made to nourish both body and soul.
+                  </li>
+                  <li style={{ marginBottom: "1em" }}>
+                    <strong>Customer First Service</strong>
+                    <br />
+                    Your satisfaction matters most. We listen, support, and are
+                    here to make your experience seamless and joyful.
+                  </li>
+                </ul>
+
+                <p style={{ textAlign: "justify" }}>
+                  We do not just sell food. We deliver memories. Each product
+                  carries the love and care we would give to our own families.
+                  Whether you are far from home or simply short on time, we are
+                  here to make sure you never have to miss the true taste of Sri
+                  Lanka.
+                </p>
+              </div>
+            }
+          />
+        </div>
+      </div>
+      {/* new section */}
     </div>
   );
 };
