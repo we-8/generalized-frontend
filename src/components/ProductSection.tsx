@@ -1,11 +1,8 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import SearchBar from "../SearchBar/SearchBar";
-import {  ProductFilter } from "../CommonButtons/CommonButtons";
-import "../../styles/components-css/ProductSection.css";
-
-import ProductCard, { Product } from "../ProductCard";
-import { useToast } from "../ui/use-toast";
+import { useState, useEffect } from "react";
+import { useToast } from "@/hooks/use-toast";
+import SearchBar from "./SearchBar";
+import ProductFilter from "./ProductFilter";
+import ProductCard, { Product } from "./ProductCard";
 
 const ProductSection = () => {
   const [searchInput, setSearchInput] = useState("");
@@ -20,8 +17,7 @@ const ProductSection = () => {
     {
       product_id: "2918f341-15ce-415b-8a41-033cb557483c",
       product_name: "Premium Cashews",
-      product_description:
-        "High-quality cashews sourced from the finest farms. Perfect for snacking or cooking.",
+      product_description: "High-quality cashews sourced from the finest farms. Perfect for snacking or cooking.",
       product_features: "Natural, Raw, Premium Grade",
       product_price: "2450.00",
       availability_status: "In Stock",
@@ -32,70 +28,63 @@ const ProductSection = () => {
         { rating_count: 20 },
         { rating_count: 6 },
         { rating_count: 27 },
-        { rating_count: 210 },
-      ],
+        { rating_count: 210 }
+      ]
     },
     {
       product_id: "a6870395-0d11-4d38-9df1-863ae4e7f9a3",
       product_name: "Organic Almonds",
-      product_description:
-        "Fresh organic almonds with rich flavor and nutrients. Great for healthy snacking.",
+      product_description: "Fresh organic almonds with rich flavor and nutrients. Great for healthy snacking.",
       product_features: "Organic, Rich in Protein, Heart Healthy",
       product_price: "3500.00",
       availability_status: "Out of Stock",
       product_image: "/placeholder.svg",
       category: "Nuts",
-      ratings: [],
-    },
+      ratings: []
+    }
   ];
 
   // Simulate API call
- useEffect(() => {
-   const fetchProducts = async () => {
-     try {
-       setLoading(true);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
+        // Replace this with your actual API call
+        // const response = await fetch('/api/products');
+        // const data = await response.json();
+        
+        // Using mock data for now
+        setTimeout(() => {
+          setProducts(mockApiData);
+          
+          // Extract unique categories
+          const uniqueCategories = Array.from(
+            new Set(mockApiData.map(product => product.category))
+          );
+          setCategories(["All", ...uniqueCategories]);
+          setLoading(false);
+        }, 1000);
+        
+      } catch (error) {
+        console.error("Error fetching products:", error);
+        toast({
+          title: "Error",
+          description: "Failed to load products. Please try again.",
+          variant: "destructive",
+        });
+        setLoading(false);
+      }
+    };
 
-       const response = await fetch("http://127.0.0.1:8000/v1/products/");
-       if (!response.ok) {
-         throw new Error(`HTTP error! status: ${response.status}`);
-       }
-
-       const apiData: Product[] = await response.json();
-
-       // Store products
-       setProducts(apiData);
-
-       // Extract unique categories
-       const uniqueCategories = Array.from(
-         new Set(apiData.map((product) => product.category))
-       );
-       setCategories(["All", ...uniqueCategories]);
-     } catch (error) {
-       console.error("Error fetching products:", error);
-       toast({
-         title: "Error",
-         description: "Failed to load products. Please try again.",
-         variant: "destructive",
-       });
-     } finally {
-       setLoading(false);
-     }
-   };
-
-   fetchProducts();
- }, [toast]);
-
+    fetchProducts();
+  }, [toast]);
 
   // Filter products based on search and category
-  const filteredProducts = products.filter((product) => {
-    const matchesSearch =
-      product.product_name.toLowerCase().includes(searchInput.toLowerCase()) ||
-      product.product_description
-        .toLowerCase()
-        .includes(searchInput.toLowerCase());
-    const matchesCategory =
-      selectedCategory === "All" || product.category === selectedCategory;
-
+  const filteredProducts = products.filter(product => {
+    const matchesSearch = product.product_name.toLowerCase().includes(searchInput.toLowerCase()) ||
+                         product.product_description.toLowerCase().includes(searchInput.toLowerCase());
+    const matchesCategory = selectedCategory === "All" || product.category === selectedCategory;
+    
     return matchesSearch && matchesCategory;
   });
 
@@ -104,7 +93,7 @@ const ProductSection = () => {
   };
 
   const handleAddToCart = (productId: string) => {
-    const product = products.find((p) => p.product_id === productId);
+    const product = products.find(p => p.product_id === productId);
     if (product) {
       toast({
         title: "Added to Cart",
@@ -126,25 +115,21 @@ const ProductSection = () => {
       {/* Header Section */}
       <div className="container mx-auto px-4 py-8">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-foreground mb-2">
-            Stellar Shelf
-          </h1>
-          <p className="text-lg text-muted-foreground">
-            Discover premium products from across the galaxy
-          </p>
+          <h1 className="text-4xl font-bold text-foreground mb-2">Stellar Shelf</h1>
+          <p className="text-lg text-muted-foreground">Discover premium products from across the galaxy</p>
         </div>
 
         {/* Filters Section */}
         <div className="bg-card rounded-xl shadow-md p-6 mb-8 border border-border">
           <div className="flex flex-col lg:flex-row gap-6 items-center">
             <div className="flex-1 w-full lg:w-auto">
-              <SearchBar
-                value={searchInput}
+              <SearchBar 
+                value={searchInput} 
                 onChange={setSearchInput}
                 placeholder="Search for products..."
               />
             </div>
-
+            
             <div className="flex flex-wrap gap-2">
               {categories.map((category) => (
                 <ProductFilter
@@ -170,9 +155,7 @@ const ProductSection = () => {
             ))
           ) : (
             <div className="col-span-full text-center py-12">
-              <p className="text-xl text-muted-foreground">
-                No products found matching your criteria.
-              </p>
+              <p className="text-xl text-muted-foreground">No products found matching your criteria.</p>
             </div>
           )}
         </div>
