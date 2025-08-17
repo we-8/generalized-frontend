@@ -17,40 +17,6 @@ const ProductSection = () => {
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
 
-  // Mock API data - replace with your actual API call
-  const mockApiData: Product[] = [
-    {
-      product_id: "2918f341-15ce-415b-8a41-033cb557483c",
-      product_name: "Premium Cashews",
-      product_description:
-        "High-quality cashews sourced from the finest farms. Perfect for snacking or cooking.",
-      product_features: "Natural, Raw, Premium Grade",
-      product_price: "2450.00",
-      availability_status: "In Stock",
-      product_image: "/placeholder.svg",
-      category: "Nuts",
-      ratings: [
-        { rating_count: 9 },
-        { rating_count: 20 },
-        { rating_count: 6 },
-        { rating_count: 27 },
-        { rating_count: 210 },
-      ],
-    },
-    {
-      product_id: "a6870395-0d11-4d38-9df1-863ae4e7f9a3",
-      product_name: "Organic Almonds",
-      product_description:
-        "Fresh organic almonds with rich flavor and nutrients. Great for healthy snacking.",
-      product_features: "Organic, Rich in Protein, Heart Healthy",
-      product_price: "3500.00",
-      availability_status: "Out of Stock",
-      product_image: "/placeholder.svg",
-      category: "Nuts",
-      ratings: [],
-    },
-  ];
-
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -175,7 +141,7 @@ const ProductSection = () => {
                   key={category.category_id}
                   title={category.category_name}
                   isSelected={selectedCategory === category.category_id}
-                  onClick={()=>handleCategoryClick(category.category_id)}
+                  onClick={() => handleCategoryClick(category.category_id)}
                 />
               ))}
             </div>
@@ -206,4 +172,3 @@ const ProductSection = () => {
 };
 
 export default ProductSection;
-
