@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import SearchBar from "../SearchBar/SearchBar";
-import {  ProductFilter } from "../CommonButtons/CommonButtons";
+import { ProductFilter } from "../CommonButtons/CommonButtons";
 import "../../styles/components-css/ProductSection.css";
 
 import ProductCard, { Product } from "../ProductCard";
@@ -9,9 +9,11 @@ import { useToast } from "../ui/use-toast";
 
 const ProductSection = () => {
   const [searchInput, setSearchInput] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState<string>("All");
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [products, setProducts] = useState<Product[]>([]);
-  const [categories, setCategories] = useState<string[]>([]);
+  const [categories, setCategories] = useState<
+    { category_id: string; category_name: string }[]
+  >([]);
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
 
@@ -49,42 +51,67 @@ const ProductSection = () => {
     },
   ];
 
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch("http://127.0.0.1:8000/v1/categories/");
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        // Correct type for API response
+        const apiCategories: { category_id: string; category_name: string }[] =
+          await response.json();
+        console.log("api data", apiCategories);
+
+        setCategories([
+          { category_id: "all", category_name: "All" },
+          ...apiCategories,
+        ]);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+        toast({
+          title: "Error",
+          description: "Failed to load categories. Please try again.",
+          variant: "destructive",
+        });
+        setCategories([{ category_id: "all", category_name: "All" }]); // Fallback
+      }
+    };
+
+    fetchCategories();
+  }, [toast]);
+
   // Simulate API call
- useEffect(() => {
-   const fetchProducts = async () => {
-     try {
-       setLoading(true);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
 
-       const response = await fetch("http://127.0.0.1:8000/v1/products/");
-       if (!response.ok) {
-         throw new Error(`HTTP error! status: ${response.status}`);
-       }
+        const response = await fetch("http://127.0.0.1:8000/v1/products/");
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
 
-       const apiData: Product[] = await response.json();
+        const apiData: Product[] = await response.json();
 
-       // Store products
-       setProducts(apiData);
+        // Store products
+        setProducts(apiData);
 
-       // Extract unique categories
-       const uniqueCategories = Array.from(
-         new Set(apiData.map((product) => product.category))
-       );
-       setCategories(["All", ...uniqueCategories]);
-     } catch (error) {
-       console.error("Error fetching products:", error);
-       toast({
-         title: "Error",
-         description: "Failed to load products. Please try again.",
-         variant: "destructive",
-       });
-     } finally {
-       setLoading(false);
-     }
-   };
+        // Extract unique categories
+      } catch (error) {
+        console.error("Error fetching products:", error);
+        toast({
+          title: "Error",
+          description: "Failed to load products. Please try again.",
+          variant: "destructive",
+        });
+      } finally {
+        setLoading(false);
+      }
+    };
 
-   fetchProducts();
- }, [toast]);
-
+    fetchProducts();
+  }, [toast]);
 
   // Filter products based on search and category
   const filteredProducts = products.filter((product) => {
@@ -94,13 +121,13 @@ const ProductSection = () => {
         .toLowerCase()
         .includes(searchInput.toLowerCase());
     const matchesCategory =
-      selectedCategory === "All" || product.category === selectedCategory;
+      selectedCategory === "all" || product.category === selectedCategory;
 
     return matchesSearch && matchesCategory;
   });
 
-  const handleCategoryClick = (category: string) => {
-    setSelectedCategory(category);
+  const handleCategoryClick = (categoryId: string) => {
+    setSelectedCategory(categoryId);
   };
 
   const handleAddToCart = (productId: string) => {
@@ -127,11 +154,8 @@ const ProductSection = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-foreground mb-2">
-            Stellar Shelf
-          </h1>
-          <p className="text-lg text-muted-foreground">
             Discover premium products from across the galaxy
-          </p>
+          </h1>
         </div>
 
         {/* Filters Section */}
@@ -148,10 +172,10 @@ const ProductSection = () => {
             <div className="flex flex-wrap gap-2">
               {categories.map((category) => (
                 <ProductFilter
-                  key={category}
-                  title={category}
-                  isSelected={selectedCategory === category}
-                  onClick={handleCategoryClick}
+                  key={category.category_id}
+                  title={category.category_name}
+                  isSelected={selectedCategory === category.category_id}
+                  onClick={()=>handleCategoryClick(category.category_id)}
                 />
               ))}
             </div>
@@ -182,3 +206,4 @@ const ProductSection = () => {
 };
 
 export default ProductSection;
+
