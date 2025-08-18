@@ -3,8 +3,9 @@ import { ShoppingCart } from "lucide-react";
 
 interface AddToCartButtonProps {
   isAvailable: boolean;
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
+
 
 const AddToCartButton = ({ isAvailable, onClick }: AddToCartButtonProps) => {
   return (

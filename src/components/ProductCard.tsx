@@ -32,7 +32,11 @@ const ProductCard = ({ product, onAddToCart, onClick }: ProductCardProps) => {
     >
       {" "}
       <div className="relative overflow-hidden bg-gradient-to-br from-secondary/30 to-accent/10">
-        <ProductImage src={product.product_image} alt={product.product_name}  className="hg-64"/>
+        <ProductImage
+          src={product.product_image}
+          alt={product.product_name}
+          className="hg-64"
+        />
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         <div className="absolute top-3 right-3">
           <Badge
@@ -100,7 +104,10 @@ const ProductCard = ({ product, onAddToCart, onClick }: ProductCardProps) => {
 
           <AddToCartButton
             isAvailable={isAvailable}
-            onClick={() => onAddToCart?.(product.product_id)}
+            onClick={(e) => {
+              e.stopPropagation(); // Prevent card click
+              onAddToCart?.(product.product_id);
+            }}
           />
         </div>
       </CardContent>
