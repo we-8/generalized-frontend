@@ -1,0 +1,167 @@
+import { useState, useEffect } from "react";
+import { useToast } from "@/hooks/use-toast";
+import SearchBar from "./SearchBar";
+import ProductFilter from "./ProductFilter";
+import ProductCard, { Product } from "./ProductCard";
+
+const ProductSection = () => {
+  const [searchInput, setSearchInput] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
+  const [products, setProducts] = useState<Product[]>([]);
+  const [categories, setCategories] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true);
+  const { toast } = useToast();
+
+  // Mock API data - replace with your actual API call
+  const mockApiData: Product[] = [
+    {
+      product_id: "2918f341-15ce-415b-8a41-033cb557483c",
+      product_name: "Premium Cashews",
+      product_description: "High-quality cashews sourced from the finest farms. Perfect for snacking or cooking.",
+      product_features: "Natural, Raw, Premium Grade",
+      product_price: "2450.00",
+      availability_status: "In Stock",
+      product_image: "/placeholder.svg",
+      category: "Nuts",
+      ratings: [
+        { rating_count: 9 },
+        { rating_count: 20 },
+        { rating_count: 6 },
+        { rating_count: 27 },
+        { rating_count: 210 }
+      ]
+    },
+    {
+      product_id: "a6870395-0d11-4d38-9df1-863ae4e7f9a3",
+      product_name: "Organic Almonds",
+      product_description: "Fresh organic almonds with rich flavor and nutrients. Great for healthy snacking.",
+      product_features: "Organic, Rich in Protein, Heart Healthy",
+      product_price: "3500.00",
+      availability_status: "Out of Stock",
+      product_image: "/placeholder.svg",
+      category: "Nuts",
+      ratings: []
+    }
+  ];
+
+  // Simulate API call
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
+        // Replace this with your actual API call
+        // const response = await fetch('/api/products');
+        // const data = await response.json();
+        
+        // Using mock data for now
+        setTimeout(() => {
+          setProducts(mockApiData);
+          
+          // Extract unique categories
+          const uniqueCategories = Array.from(
+            new Set(mockApiData.map(product => product.category))
+          );
+          setCategories(["All", ...uniqueCategories]);
+          setLoading(false);
+        }, 1000);
+        
+      } catch (error) {
+        console.error("Error fetching products:", error);
+        toast({
+          title: "Error",
+          description: "Failed to load products. Please try again.",
+          variant: "destructive",
+        });
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, [toast]);
+
+  // Filter products based on search and category
+  const filteredProducts = products.filter(product => {
+    const matchesSearch = product.product_name.toLowerCase().includes(searchInput.toLowerCase()) ||
+                         product.product_description.toLowerCase().includes(searchInput.toLowerCase());
+    const matchesCategory = selectedCategory === "All" || product.category === selectedCategory;
+    
+    return matchesSearch && matchesCategory;
+  });
+
+  const handleCategoryClick = (category: string) => {
+    setSelectedCategory(category);
+  };
+
+  const handleAddToCart = (productId: string) => {
+    const product = products.find(p => p.product_id === productId);
+    if (product) {
+      toast({
+        title: "Added to Cart",
+        description: `${product.product_name} has been added to your cart.`,
+      });
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-background to-secondary flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-background to-secondary">
+      {/* Header Section */}
+      <div className="container mx-auto px-4 py-8">
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold text-foreground mb-2">Stellar Shelf</h1>
+          <p className="text-lg text-muted-foreground">Discover premium products from across the galaxy</p>
+        </div>
+
+        {/* Filters Section */}
+        <div className="bg-card rounded-xl shadow-md p-6 mb-8 border border-border">
+          <div className="flex flex-col lg:flex-row gap-6 items-center">
+            <div className="flex-1 w-full lg:w-auto">
+              <SearchBar 
+                value={searchInput} 
+                onChange={setSearchInput}
+                placeholder="Search for products..."
+              />
+            </div>
+            
+            <div className="flex flex-wrap gap-2">
+              {categories.map((category) => (
+                <ProductFilter
+                  key={category}
+                  title={category}
+                  isSelected={selectedCategory === category}
+                  onClick={handleCategoryClick}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Products Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {filteredProducts.length > 0 ? (
+            filteredProducts.map((product) => (
+              <ProductCard
+                key={product.product_id}
+                product={product}
+                onAddToCart={handleAddToCart}
+              />
+            ))
+          ) : (
+            <div className="col-span-full text-center py-12">
+              <p className="text-xl text-muted-foreground">No products found matching your criteria.</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ProductSection;

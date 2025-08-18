@@ -1,60 +1,205 @@
-'use client'
-import React,{useState} from 'react'
-import SearchBar from '../SearchBar/SearchBar';
-import { AddtoCart , ProductFilter } from '../CommonButtons/CommonButtons';
-import '../../styles/components-css/ProductSection.css';
-import { test3 } from '@/assets';
-import Image from 'next/image';
+"use client";
+import React, { useEffect, useState } from "react";
+import SearchBar from "../SearchBar/SearchBar";
+import { ProductFilter } from "../CommonButtons/CommonButtons";
+import "../../styles/components-css/ProductSection.css";
+
+import ProductCard, { Product } from "../ProductCard";
+import { useToast } from "../ui/use-toast";
+import ProductDetailsModal from "../ProductDialog/ProductDialog";
 
 const ProductSection = () => {
-  const [searchInput,setSearchInput] = useState('')
-  const [selectedBrand, setSelectedBrand] = useState<string | null>('All');
+  const [searchInput, setSearchInput] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [products, setProducts] = useState<Product[]>([]);
+  const [categories, setCategories] = useState<
+    { category_id: string; category_name: string }[]
+  >([]);
+  const [loading, setLoading] = useState(true);
+   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { toast } = useToast();
 
-  const products = [
-    { productName: 'Cashews', new_price: 'Rs 2450', description: 'A dialog is a 23234 32432 dfdgfg  gfgdf gdf gdfg fd  type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made...', image: test3 },
-    { productName: 'Almonds', new_price: 'Rs 3500', description: 'A dialog is a type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made...', image: test3 },
-    { productName: 'Almonds1', new_price: 'Rs 3500',description: 'A dialog is a type of modal  gdfg dgf dgd fgfdg dfgfd gdf gdfg gdfg window that appears in front of app content to provide critical information, or prompt for a decision to be made...', image: test3 },
-    { productName: 'Almonds2', new_price: 'Rs 3500', description: 'A dialog is a type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made...', image: test3 },
-    { productName: 'Almonds3', new_price: 'Rs 3500', description: 'Apearovide critical information, or prompt for a decision to be made...', image: test3 },
-  
-  ];
-  const tags = ['All', 'Cashews','Almonds','Almonds1','Almonds2','Almonds3']
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch("http://127.0.0.1:8000/v1/categories/");
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        // Correct type for API response
+        const apiCategories: { category_id: string; category_name: string }[] =
+          await response.json();
+        console.log("api data", apiCategories);
 
-  const handleBrandClick = (title: string) => {
-    setSelectedBrand(title);
-    console.log(selectedBrand);
+        setCategories([
+          { category_id: "all", category_name: "All" },
+          ...apiCategories,
+        ]);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+        toast({
+          title: "Error",
+          description: "Failed to load categories. Please try again.",
+          variant: "destructive",
+        });
+        setCategories([{ category_id: "all", category_name: "All" }]); // Fallback
+      }
+    };
+
+    fetchCategories();
+  }, [toast]);
+
+  // Simulate API call
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
+
+        const response = await fetch("http://127.0.0.1:8000/v1/products/");
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const apiData: Product[] = await response.json();
+
+        // Store products
+        setProducts(apiData);
+
+        // Extract unique categories
+      } catch (error) {
+        console.error("Error fetching products:", error);
+        toast({
+          title: "Error",
+          description: "Failed to load products. Please try again.",
+          variant: "destructive",
+        });
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, [toast]);
+
+  // Filter products based on search and category
+  const filteredProducts = products
+    .filter((product) => {
+      const matchesSearch =
+        product.product_name
+          .toLowerCase()
+          .includes(searchInput.toLowerCase()) ||
+        product.product_description
+          .toLowerCase()
+          .includes(searchInput.toLowerCase());
+      const matchesCategory =
+        selectedCategory === "all" || product.category === selectedCategory;
+
+      return matchesSearch && matchesCategory;
+    })
+    .sort((a, b) => {
+      // Sort "In Stock" first, "Out of Stock" last
+      const aAvailable = a.availability_status.toLowerCase() === "in stock";
+      const bAvailable = b.availability_status.toLowerCase() === "in stock";
+      return aAvailable === bAvailable ? 0 : aAvailable ? -1 : 1;
+    });
+
+  const handleCategoryClick = (categoryId: string) => {
+    setSelectedCategory(categoryId);
   };
+
+  const handleAddToCart = (productId: string) => {
+    const product = products.find((p) => p.product_id === productId);
+    if (product) {
+      toast({
+        title: "Added to Cart",
+        description: `${product.product_name} has been added to your cart.`,
+      });
+    }
+  };
+
+   const handleProductClick = (product: Product) => {
+     setSelectedProduct(product);
+     setIsModalOpen(true);
+   };
+
+   const handleCloseModal = () => {
+     setIsModalOpen(false);
+     setSelectedProduct(null);
+   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-background to-secondary flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+      </div>
+    );
+  }
+
   return (
-    <div className='app__product--main-div'>
-      <div className="app__product--filter-div section__padding">
-        <div className="app__product--filter-search">
-          <SearchBar value={searchInput} onChange={setSearchInput}/>
+    <div className="min-h-screen bg-gradient-to-br from-background to-secondary">
+      {/* Header Section */}
+      <div className="container mx-auto px-4 py-8">
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold text-foreground mb-2">
+            Discover premium products from across the galaxy
+          </h1>
         </div>
-        <div className='app__product--filter-tags'>
-          <div className='app__product--filter-button'>
-            {tags.map((tags,index)=>(
-              <div key={index}>
-                <ProductFilter  title={tags}  isSelected={selectedBrand === tags} onClick={handleBrandClick} />
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-      <div className='app__product--product-section section__padding'>
-        {products.map((product, index) =>(
-          <div className='app__product--single-product' key={index}>
-            <Image className='single-product-img' src={product.image} alt="product image"/>
-            <div className='single-product-details'>
-              <p className='single-product-name'>{product.productName}</p>
-              <p className='single-product-description'>{product.description.length>80 ? (product.description.slice(0,80)+'...'):(product.description)}</p>
-              <p className='single-product-price'>{product.new_price}.00</p>
+
+        {/* Filters Section */}
+        <div className="bg-card rounded-xl shadow-md p-6 mb-8 border border-border">
+          <div className="flex flex-col lg:flex-row gap-6 items-center">
+            <div className="flex-1 w-full lg:w-auto">
+              <SearchBar
+                value={searchInput}
+                onChange={setSearchInput}
+                placeholder="Search for products..."
+              />
             </div>
-            <AddtoCart title="Add to Cart"/>
+
+            <div className="flex flex-wrap gap-2">
+              {categories.map((category) => (
+                <ProductFilter
+                  key={category.category_id}
+                  title={category.category_name}
+                  isSelected={selectedCategory === category.category_id}
+                  onClick={() => handleCategoryClick(category.category_id)}
+                />
+              ))}
+            </div>
           </div>
-        ))}
+        </div>
+
+        {/* Products Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {filteredProducts.length > 0 ? (
+            filteredProducts.map((product) => (
+              <ProductCard
+                key={product.product_id}
+                product={product}
+                onAddToCart={handleAddToCart}
+                onClick={handleProductClick}
+              />
+            ))
+          ) : (
+            <div className="col-span-full text-center py-12">
+              <p className="text-xl text-muted-foreground">
+                No products found matching your criteria.
+              </p>
+            </div>
+          )}
+        </div>
       </div>
+       <ProductDetailsModal
+        product={selectedProduct}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        onAddToCart={handleAddToCart}
+      />
+    
     </div>
-  )
-}
+   
+  );
+};
 
 export default ProductSection;
