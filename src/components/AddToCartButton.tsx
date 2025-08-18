@@ -14,9 +14,10 @@ const AddToCartButton = ({ isAvailable, onClick }: AddToCartButtonProps) => {
       variant={isAvailable ? "default" : "outline"}
       className={`
         w-full transition-all duration-200 flex items-center gap-2
-        ${isAvailable 
-          ? "bg-primary hover:bg-primary-hover text-primary-foreground hover:scale-105 shadow-md" 
-          : "bg-muted text-muted-foreground opacity-50 cursor-not-allowed hover:scale-100"
+        ${
+          isAvailable
+            ? "bg-primary hover:bg-primary-hover text-primary-foreground hover:scale-105 shadow-md"
+            : "bg-muted text-muted-foreground opacity-50 cursor-not-allowed hover:scale-100"
         }
       `}
     >

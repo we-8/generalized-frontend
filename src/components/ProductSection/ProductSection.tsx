@@ -6,6 +6,7 @@ import "../../styles/components-css/ProductSection.css";
 
 import ProductCard, { Product } from "../ProductCard";
 import { useToast } from "../ui/use-toast";
+import ProductDetailsModal from "../ProductDialog/ProductDialog";
 
 const ProductSection = () => {
   const [searchInput, setSearchInput] = useState("");
@@ -15,6 +16,8 @@ const ProductSection = () => {
     { category_id: string; category_name: string }[]
   >([]);
   const [loading, setLoading] = useState(true);
+   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+   const [isModalOpen, setIsModalOpen] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -80,17 +83,26 @@ const ProductSection = () => {
   }, [toast]);
 
   // Filter products based on search and category
-  const filteredProducts = products.filter((product) => {
-    const matchesSearch =
-      product.product_name.toLowerCase().includes(searchInput.toLowerCase()) ||
-      product.product_description
-        .toLowerCase()
-        .includes(searchInput.toLowerCase());
-    const matchesCategory =
-      selectedCategory === "all" || product.category === selectedCategory;
+  const filteredProducts = products
+    .filter((product) => {
+      const matchesSearch =
+        product.product_name
+          .toLowerCase()
+          .includes(searchInput.toLowerCase()) ||
+        product.product_description
+          .toLowerCase()
+          .includes(searchInput.toLowerCase());
+      const matchesCategory =
+        selectedCategory === "all" || product.category === selectedCategory;
 
-    return matchesSearch && matchesCategory;
-  });
+      return matchesSearch && matchesCategory;
+    })
+    .sort((a, b) => {
+      // Sort "In Stock" first, "Out of Stock" last
+      const aAvailable = a.availability_status.toLowerCase() === "in stock";
+      const bAvailable = b.availability_status.toLowerCase() === "in stock";
+      return aAvailable === bAvailable ? 0 : aAvailable ? -1 : 1;
+    });
 
   const handleCategoryClick = (categoryId: string) => {
     setSelectedCategory(categoryId);
@@ -105,6 +117,16 @@ const ProductSection = () => {
       });
     }
   };
+
+   const handleProductClick = (product: Product) => {
+     setSelectedProduct(product);
+     setIsModalOpen(true);
+   };
+
+   const handleCloseModal = () => {
+     setIsModalOpen(false);
+     setSelectedProduct(null);
+   };
 
   if (loading) {
     return (
@@ -156,6 +178,7 @@ const ProductSection = () => {
                 key={product.product_id}
                 product={product}
                 onAddToCart={handleAddToCart}
+                onClick={handleProductClick}
               />
             ))
           ) : (
@@ -167,7 +190,15 @@ const ProductSection = () => {
           )}
         </div>
       </div>
+       <ProductDetailsModal
+        product={selectedProduct}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        onAddToCart={handleAddToCart}
+      />
+    
     </div>
+   
   );
 };
 

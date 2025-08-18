@@ -13,67 +13,96 @@ export interface Product {
   availability_status: string;
   product_image: string;
   category: string;
-  ratings: Array<{ rating_count: number }>;
+  ratings: { rating_count: number }[];
 }
 
 interface ProductCardProps {
   product: Product;
   onAddToCart?: (productId: string) => void;
+  onClick?: (product: Product) => void;
 }
 
-const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
+const ProductCard = ({ product, onAddToCart, onClick }: ProductCardProps) => {
   const isAvailable = product.availability_status.toLowerCase() === "in stock";
-  
+
   return (
-    <Card className="group overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-105 bg-card border-border">
-      <div className="relative overflow-hidden">
-        <ProductImage src={product.product_image} alt={product.product_name} />
-        <div className="absolute top-2 right-2">
+    <Card
+      className="group relative overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 hover:-translate-y-2 bg-white from-card via-card to-card/95 border border-border/50 backdrop-blur-sm cursor-pointer"
+      onClick={() => onClick?.(product)}
+    >
+      {" "}
+      <div className="relative overflow-hidden bg-gradient-to-br from-secondary/30 to-accent/10">
+        <ProductImage src={product.product_image} alt={product.product_name}  className="hg-64"/>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute top-3 right-3">
           <Badge
             variant={isAvailable ? "default" : "destructive"}
             className={`
+              shadow-lg backdrop-blur-sm font-medium px-3 py-1 text-xs
               ${
                 isAvailable
-                  ? "bg-success text-success-foreground"
-                  : "bg-destructive text-destructive-foreground"
+                  ? "bg-green-600 text-white border-green-500"
+                  : "bg-red-600 text-white border-red-500"
               }
             `}
           >
             {product.availability_status}
           </Badge>
         </div>
+        <div className="absolute inset-0 ring-1 ring-border/20 rounded-t-lg" />
       </div>
-
-      <CardContent className="p-4 space-y-3">
-        <div className="space-y-2">
-          <h3 className="font-semibold text-lg text-card-foreground line-clamp-1">
+      <CardContent className="p-6 space-y-4 relative">
+        <div className="space-y-3">
+          <h3 className="font-bold text-xl text-card-foreground line-clamp-1 group-hover:text-primary transition-colors duration-300">
             {product.product_name}
           </h3>
 
-          <StarRating ratings={product.ratings} />
+          <div className="flex items-center gap-2">
+            <StarRating ratings={product.ratings} />
+            <span className="text-xs text-muted-foreground/80">
+              ({product.ratings.reduce((sum, r) => sum + r.rating_count, 0)}{" "}
+              reviews)
+            </span>
+          </div>
 
-          <p className="text-sm text-muted-foreground line-clamp-2">
+          <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed">
             {product.product_description}
           </p>
 
           {product.product_features && (
-            <div className="text-xs text-muted-foreground">
-              <span className="font-medium">Features: </span>
-              {product.product_features}
+            <div className="bg-secondary/30 rounded-lg p-3 border border-border/30">
+              <div className="text-xs text-foreground/90">
+                <span className="font-semibold text-primary">Features: </span>
+                <span className="text-muted-foreground">
+                  {product.product_features}
+                </span>
+              </div>
             </div>
           )}
         </div>
 
-        <div className="flex items-center justify-between">
-          <div className="text-2xl font-bold text-primary">
-            ₹{product.product_price}
-          </div>
-        </div>
+        <div className="pt-2 border-t border-border/30">
+          <div className="flex items-center justify-between mb-4">
+            <div className="space-y-1">
+              <div className="text-3xl font-bold text-primary">
+                Rs.{product.product_price}
+              </div>
 
-        <AddToCartButton
-          isAvailable={isAvailable}
-          onClick={() => onAddToCart?.(product.product_id)}
-        />
+              <div className="text-xs text-muted-foreground">Best Price</div>
+            </div>
+            <div className="text-right">
+              <div className="text-xs text-success font-medium">
+                ✓ Fast Delivery
+              </div>
+              <div className="text-xs text-muted-foreground">Free Shipping</div>
+            </div>
+          </div>
+
+          <AddToCartButton
+            isAvailable={isAvailable}
+            onClick={() => onAddToCart?.(product.product_id)}
+          />
+        </div>
       </CardContent>
     </Card>
   );
