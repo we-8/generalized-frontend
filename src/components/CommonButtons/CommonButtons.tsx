@@ -1,6 +1,11 @@
+'use client'
+
 import './CommonButtons.css';
 import { Google } from '@/assets';
 import Image from 'next/image';
+import { signIn, useSession } from "next-auth/react"
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 
 type buttonProps = {
   title:string
@@ -71,10 +76,47 @@ const Login:React.FC<buttonProps> = ({title}) =>{
     </div>
   )
 }
-const GoogleButton:React.FC<buttonProps> = ({title}) =>{
-  return(
+// Replace your existing GoogleButton component with this:
+const GoogleButton: React.FC<buttonProps> = ({ title }) => {
+  const [isLoading, setIsLoading] = useState(false)
+  const router = useRouter()
+  const { data: session } = useSession()
+
+  const handleGoogleSignIn = async () => {
+    console.log("Google button clicked!")
+    console.log("Current session before signIn:", session)
+    
+    if (isLoading) return
+    
+    setIsLoading(true)
+    try {
+      console.log("Calling signIn...")
+      const result = await signIn("google", { 
+        callbackUrl: "/dashboard",
+        redirect: true 
+      }) // Removed redirect: false
+      console.log("SignIn result:", result)
+      
+    } catch (error) {
+      console.error('Google sign in error:', error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  return (
     <div className='app__Google'>
-      <button><Image className='google-img' src={Google} alt="google button"/>{title}</button>
+      <button 
+        onClick={handleGoogleSignIn}
+        disabled={isLoading}
+        style={{
+          opacity: isLoading ? 0.6 : 1,
+          cursor: isLoading ? 'not-allowed' : 'pointer'
+        }}
+      >
+        <Image className='google-img' src={Google} alt="google button"/>
+        {isLoading ? "Signing in..." : title}
+      </button>
     </div>
   )
 }
