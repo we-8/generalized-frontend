@@ -100,7 +100,15 @@
 .app__label-main-div {
   margin-top: 1rem;
 }
-
+.error-message {
+  color: #dc3545;
+  font-size: 12px;
+  margin-top: 4px;
+  font-weight: normal;
+}
+.input-error {
+  border-color: #dc3545 !important;
+}
 @media screen and (max-width:1050px) {
   .app__signup-img{
     display: none ;
