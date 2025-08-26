@@ -8,12 +8,16 @@ import { useEffect, useState } from 'react';
 import { FiAlignJustify } from "react-icons/fi";
 import { IoMdClose } from "react-icons/io";
 import { FaUserCircle } from "react-icons/fa";
-
+import { useCart } from '@/contexts/CartContext';
+import { ShoppingCart } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const { getCartItemsCount } = useCart();
+  const itemCount = getCartItemsCount();
 
   const handleCloseNavbar = () => {
     setToggle(false); // Close the navbar toggle
@@ -48,12 +52,13 @@ const Navbar = () => {
 
       <div className="app__navbar--services">
         <Link href="/cart-item">
-          <Image
-            className="navbar-logo"
-            src={cart}
-            alt="Shopping cart icon"
-            onClick={handleCloseNavbar}
-          />
+          <ShoppingCart className="h-5 w-5" />
+          <span>Cart</span>
+          {itemCount > 0 && (
+            <Badge variant="destructive" className="ml-auto">
+              {itemCount}
+            </Badge>
+          )}
         </Link>
         <div />
         {loggedIn ? (

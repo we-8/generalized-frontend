@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "../styles/global.css";
-import ClientLayout from "./ClientLayout"; // Import the client component
+import { CartProvider } from "@/contexts/CartContext";
+import { SessionProvider } from "next-auth/react";
+import { Footer, Navbar } from "@/layouts";
 
 export const metadata: Metadata = {
   title: "Ceylon Rich",
@@ -9,13 +11,19 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <body className="relative">
-        <ClientLayout>{children}</ClientLayout>
+      <body>
+        <SessionProvider>
+          <CartProvider>
+            <Navbar />
+            {children}
+            <Footer />
+          </CartProvider>
+        </SessionProvider>
       </body>
     </html>
   );

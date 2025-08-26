@@ -1,175 +1,228 @@
-'use client'
-import React, { useState } from 'react';
-import '../../styles/main-pages-css/Cart.css'
-import { TitleL,RemoveButton ,CheckOut,BackToShop,RadioButton} from '@/components';
-import { Cashew } from '@/assets';
-import Image from 'next/image';
+"use client";
+import React, { useState } from "react";
+import { useCart } from "@/contexts/CartContext";
+import { Card, CardContent } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
+import TitleL from "@/components/cart/TitleL";
+import RemoveButton from "@/components/cart/RemoveButton";
+import CheckOut from "@/components/cart/CheckOut";
+import BackToShop from "@/components/cart/BackToShop";
+import QuantitySelector from "@/components/cart/QuantitySelector";
+import { useToast } from "@/hooks/use-toast";
 
 const Cart = () => {
-  
-  const RadioButtons =[
-    {
-      htmlfor:"LKR",
-      label:"LKR",
-      value:"LKR"
-    },
-    {
-      htmlfor:"EUR",
-      label:"EUR",
-      value:"EUR"
-    },
-    {
-      htmlfor:"USD",
-      label:"USD",
-      value:"USD"
-    },
-    {
-      htmlfor:"AUD",
-      label:"AUD",
-      value:"AUD"
-    }
-  ]
+  const {
+    cart: cartFromContext,
+    removeFromCart,
+    updateQuantity,
+    getCartTotal,
+  } = useCart();
 
-  const Cartitem =[
-    {
-      name:'Lorem ipsum dolor sit ',
-      description:'amet, adipiscing  incididunt ut labore et dolor',
-      total:'$ 450.00',
-      per_item:'$ 150.00',
-      image:Cashew
-    },
-    {
-      name:'Lorem ipsum dolor sit ',
-      description:'amet, adipiscing  incididunt ut labore et dolor',
-      total:'$ 450.00',
-      per_item:'$ 150.00',
-      image:Cashew
-    },
-    {
-      name:'Lorem ipsum dolor sit ',
-      description:'amet, adipiscing  incididunt ut labore et dolor',
-      total:'$ 450.00',
-      per_item:'$ 150.00',
-      image:Cashew
-    },
-    {
-      name:'Lorem ipsum dolor sit ',
-      description:'amet, adipiscing  incididunt ut labore et dolor',
-      total:'$ 450.00',
-      per_item:'$ 150.00',
-      image:Cashew
-    },
-    {
-      name:'Lorem ipsum dolor sit ',
-      description:'amet, adipiscing  incididunt ut labore et dolor',
-      total:'$ 450.00',
-      per_item:'$ 150.00',
-      image:Cashew
-    },
-    {
-      name:'Lorem ipsum dolor sit ',
-      description:'amet, adipiscing  incididunt ut labore et dolor',
-      total:'$ 450.00',
-      per_item:'$ 150.00',
-      image:Cashew
-    },
-    {
-      name:'Lorem ipsum dolor sit ',
-      description:'amet, adipiscing  incididunt ut labore et dolor',
-      total:'$ 450.00',
-      per_item:'$ 150.00',
-      image:Cashew
-    },
-    {
-      name:'Lorem ipsum dolor sit ',
-      description:'amet, adipiscing  incididunt ut labore et dolor',
-      total:'$ 450.00',
-      per_item:'$ 150.00',
-      image:Cashew
-    }
-  ]
+  // Provide a safe default to ensure 'cart' is never null
+  const cart = cartFromContext ?? { items: [] };
+
+  const [selectedCurrency, setSelectedCurrency] = useState("LKR");
+  const { toast } = useToast();
+
+  const radioButtons = [
+    { htmlfor: "LKR", label: "LKR", value: "LKR" },
+    { htmlfor: "EUR", label: "EUR", value: "EUR" },
+    { htmlfor: "USD", label: "USD", value: "USD" },
+    { htmlfor: "AUD", label: "AUD", value: "AUD" },
+  ];
+
   const handleOptionChange = (value: string) => {
-    setSelectedValue(value);
+    setSelectedCurrency(value);
   };
-  const [selectedValue,setSelectedValue] = useState('')
+
+  const handleCheckout = () => {
+    toast({
+      title: "Checkout",
+      description: "Proceeding to checkout...",
+    });
+  };
+
+  const calculateItemTotal = (price: string, quantity: number) => {
+    return (parseFloat(price) * quantity).toFixed(2);
+  };
+
+  const subtotal = getCartTotal();
+  const discount = subtotal * 0.1; // 10% discount
+  const shipping = subtotal > 500 ? 0 : 50; // Free shipping over 500
+  const total = subtotal - discount + shipping;
+
   return (
-    <div className='app__cart--main-div'>
-      <TitleL title='Your shopping cart' />
-      <div className='app__cart--details-main-div'>
-        <div className='app__cart--product-details'>
-          <div className='app__cart--ordered-items'>
-            {Cartitem.map((item,index)=>(
-              <div className='cart-item-card' key={index}>
-                <div className='cart-item'>
-                <div className='cart-item-details'>
-                  <Image className='cart-item-img' src={item.image} alt="cart item image"/>
-                  <div>
-                    <p className='cart-item-title'>{item.name}</p>
-                    <p className='cart-item-des'>{item.description}</p>
+    <div className="min-h-screen bg-gradient-to-br from-background to-secondary">
+      <div className="container mx-auto px-4 py-8">
+        <TitleL title="Your shopping cart" />
+
+        {cart.items.length === 0 ? (
+          <div className="text-center py-12">
+            <h2 className="text-2xl font-semibold text-muted-foreground mb-4">
+              Your cart is empty
+            </h2>
+            <p className="text-muted-foreground mb-6">
+              Add some products to get started!
+            </p>
+            <BackToShop title="Start Shopping" />
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Cart Items */}
+            <div className="lg:col-span-2">
+              <Card className="bg-card border-border shadow-lg">
+                <CardContent className="p-6">
+                  <div className="space-y-6">
+                    {cart.items.map((item, index) => (
+                      <div key={item.cart_item_id}>
+                        <div className="flex items-center space-x-4">
+                          <div className="flex-shrink-0">
+                            <img
+                              src={item.product_image}
+                              alt={item.product_name}
+                              className="w-20 h-20 object-cover rounded-lg border border-border"
+                            />
+                          </div>
+
+                          <div className="flex-1 min-w-0">
+                            <h3 className="text-lg font-semibold text-card-foreground line-clamp-1">
+                              {item.product_name}
+                            </h3>
+                            <p className="text-sm text-muted-foreground line-clamp-2">
+                              {item.product_description}
+                            </p>
+                          </div>
+
+                          <div className="flex items-center space-x-4">
+                            <QuantitySelector
+                              value={item.quantity}
+                              onChange={(quantity) =>
+                                updateQuantity(item.cart_item_id, quantity)
+                              }
+                            />
+
+                            <div className="text-right min-w-0">
+                              <p className="text-lg font-bold text-primary">
+                                Rs.
+                                {calculateItemTotal(
+                                  item.product_price,
+                                  item.quantity
+                                )}
+                              </p>
+                              <p className="text-xs text-muted-foreground">
+                                Rs.{item.product_price} / per item
+                              </p>
+                            </div>
+
+                            <RemoveButton
+                              title="Remove"
+                              onClick={() => removeFromCart(item.cart_item_id)}
+                            />
+                          </div>
+                        </div>
+
+                        {index < cart.items.length - 1 && (
+                          <Separator className="mt-6" />
+                        )}
+                      </div>
+                    ))}
                   </div>
-                </div>
-                <div>
-                <div className='cart-dropdown'>
-                  <select>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                  </select>
-                </div>
-                </div>
-                <div className='cart-item-prices'>
-                  <p className='cart-item-total-price'>{item.total}</p>
-                  <p className='cart-item-singel-price'>{item.per_item} / per item</p>
-                </div>
-                <RemoveButton title="Remove" />
-                </div>
-                <div className='item-line'/>
-              </div>
-            ))}
-          </div>
-          <div className='app__cart--lower-section'>
-            <div className='app__cart--product-summary'>
-              <div className='summary-total-value-div'>
-                <p className='summary-total-value-label'>Total price:</p>
-                <p className='summary-total-value'>$450.00</p>
-              </div>
-              <div className='summary-discount-value-div'>
-                <p className='summary-discount-value-label'>Discount:</p>
-                <p className='summary-total-value'>$150.00</p>
-              </div>
-              <div className='summary-shipping-value-div'>
-                <p className='summary-shipping-value-label'>Shipping cost:</p>
-                <p className='summary-shipping-value'>$50.00</p>
-              </div>
-              <div className='summary-line'/>
-              <div className='summary-shipping-value-div'>
-                <p className='summary-shipping-value-label'>Total price:</p>
-                <p className='summary-shipping-value'>$50.00</p>
-              </div>
-              <div className='checkout-buttons'>
-                <CheckOut title='Proceed to Checkout'/>
-                <BackToShop title='Skip to Shop' />
-              </div>
+                </CardContent>
+              </Card>
+            </div>
 
-            </div>
-            <div className='app__cart--currency-select'>
-              <TitleL title='Currency'/>
-             <div className='currency-buttons'>
-                {RadioButtons.map((item,index)=>(
-                  <RadioButton key={index}  value={item.value} htmlfor={item.htmlfor} label={item.label} checked={selectedValue == item.value} onChange={() => handleOptionChange(item.value)}/>
-                ))}
-             </div>
+            {/* Order Summary & Currency */}
+            <div className="space-y-6">
+              {/* Order Summary */}
+              <Card className="bg-card border-border shadow-lg">
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-semibold text-card-foreground mb-4">
+                    Order Summary
+                  </h3>
+
+                  <div className="space-y-3">
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Subtotal:</span>
+                      <span className="font-medium">
+                        Rs.{subtotal.toFixed(2)}
+                      </span>
+                    </div>
+
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Discount:</span>
+                      <span className="font-medium text-green-600">
+                        -Rs.{discount.toFixed(2)}
+                      </span>
+                    </div>
+
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">
+                        Shipping cost:
+                      </span>
+                      <span className="font-medium">
+                        {shipping === 0 ? "Free" : `Rs.${shipping.toFixed(2)}`}
+                      </span>
+                    </div>
+
+                    <Separator />
+
+                    <div className="flex justify-between text-lg font-bold">
+                      <span>Total:</span>
+                      <span className="text-primary">
+                        Rs.{total.toFixed(2)}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="mt-6 space-y-3">
+                    <CheckOut
+                      title="Proceed to Checkout"
+                      onClick={handleCheckout}
+                    />
+                    <BackToShop title="Continue Shopping" />
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Currency Selection */}
+              <Card className="bg-card border-border shadow-lg">
+                <CardContent className="p-6">
+                  <TitleL title="Currency" />
+                  <RadioGroup
+                    value={selectedCurrency}
+                    onValueChange={handleOptionChange}
+                  >
+                    <div className="grid grid-cols-2 gap-3">
+                      {radioButtons.map((item) => (
+                        <div
+                          key={item.value}
+                          className="flex items-center space-x-2"
+                        >
+                          <RadioGroupItem
+                            value={item.value}
+                            id={item.htmlfor}
+                            className="border-primary text-primary"
+                          />
+                          <Label
+                            htmlFor={item.htmlfor}
+                            className="text-sm font-medium text-foreground cursor-pointer"
+                          >
+                            {item.label}
+                          </Label>
+                        </div>
+                      ))}
+                    </div>
+                  </RadioGroup>
+                </CardContent>
+              </Card>
             </div>
           </div>
-          
-        </div>
+        )}
       </div>
-
     </div>
-  )
-}
+  );
+};
 
 export default Cart;

@@ -118,6 +118,7 @@ const SignInForm: React.FC = () => {
         // Store user data in localStorage
         if (result.user) {
           localStorage.setItem('user', JSON.stringify(result.user));
+          localStorage.setItem("user_id", result.user.id.toString());
         }
         if (result.token) {
           localStorage.setItem('token', result.token);

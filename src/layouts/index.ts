@@ -1,7 +1,4 @@
 import Footer from "./Footer";
-import Navbar from "./Navbar";
+import WrappedNavbar from "./WrappedNavbar";
 
-export{
-  Footer,
-  Navbar
-}
+export { Footer, WrappedNavbar as Navbar };

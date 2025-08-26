@@ -104,10 +104,11 @@ const ProductCard = ({ product, onAddToCart, onClick }: ProductCardProps) => {
 
           <AddToCartButton
             isAvailable={isAvailable}
-            onClick={(e) => {
-              e.stopPropagation(); // Prevent card click
-              onAddToCart?.(product.product_id);
-            }}
+            productId={product.product_id}
+            productName={product.product_name}
+            productDescription={product.product_description}
+            productPrice={product.product_price}
+            productImage={product.product_image}
           />
         </div>
       </CardContent>
