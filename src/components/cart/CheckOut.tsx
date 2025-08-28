@@ -2,22 +2,26 @@
 import { Button } from "@/components/ui/button";
 import { CreditCard } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
-import { useRouter } from "next/navigation"; // Next.js router
+import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
 import React from "react";
 
 interface CheckOutProps {
   title: string;
-  
 }
 
 const CheckOut = ({ title }: CheckOutProps) => {
-  const userId = localStorage.getItem("user_id");
-  const token = localStorage.getItem("token");
-  const { cart, getCartTotal } = useCart();
+  const { cart, getCartTotal, clearCart } = useCart();
   const router = useRouter();
   const { toast } = useToast();
   const [loading, setLoading] = React.useState(false);
+  const [userId, setUserId] = React.useState<string | null>(null);
+  const [token, setToken] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    setUserId(localStorage.getItem("user_id"));
+    setToken(localStorage.getItem("token"));
+  }, []);
 
   const handleCheckout = async () => {
     if (!userId) {
@@ -25,7 +29,7 @@ const CheckOut = ({ title }: CheckOutProps) => {
         title: "Login Required",
         description: "Please login to proceed.",
       });
-      router.push("/sign-in");
+      // router.push("/sign-in");
       return;
     }
 
@@ -41,7 +45,7 @@ const CheckOut = ({ title }: CheckOutProps) => {
 
     try {
       // 1️⃣ Create the order
-      const orderResponse = await fetch("/api/orders", {
+      const orderResponse = await fetch("http://127.0.0.1:8000/v1/orders", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -50,20 +54,19 @@ const CheckOut = ({ title }: CheckOutProps) => {
         body: JSON.stringify({
           total_price: getCartTotal().toString(),
           status: "pending",
-          address: "User address here", // replace with actual address
-          number: "User number here", // replace with actual number
-          user_id: userId,
+          address: "User address here", // TODO: replace with real user input
+          number: "User number here", // TODO: replace with real user input
+          user_id: token,
         }),
       });
 
       if (!orderResponse.ok) throw new Error("Failed to create order");
-
       const orderData = await orderResponse.json();
-      const orderId = orderData.id || orderData.order_id; // depending on API
+      const orderId = orderData.order_id || orderData.id;
 
       // 2️⃣ Create order items
       const itemsPromises = cart.items.map((item) =>
-        fetch("/api/order-items", {
+        fetch("http://127.0.0.1:8000/v1/order_items/", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -79,13 +82,14 @@ const CheckOut = ({ title }: CheckOutProps) => {
       );
 
       await Promise.all(itemsPromises);
+      await clearCart();
 
       toast({
         title: "Order Successful",
         description: "Your order has been placed!",
       });
-      // Optionally redirect to order confirmation page
-      router.push("/orders");//////
+
+      router.push("/orders"); // ✅ Redirect to orders page
     } catch (error: unknown) {
       let message = "Something went wrong";
       if (error instanceof Error) {

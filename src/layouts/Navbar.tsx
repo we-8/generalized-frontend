@@ -1,28 +1,37 @@
-
-'use client'
-import Image from 'next/image';
-import Link from 'next/link';
-import { logo ,cart} from '@/assets';
-import '../styles/layouts-css/Navbar.css'
-import { useEffect, useState } from 'react';
+"use client";
+import Image from "next/image";
+import Link from "next/link";
+import { logo, cart } from "@/assets";
+import "../styles/layouts-css/Navbar.css";
+import { useEffect, useState } from "react";
 import { FiAlignJustify } from "react-icons/fi";
 import { IoMdClose } from "react-icons/io";
 import { FaUserCircle } from "react-icons/fa";
-import { useCart } from '@/contexts/CartContext';
+import { useCart } from "@/contexts/CartContext";
 import { ShoppingCart } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
-  const { getCartItemsCount } = useCart();
-  const itemCount = getCartItemsCount();
 
-  const handleCloseNavbar = () => {
-    setToggle(false); // Close the navbar toggle
-  };
+  const { cart } = useCart();
+  const [itemCount, setItemCount] = useState(0);
 
+ useEffect(() => {
+   if (cart) {
+     const count = cart.items.reduce((acc, item) => acc + item.quantity, 0);
+     setItemCount(count);
+   } else {
+     setItemCount(0);
+   }
+
+   // Optional: check if user is logged in
+   const user = sessionStorage.getItem("user_id");
+   setLoggedIn(!!user);
+ }, [cart]); // re-run whenever cart changes
+
+ const handleCloseNavbar = () => setToggle(false);
 
   return (
     <div className="app__navbar--main-div">
@@ -53,7 +62,7 @@ const Navbar = () => {
       <div className="app__navbar--services">
         <Link href="/cart-item">
           <ShoppingCart className="h-5 w-5" />
-          <span>Cart</span>
+
           {itemCount > 0 && (
             <Badge variant="destructive" className="ml-auto">
               {itemCount}

@@ -10,21 +10,14 @@ import RemoveButton from "@/components/cart/RemoveButton";
 import CheckOut from "@/components/cart/CheckOut";
 import BackToShop from "@/components/cart/BackToShop";
 import QuantitySelector from "@/components/cart/QuantitySelector";
-import { useToast } from "@/hooks/use-toast";
 
 const Cart = () => {
-  const {
-    cart: cartFromContext,
-    removeFromCart,
-    updateQuantity,
-    getCartTotal,
-  } = useCart();
+  const { cart: cartFromContext, removeFromCart, updateQuantity, getCartTotal } = useCart();
 
   // Provide a safe default to ensure 'cart' is never null
   const cart = cartFromContext ?? { items: [] };
 
   const [selectedCurrency, setSelectedCurrency] = useState("LKR");
-  const { toast } = useToast();
 
   const radioButtons = [
     { htmlfor: "LKR", label: "LKR", value: "LKR" },
@@ -37,12 +30,7 @@ const Cart = () => {
     setSelectedCurrency(value);
   };
 
-  const handleCheckout = () => {
-    toast({
-      title: "Checkout",
-      description: "Proceeding to checkout...",
-    });
-  };
+ 
 
   const calculateItemTotal = (price: string, quantity: number) => {
     return (parseFloat(price) * quantity).toFixed(2);
@@ -105,11 +93,7 @@ const Cart = () => {
 
                             <div className="text-right min-w-0">
                               <p className="text-lg font-bold text-primary">
-                                Rs.
-                                {calculateItemTotal(
-                                  item.product_price,
-                                  item.quantity
-                                )}
+                                Rs.{calculateItemTotal(item.product_price, item.quantity)}
                               </p>
                               <p className="text-xs text-muted-foreground">
                                 Rs.{item.product_price} / per item
@@ -123,9 +107,7 @@ const Cart = () => {
                           </div>
                         </div>
 
-                        {index < cart.items.length - 1 && (
-                          <Separator className="mt-6" />
-                        )}
+                        {index < cart.items.length - 1 && <Separator className="mt-6" />}
                       </div>
                     ))}
                   </div>
@@ -145,9 +127,7 @@ const Cart = () => {
                   <div className="space-y-3">
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Subtotal:</span>
-                      <span className="font-medium">
-                        Rs.{subtotal.toFixed(2)}
-                      </span>
+                      <span className="font-medium">Rs.{subtotal.toFixed(2)}</span>
                     </div>
 
                     <div className="flex justify-between">
@@ -158,9 +138,7 @@ const Cart = () => {
                     </div>
 
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">
-                        Shipping cost:
-                      </span>
+                      <span className="text-muted-foreground">Shipping cost:</span>
                       <span className="font-medium">
                         {shipping === 0 ? "Free" : `Rs.${shipping.toFixed(2)}`}
                       </span>
@@ -170,17 +148,12 @@ const Cart = () => {
 
                     <div className="flex justify-between text-lg font-bold">
                       <span>Total:</span>
-                      <span className="text-primary">
-                        Rs.{total.toFixed(2)}
-                      </span>
+                      <span className="text-primary">Rs.{total.toFixed(2)}</span>
                     </div>
                   </div>
 
                   <div className="mt-6 space-y-3">
-                    <CheckOut
-                      title="Proceed to Checkout"
-                      onClick={handleCheckout}
-                    />
+                    <CheckOut title="Proceed to Checkout" />
                     <BackToShop title="Continue Shopping" />
                   </div>
                 </CardContent>
@@ -190,16 +163,10 @@ const Cart = () => {
               <Card className="bg-card border-border shadow-lg">
                 <CardContent className="p-6">
                   <TitleL title="Currency" />
-                  <RadioGroup
-                    value={selectedCurrency}
-                    onValueChange={handleOptionChange}
-                  >
+                  <RadioGroup value={selectedCurrency} onValueChange={handleOptionChange}>
                     <div className="grid grid-cols-2 gap-3">
                       {radioButtons.map((item) => (
-                        <div
-                          key={item.value}
-                          className="flex items-center space-x-2"
-                        >
+                        <div key={item.value} className="flex items-center space-x-2">
                           <RadioGroupItem
                             value={item.value}
                             id={item.htmlfor}
