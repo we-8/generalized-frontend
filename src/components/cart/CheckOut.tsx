@@ -42,8 +42,23 @@ const CheckOut = ({ title }: CheckOutProps) => {
     }
 
     setLoading(true);
-
     try {
+      // Generate WhatsApp message with current cart data
+      const cartItems = cart.items.map(item => 
+        `${item.product_name} x${item.quantity} - $${item.product_price}`
+      ).join('\n');
+      
+      const whatsappMessage = `Hello! I'd like to place an order Thank you!`;
+  
+      const businessPhone = "94702182114"; // Replace with actual business number
+      const encodedMessage = encodeURIComponent(whatsappMessage);
+      const whatsappUrl = `https://wa.me/${businessPhone}?text=${encodedMessage}`;
+  
+      // Open WhatsApp link
+      window.open(whatsappUrl, '_blank');
+      
+    
+
       // 1️⃣ Create the order
       const orderResponse = await fetch("http://127.0.0.1:8000/v1/orders", {
         method: "POST",
