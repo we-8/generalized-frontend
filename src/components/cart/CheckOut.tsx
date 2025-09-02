@@ -8,9 +8,10 @@ import React from "react";
 
 interface CheckOutProps {
   title: string;
+  total: number;
 }
 
-const CheckOut = ({ title }: CheckOutProps) => {
+const CheckOut = ({ title, total }: CheckOutProps) => {
   const { cart, getCartTotal, clearCart } = useCart();
   const router = useRouter();
   const { toast } = useToast();
@@ -24,12 +25,12 @@ const CheckOut = ({ title }: CheckOutProps) => {
   }, []);
 
   const handleCheckout = async () => {
-    if (!userId) {
+    if (!userId || !token) {
       toast({
         title: "Login Required",
         description: "Please login to proceed.",
       });
-      // router.push("/sign-in");
+      router.push("/sign-in");
       return;
     }
 
@@ -43,35 +44,19 @@ const CheckOut = ({ title }: CheckOutProps) => {
 
     setLoading(true);
     try {
-      // Generate WhatsApp message with current cart data
-      const cartItems = cart.items.map(item => 
-        `${item.product_name} x${item.quantity} - $${item.product_price}`
-      ).join('\n');
-      
-      const whatsappMessage = `Hello! I'd like to place an order Thank you!`;
-  
-      const businessPhone = "94702182114"; // Replace with actual business number
-      const encodedMessage = encodeURIComponent(whatsappMessage);
-      const whatsappUrl = `https://wa.me/${businessPhone}?text=${encodedMessage}`;
-  
-      // Open WhatsApp link
-      window.open(whatsappUrl, '_blank');
-      
-    
-
       // 1️⃣ Create the order
       const orderResponse = await fetch("http://127.0.0.1:8000/v1/orders", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          ...(token && { Authorization: `Bearer ${token}` }),
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
-          total_price: getCartTotal().toString(),
+          total_price: total,
           status: "pending",
           address: "User address here", // TODO: replace with real user input
           number: "User number here", // TODO: replace with real user input
-          user_id: token,
+          user_id: userId,
         }),
       });
 
@@ -85,7 +70,7 @@ const CheckOut = ({ title }: CheckOutProps) => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            ...(token && { Authorization: `Bearer ${token}` }),
+            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({
             quantity: item.quantity,
@@ -99,17 +84,29 @@ const CheckOut = ({ title }: CheckOutProps) => {
       await Promise.all(itemsPromises);
       await clearCart();
 
+      // 3️⃣ Only now open WhatsApp link
+      const cartItems = cart.items
+        .map(
+          (item) =>
+            `${item.product_name} x${item.quantity} - $${item.product_price}`
+        )
+        .join("\n");
+
+      const whatsappMessage = `Hello! I'd like to place an order:\n${cartItems}\nTotal: $${getCartTotal()}`;
+      const businessPhone = "94702182114";
+      const encodedMessage = encodeURIComponent(whatsappMessage);
+      const whatsappUrl = `https://wa.me/${businessPhone}?text=${encodedMessage}`;
+      window.open(whatsappUrl, "_blank");
+
       toast({
         title: "Order Successful",
         description: "Your order has been placed!",
       });
 
-      router.push("/orders"); // ✅ Redirect to orders page
+      router.push("/orders");
     } catch (error: unknown) {
       let message = "Something went wrong";
-      if (error instanceof Error) {
-        message = error.message;
-      }
+      if (error instanceof Error) message = error.message;
       toast({ title: "Error", description: message });
     } finally {
       setLoading(false);

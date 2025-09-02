@@ -153,7 +153,7 @@ const Cart = () => {
                   </div>
 
                   <div className="mt-6 space-y-3">
-                    <CheckOut title="Proceed to Checkout" />
+                    <CheckOut title="Proceed to Checkout" total={total} />
                     <BackToShop title="Continue Shopping" />
                   </div>
                 </CardContent>
