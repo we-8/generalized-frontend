@@ -23,7 +23,7 @@ const ProductSection = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:8000/v1/categories/");
+        const response = await fetch(" http://139.59.65.41/v1/categories/");
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -56,7 +56,7 @@ const ProductSection = () => {
       try {
         setLoading(true);
 
-        const response = await fetch("http://127.0.0.1:8000/v1/products/");
+        const response = await fetch(" http://139.59.65.41/v1/products/");
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }

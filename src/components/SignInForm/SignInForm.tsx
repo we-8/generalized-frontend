@@ -12,7 +12,7 @@ import { useRouter } from 'next/navigation';
 import { useSession } from "next-auth/react"
 import { useEffect } from "react"
 // API Configuration
-const API_BASE_URL = 'http://127.0.0.1:8000';
+const API_BASE_URL = " http://139.59.65.41/v1/";
 
 // Types
 interface SignInRequest {
@@ -58,7 +58,7 @@ const SignInForm: React.FC = () => {
   // API Function - Sign In User (inside the component)
   const signInUser = async (data: SignInRequest): Promise<AuthResponse> => {
     try {
-      const response = await fetch(`${API_BASE_URL}/v1/login/`, {
+      const response = await fetch(`${API_BASE_URL}login/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

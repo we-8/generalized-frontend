@@ -45,7 +45,7 @@ const CheckOut = ({ title, total }: CheckOutProps) => {
     setLoading(true);
     try {
       // 1️⃣ Create the order
-      const orderResponse = await fetch("http://127.0.0.1:8000/v1/orders", {
+      const orderResponse = await fetch(" http://139.59.65.41/v1/orders", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -66,7 +66,7 @@ const CheckOut = ({ title, total }: CheckOutProps) => {
 
       // 2️⃣ Create order items
       const itemsPromises = cart.items.map((item) =>
-        fetch("http://127.0.0.1:8000/v1/order_items/", {
+        fetch(" http://139.59.65.41/v1/order_items/", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
