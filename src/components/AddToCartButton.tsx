@@ -9,6 +9,7 @@ interface AddToCartButtonProps {
   productDescription: string;
   productPrice: string;
   productImage: string;
+  quantity: number;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
@@ -19,6 +20,7 @@ const AddToCartButton = ({
   productDescription,
   productPrice,
   productImage,
+  quantity,
   onClick,
 }: AddToCartButtonProps) => {
   const { addToCart, loading } = useCart();
@@ -32,7 +34,8 @@ const AddToCartButton = ({
         productName,
         productDescription,
         productPrice,
-        productImage
+        productImage,
+        quantity
       );
     }
 

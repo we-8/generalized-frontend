@@ -10,14 +10,13 @@ import RemoveButton from "@/components/cart/RemoveButton";
 import CheckOut from "@/components/cart/CheckOut";
 import BackToShop from "@/components/cart/BackToShop";
 import QuantitySelector from "@/components/cart/QuantitySelector";
+import { useCurrency } from "@/hooks/useCurrency";
 
 const Cart = () => {
   const { cart: cartFromContext, removeFromCart, updateQuantity, getCartTotal } = useCart();
-
-  // Provide a safe default to ensure 'cart' is never null
   const cart = cartFromContext ?? { items: [] };
-
   const [selectedCurrency, setSelectedCurrency] = useState("LKR");
+  const { formatPrice } = useCurrency(selectedCurrency);
 
   const radioButtons = [
     { htmlfor: "LKR", label: "LKR", value: "LKR" },
@@ -30,15 +29,15 @@ const Cart = () => {
     setSelectedCurrency(value);
   };
 
- 
-
   const calculateItemTotal = (price: string, quantity: number) => {
-    return (parseFloat(price) * quantity).toFixed(2);
+    const lkrTotal = parseFloat(price) * quantity;
+    return formatPrice(lkrTotal).replace(/[^0-9.]/g, '');
   };
 
+  // All calculations remain in LKR for checkout
   const subtotal = getCartTotal();
-  const discount = subtotal * 0.1; // 10% discount
-  const shipping = subtotal > 500 ? 0 : 50; // Free shipping over 500
+  const discount = subtotal * 0.1;
+  const shipping = subtotal > 500 ? 0 : 50;
   const total = subtotal - discount + shipping;
 
   return (
@@ -93,10 +92,10 @@ const Cart = () => {
 
                             <div className="text-right min-w-0">
                               <p className="text-lg font-bold text-primary">
-                                Rs.{calculateItemTotal(item.product_price, item.quantity)}
+                                {formatPrice(parseFloat(item.product_price) * item.quantity)}
                               </p>
                               <p className="text-xs text-muted-foreground">
-                                Rs.{item.product_price} / per item
+                                {formatPrice(parseFloat(item.product_price))} / per item
                               </p>
                             </div>
 
@@ -127,20 +126,20 @@ const Cart = () => {
                   <div className="space-y-3">
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Subtotal:</span>
-                      <span className="font-medium">Rs.{subtotal.toFixed(2)}</span>
+                      <span className="font-medium">{formatPrice(subtotal)}</span>
                     </div>
 
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Discount:</span>
                       <span className="font-medium text-green-600">
-                        -Rs.{discount.toFixed(2)}
+                        -{formatPrice(discount)}
                       </span>
                     </div>
 
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Shipping cost:</span>
                       <span className="font-medium">
-                        {shipping === 0 ? "Free" : `Rs.${shipping.toFixed(2)}`}
+                        {shipping === 0 ? "Free" : formatPrice(shipping)}
                       </span>
                     </div>
 
@@ -148,7 +147,7 @@ const Cart = () => {
 
                     <div className="flex justify-between text-lg font-bold">
                       <span>Total:</span>
-                      <span className="text-primary">Rs.{total.toFixed(2)}</span>
+                      <span className="text-primary">{formatPrice(total)}</span>
                     </div>
                   </div>
 

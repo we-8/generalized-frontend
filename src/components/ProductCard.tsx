@@ -1,8 +1,10 @@
+import React, { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import StarRating from "./StarRating";
-import AddToCartButton from "./AddToCartButton";
 import ProductImage from "./ProductImg/ProducImage";
+import QuantitySelector from "./cart/QuantitySelector";
+import AddToCartButton from "./AddToCartButton";
 
 export interface Product {
   product_id: string;
@@ -23,19 +25,22 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product, onAddToCart, onClick }: ProductCardProps) => {
+  const [quantity, setQuantity] = useState(1);
   const isAvailable = product.availability_status.toLowerCase() === "in stock";
+  
+  // Calculate total price based on quantity
+  const totalPrice = parseFloat(product.product_price) * quantity;
 
   return (
     <Card
       className="group relative overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 hover:-translate-y-2 bg-white from-card via-card to-card/95 border border-border/50 backdrop-blur-sm cursor-pointer"
       onClick={() => onClick?.(product)}
     >
-      {" "}
       <div className="relative overflow-hidden bg-gradient-to-br from-secondary/30 to-accent/10">
         <ProductImage
           src={product.product_image}
           alt={product.product_name}
-          className="hg-64"
+          className="h-64"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         <div className="absolute top-3 right-3">
@@ -89,9 +94,13 @@ const ProductCard = ({ product, onAddToCart, onClick }: ProductCardProps) => {
           <div className="flex items-center justify-between mb-4">
             <div className="space-y-1">
               <div className="text-3xl font-bold text-primary">
-                Rs.{product.product_price}
+                Rs.{totalPrice.toFixed(2)}
               </div>
-
+              {quantity > 1 && (
+                <div className="text-xs text-muted-foreground">
+                  Rs.{product.product_price} x {quantity}
+                </div>
+              )}
               <div className="text-xs text-muted-foreground">Best Price</div>
             </div>
             <div className="text-right">
@@ -102,6 +111,20 @@ const ProductCard = ({ product, onAddToCart, onClick }: ProductCardProps) => {
             </div>
           </div>
 
+          {/* Quantity Selector */}
+          <div className="flex items-center justify-between mb-4">
+            <span className="text-sm font-medium text-foreground">Quantity:</span>
+            <div onClick={(e) => e.stopPropagation()}>
+              <QuantitySelector
+                value={quantity}
+                onChange={setQuantity}
+                size="sm"
+                min={1}
+                max={10}
+              />
+            </div>
+          </div>
+
           <AddToCartButton
             isAvailable={isAvailable}
             productId={product.product_id}
@@ -109,6 +132,7 @@ const ProductCard = ({ product, onAddToCart, onClick }: ProductCardProps) => {
             productDescription={product.product_description}
             productPrice={product.product_price}
             productImage={product.product_image}
+            quantity={quantity}
           />
         </div>
       </CardContent>

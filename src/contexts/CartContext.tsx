@@ -28,7 +28,8 @@ interface CartContextType {
     productName: string,
     productDescription: string,
     productPrice: string,
-    productImage: string
+    productImage: string,
+    quantity: number
   ) => Promise<void>;
   removeFromCart: (cartItemId: string) => Promise<void>;
   updateQuantity: (cartItemId: string, quantity: number) => Promise<void>;
@@ -90,7 +91,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
     productName: string,
     productDescription: string,
     productPrice: string,
-    productImage: string
+    productImage: string,
+    quantity: number
   ) => {
     if (!cart) return;
 
@@ -115,7 +117,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
           const newItem: CartItem = {
             cart_item_id: generateId(),
             product_id: productId,
-            quantity: 1,
+            quantity: quantity,
             cart_id: cart.cart_id,
             product_name: productName,
             product_description: productDescription,
