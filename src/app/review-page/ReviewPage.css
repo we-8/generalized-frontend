@@ -91,3 +91,102 @@ p {
 .submit-btn:hover {
   background-color: #555;
 }
+
+/* Add these styles to your existing ReviewPage.css file */
+
+/* Star Rating Styles */
+.rating-container {
+  margin: 2rem 0;
+}
+
+.stars-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.star-btn {
+  background: none;
+  border: none;
+  font-size: 2.5rem;
+  cursor: pointer;
+  color: #ddd;
+  transition: all 0.2s ease;
+  padding: 0.25rem;
+  border-radius: 4px;
+}
+
+.star-btn:hover {
+  color: #ffd700;
+  transform: scale(1.1);
+}
+
+.star-btn.selected {
+  color: #ffd700;
+}
+
+.star-btn:focus {
+  outline: 2px solid #ffd700;
+  outline-offset: 2px;
+}
+
+.rating-text {
+  text-align: center;
+  color: #666;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* Header Input Styles */
+.header-container {
+  margin: 1.5rem 0;
+}
+
+.header-input {
+  width: 95%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  font-family: inherit;
+  background-color: #f5f5f5;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  color: #333;
+}
+
+.header-input:focus {
+  outline: none;
+  border-color: #ffd700;
+  background-color: white;
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+}
+
+.header-input::placeholder {
+  color: #999;
+}
+
+/* Update existing submit button for disabled state */
+.submit-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.submit-btn:disabled:hover {
+  background-color: #ccc;
+  transform: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .star-btn {
+    font-size: 2rem;
+    gap: 0.25rem;
+  }
+  
+  .stars-wrapper {
+    gap: 0.25rem;
+  }
+}
