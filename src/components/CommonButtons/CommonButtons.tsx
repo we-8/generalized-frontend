@@ -4,7 +4,6 @@ import './CommonButtons.css';
 import { Google } from '@/assets';
 import Image from 'next/image';
 import { signIn, useSession } from "next-auth/react"
-import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 type buttonProps = {
@@ -79,8 +78,7 @@ const Login:React.FC<buttonProps> = ({title}) =>{
 // Replace your existing GoogleButton component with this:
 const GoogleButton: React.FC<buttonProps> = ({ title }) => {
   const [isLoading, setIsLoading] = useState(false)
-  const router = useRouter()
-  const { data: session } = useSession()
+  const { data: session } = useSession() ?? {};
 
   const handleGoogleSignIn = async () => {
     console.log("Google button clicked!")

@@ -5,8 +5,8 @@ import { ProductFilter } from "../CommonButtons/CommonButtons";
 import "../../styles/components-css/ProductSection.css";
 
 import ProductCard, { Product } from "../ProductCard";
-import { useToast } from "../ui/use-toast";
 import ProductDetailsModal from "../ProductDialog/ProductDialog";
+import { useToast } from "@/hooks/use-toast";
 
 const ProductSection = () => {
   const [searchInput, setSearchInput] = useState("");
@@ -16,8 +16,8 @@ const ProductSection = () => {
     { category_id: string; category_name: string }[]
   >([]);
   const [loading, setLoading] = useState(true);
-   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -118,15 +118,15 @@ const ProductSection = () => {
     }
   };
 
-   const handleProductClick = (product: Product) => {
-     setSelectedProduct(product);
-     setIsModalOpen(true);
-   };
+  const handleProductClick = (product: Product) => {
+    setSelectedProduct(product);
+    setIsModalOpen(true);
+  };
 
-   const handleCloseModal = () => {
-     setIsModalOpen(false);
-     setSelectedProduct(null);
-   };
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedProduct(null);
+  };
 
   if (loading) {
     return (
@@ -190,15 +190,13 @@ const ProductSection = () => {
           )}
         </div>
       </div>
-       <ProductDetailsModal
+      <ProductDetailsModal
         product={selectedProduct}
         isOpen={isModalOpen}
         onClose={handleCloseModal}
         onAddToCart={handleAddToCart}
       />
-    
     </div>
-   
   );
 };
 

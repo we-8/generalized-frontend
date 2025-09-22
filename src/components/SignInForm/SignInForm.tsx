@@ -5,12 +5,11 @@ import { TitleL, TitleYellow } from "../Title/Title";
 import { Login, GoogleButton } from "../CommonButtons/CommonButtons";
 import Link from 'next/link';
 import Image from "next/image";
-import { hero, who } from "@/assets";
+import {  who } from "@/assets";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useRouter } from 'next/navigation';
-import { useSession } from "next-auth/react"
-import { useEffect } from "react"
+
 // API Configuration
 const API_BASE_URL = " http://139.59.65.41/v1/";
 
@@ -51,7 +50,6 @@ const SignInForm: React.FC = () => {
   const [apiError, setApiError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const router = useRouter();
-  const { data: session, status } = useSession()
   
 
 
@@ -118,7 +116,7 @@ const SignInForm: React.FC = () => {
         // Store user data in localStorage
         if (result.user) {
           localStorage.setItem('user', JSON.stringify(result.user));
-          localStorage.setItem("user_id", result.user.id.toString());
+          localStorage.setItem("user_id", result.user.email.toString());
         }
         if (result.token) {
           localStorage.setItem('token', result.token);
@@ -126,7 +124,7 @@ const SignInForm: React.FC = () => {
 
         // Redirect to dashboard or home page after 2 seconds
         setTimeout(() => {
-          router.push('/dashboard'); // Change this to your desired route
+          router.push('/'); // Change this to your desired route
         }, 2000);
       } else {
         setApiError(result.message);
@@ -249,7 +247,7 @@ const SignInForm: React.FC = () => {
                   
                   <div className="signin-signup-section">
                     <div className="new-account-section">
-                      <p>Don't have an account ?</p>
+                      <p>Don&#39;t have an account ?</p>
                       <p>
                         <Link href="/sign-up">Sign Up</Link>
                       </p>

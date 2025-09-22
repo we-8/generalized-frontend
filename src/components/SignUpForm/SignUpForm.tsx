@@ -9,8 +9,7 @@ import { hero } from "@/assets";
 import "./SignUpForm.css";
 import { GoogleButton, Login } from "../CommonButtons/CommonButtons";
 import { useRouter } from 'next/navigation';
-import { useSession } from "next-auth/react"
-import { useEffect } from "react"
+
 // API Configuration
 const API_BASE_URL = " http://139.59.65.41/v1/";
 
@@ -59,7 +58,6 @@ const SignUpForm: React.FC = () => {
   const [apiError, setApiError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const router = useRouter();
-  const { data: session, status } = useSession()
 
 
   // API Function - Sign Up User
