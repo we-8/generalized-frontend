@@ -28,7 +28,7 @@ const ProductImage: React.FC<ProductImageProps> = ({
       width={width}
       height={height}
       className={`${className} object-${fit} transition-transform duration-300 group-hover:scale-110`}
-      onError={() => setImgSrc(Cashew)}
+     
       unoptimized
     />
   );

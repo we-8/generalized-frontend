@@ -27,7 +27,7 @@ interface ProductCardProps {
 const ProductCard = ({ product, onAddToCart, onClick }: ProductCardProps) => {
   const [quantity, setQuantity] = useState(1);
   const isAvailable = product.availability_status.toLowerCase() === "in stock";
-  
+
   // Calculate total price based on quantity
   const totalPrice = parseFloat(product.product_price) * quantity;
 
@@ -38,10 +38,11 @@ const ProductCard = ({ product, onAddToCart, onClick }: ProductCardProps) => {
     >
       <div className="relative overflow-hidden bg-gradient-to-br from-secondary/30 to-accent/10">
         <ProductImage
-          src={product.product_image}
+          src={`http://139.59.65.41/${product.product_image}`}
           alt={product.product_name}
           className="h-64"
         />
+
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         <div className="absolute top-3 right-3">
           <Badge
@@ -68,10 +69,7 @@ const ProductCard = ({ product, onAddToCart, onClick }: ProductCardProps) => {
 
           <div className="flex items-center gap-2">
             <StarRating ratings={product.ratings} />
-            <span className="text-xs text-muted-foreground/80">
-             
-              
-            </span>
+            <span className="text-xs text-muted-foreground/80"></span>
           </div>
 
           <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed">
@@ -113,7 +111,9 @@ const ProductCard = ({ product, onAddToCart, onClick }: ProductCardProps) => {
 
           {/* Quantity Selector */}
           <div className="flex items-center justify-between mb-4">
-            <span className="text-sm font-medium text-foreground">Quantity:</span>
+            <span className="text-sm font-medium text-foreground">
+              Quantity:
+            </span>
             <div onClick={(e) => e.stopPropagation()}>
               <QuantitySelector
                 value={quantity}
