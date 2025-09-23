@@ -21,6 +21,7 @@ const CheckOut = ({ title, total }: CheckOutProps) => {
 
   React.useEffect(() => {
     setUserId(localStorage.getItem("user_id"));
+    console.log(userId)
     setToken(localStorage.getItem("token"));
   }, []);
 
@@ -45,11 +46,11 @@ const CheckOut = ({ title, total }: CheckOutProps) => {
     setLoading(true);
     try {
       // 1️⃣ Create the order
-      const orderResponse = await fetch(" http://139.59.65.41/v1/orders", {
+      const orderResponse = await fetch("http://139.59.65.41/v1/orders", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Token ${token}`,
         },
         body: JSON.stringify({
           total_price: total,
@@ -66,11 +67,11 @@ const CheckOut = ({ title, total }: CheckOutProps) => {
 
       // 2️⃣ Create order items
       const itemsPromises = cart.items.map((item) =>
-        fetch(" http://139.59.65.41/v1/order_items/", {
+        fetch("http://139.59.65.41/v1/order_items/", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Token ${token}`,
           },
           body: JSON.stringify({
             quantity: item.quantity,
@@ -103,7 +104,7 @@ const CheckOut = ({ title, total }: CheckOutProps) => {
         description: "Your order has been placed!",
       });
 
-      router.push("/orders");
+      router.push("/");
     } catch (error: unknown) {
       let message = "Something went wrong";
       if (error instanceof Error) message = error.message;

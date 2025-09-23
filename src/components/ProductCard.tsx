@@ -69,8 +69,8 @@ const ProductCard = ({ product, onAddToCart, onClick }: ProductCardProps) => {
           <div className="flex items-center gap-2">
             <StarRating ratings={product.ratings} />
             <span className="text-xs text-muted-foreground/80">
-              ({product.ratings.reduce((sum, r) => sum + r.rating_count, 0)}{" "}
-              reviews)
+             
+              
             </span>
           </div>
 

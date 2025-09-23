@@ -1,14 +1,14 @@
-'use client'
+"use client";
 import { useState } from "react";
 import "./SignInForm.css";
 import { TitleL, TitleYellow } from "../Title/Title";
 import { Login, GoogleButton } from "../CommonButtons/CommonButtons";
-import Link from 'next/link';
+import Link from "next/link";
 import Image from "next/image";
-import {  who } from "@/assets";
+import { who } from "@/assets";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 
 // API Configuration
 const API_BASE_URL = " http://139.59.65.41/v1/";
@@ -34,7 +34,7 @@ type SignInFormData = {
   username: string;
   email: string;
   password: string;
-}
+};
 
 const SignInFormSchema = Yup.object().shape({
   username: Yup.string()
@@ -50,19 +50,17 @@ const SignInForm: React.FC = () => {
   const [apiError, setApiError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const router = useRouter();
-  
-
 
   // API Function - Sign In User (inside the component)
   const signInUser = async (data: SignInRequest): Promise<AuthResponse> => {
     try {
       const response = await fetch(`${API_BASE_URL}login/`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          username: data.username, 
+          username: data.username,
           password: data.password,
         }),
       });
@@ -72,21 +70,21 @@ const SignInForm: React.FC = () => {
       if (response.ok) {
         return {
           success: true,
-          message: result.message || 'Login successful',
+          message: result.message || "Login successful",
           user: result.user,
           token: result.token,
         };
       } else {
         return {
           success: false,
-          message: result.error || 'Login failed',
+          message: result.error || "Login failed",
         };
       }
     } catch (error) {
-      console.error('Sign in error:', error);
+      console.error("Sign in error:", error);
       return {
         success: false,
-        message: 'Network error. Please check if backend is running.',
+        message: "Network error. Please check if backend is running.",
       };
     }
   };
@@ -112,26 +110,27 @@ const SignInForm: React.FC = () => {
 
       if (result.success) {
         setSuccessMessage(result.message);
-        
+
         // Store user data in localStorage
         if (result.user) {
-          localStorage.setItem('user', JSON.stringify(result.user));
+          localStorage.setItem("user", JSON.stringify(result.user));
           localStorage.setItem("user_id", result.user.email.toString());
+          console.log(localStorage);
         }
         if (result.token) {
-          localStorage.setItem('token', result.token);
+          localStorage.setItem("token", result.token);
         }
 
         // Redirect to dashboard or home page after 2 seconds
         setTimeout(() => {
-          router.push('/'); // Change this to your desired route
+          router.push("/"); // Change this to your desired route
         }, 2000);
       } else {
         setApiError(result.message);
       }
     } catch (error) {
       setApiError("An unexpected error occurred. Please try again.");
-      console.error('Unexpected error:', error);
+      console.error("Unexpected error:", error);
     } finally {
       setIsLoading(false);
     }
@@ -140,11 +139,7 @@ const SignInForm: React.FC = () => {
   return (
     <div className="app__signin-form-main-div">
       <div className="app__signin-img-section">
-        <Image
-          className="app__signin-img"
-          src={who}
-          alt="picture"
-        />
+        <Image className="app__signin-img" src={who} alt="picture" />
       </div>
       <div className="app__signin-form-main-div2">
         <Formik
@@ -161,37 +156,45 @@ const SignInForm: React.FC = () => {
                 <TitleYellow title="Ceylon Rich Products" />
               </div>
               <div>
-                <p className="form-title-description">Sign in to your account</p>
+                <p className="form-title-description">
+                  Sign in to your account
+                </p>
               </div>
 
               {/* Success Message */}
               {successMessage && (
-                <div className="success-message" style={{ 
-                  color: 'green', 
-                  marginBottom: '1rem',
-                  padding: '0.75rem',
-                  backgroundColor: '#d4edda',
-                  border: '1px solid #c3e6cb',
-                  borderRadius: '8px',
-                  textAlign: 'center',
-                  fontWeight: 'bold'
-                }}>
+                <div
+                  className="success-message"
+                  style={{
+                    color: "green",
+                    marginBottom: "1rem",
+                    padding: "0.75rem",
+                    backgroundColor: "#d4edda",
+                    border: "1px solid #c3e6cb",
+                    borderRadius: "8px",
+                    textAlign: "center",
+                    fontWeight: "bold",
+                  }}
+                >
                   ✅ {successMessage}
                 </div>
               )}
 
               {/* Error Message */}
               {apiError && (
-                <div className="api-error-message" style={{ 
-                  color: '#dc3545', 
-                  marginBottom: '1rem',
-                  padding: '0.75rem',
-                  backgroundColor: '#f8d7da',
-                  border: '1px solid #f5c6cb',
-                  borderRadius: '8px',
-                  textAlign: 'center',
-                  fontWeight: 'bold'
-                }}>
+                <div
+                  className="api-error-message"
+                  style={{
+                    color: "#dc3545",
+                    marginBottom: "1rem",
+                    padding: "0.75rem",
+                    backgroundColor: "#f8d7da",
+                    border: "1px solid #f5c6cb",
+                    borderRadius: "8px",
+                    textAlign: "center",
+                    fontWeight: "bold",
+                  }}
+                >
                   ❌ {apiError}
                 </div>
               )}
@@ -233,7 +236,7 @@ const SignInForm: React.FC = () => {
                       className="error-message"
                     />
                   </div>
-                  
+
                   {/* <div className="form-checkbox-forget-main-div">
                     <div className="form-checkbox-div">
                       <input type="checkbox" disabled={isLoading} />
@@ -244,7 +247,7 @@ const SignInForm: React.FC = () => {
                     </div>
                     <p>Forget Password ?</p>
                   </div> */}
-                  
+
                   <div className="signin-signup-section">
                     <div className="new-account-section">
                       <p>Don&#39;t have an account ?</p>
@@ -253,30 +256,34 @@ const SignInForm: React.FC = () => {
                       </p>
                     </div>
                     <div className="login-button">
-                      <div 
-                        onClick={!isLoading ? () => {
-                          // Trigger form submission
-                          const form = document.querySelector('form');
-                          if (form) {
-                            form.requestSubmit();
-                          }
-                        } : undefined}
+                      <div
+                        onClick={
+                          !isLoading
+                            ? () => {
+                                // Trigger form submission
+                                const form = document.querySelector("form");
+                                if (form) {
+                                  form.requestSubmit();
+                                }
+                              }
+                            : undefined
+                        }
                         style={{
                           opacity: isLoading ? 0.6 : 1,
-                          cursor: isLoading ? 'not-allowed' : 'pointer',
-                          pointerEvents: isLoading ? 'none' : 'auto'
+                          cursor: isLoading ? "not-allowed" : "pointer",
+                          pointerEvents: isLoading ? "none" : "auto",
                         }}
                       >
                         <Login title={isLoading ? "Signing In..." : "LOGIN"} />
                       </div>
                     </div>
                     <div className="signin-break-section">
-                      <div/>
+                      <div />
                       <p>OR</p>
-                      <div/>
+                      <div />
                     </div>
                     <div className="google-login">
-                      <GoogleButton title="Sign in with Google"/>
+                      <GoogleButton title="Sign in with Google" />
                     </div>
                   </div>
                 </Form>
