@@ -70,61 +70,35 @@ export default function Home() {
           <Title title="Who we are" />
           <Description
             description={
-              <div>
-                <p style={{ margin: "0.3em 0", textAlign: "justify" }}>
-                  Missing the flavors of home? You are not alone. For many Sri
-                  Lankans living overseas, finding real, homemade Sri Lankan
-                  food can feel impossible. Even if you are still on the island,
-                  sometimes you just want a delicious meal without the hassle of
-                  cooking.
-                </p>
-                <p style={{ margin: "0.3em 0", textAlign: "justify" }}>
-                  That is where we come in.
-                </p>
-                <p style={{ margin: "0.3em 0", textAlign: "justify" }}>
-                  Ceylon Rich Products is your trusted source for ready-to-eat
-                  Sri Lankan meals and snacks. Each item is lovingly made using
-                  traditional recipes and vacuum-packed to keep it fresh longer.
-                </p>
-                <p style={{ margin: "0.3em 0", textAlign: "justify" }}>
-                  We specialize in:
-                </p>
-
-                <ul
-                  style={{
-                    margin: "0.3em 0",
-                    paddingLeft: "1.5em", // this controls indentation from the left
-                    listStyleType: "disc",
-                    textAlign: "left", // this overrides the parent justification
-                  }}
-                >
-                  <li style={{ marginBottom: "0.3em" }}>
-                    <strong>
-                      Authentic dishes made with real Sri Lankan spices
-                    </strong>
-                  </li>
-                  <li style={{ marginBottom: "0.3em" }}>
-                    No added preservatives or artificial ingredients
-                  </li>
-                  <li style={{ marginBottom: "0.3em" }}>
-                    Convenient vacuum-packed meals and snacks that stay fresh
-                    for weeks
-                  </li>
-                  <li style={{ marginBottom: "0.3em" }}>
-                    Local delivery across Sri Lanka and global shipping for our
-                    community abroad
-                  </li>
-                </ul>
-
-                <p style={{ margin: "0.3em 0", textAlign: "justify" }}>
-                  Whether you are in Canada, Australia, Germany, or just down
-                  the road in Colombo, we make it easy to enjoy the food you
-                  grew up with. Anytime. Anywhere.
-                </p>
-                <p style={{ margin: "0.3em 0", textAlign: "justify" }}>
-                  Explore our collection and taste the difference.
-                </p>
-              </div>
+              <>
+                Missing the flavors of home? You are not alone. For many Sri
+                Lankans living overseas, finding real, homemade Sri Lankan
+                food can feel impossible. Even if you are still on the island,
+                sometimes you just want a delicious meal without the hassle of
+                cooking.
+                <br /><br />
+                That is where we come in.
+                <br /><br />
+                Ceylon Rich Products is your trusted source for ready-to-eat
+                Sri Lankan meals and snacks. Each item is lovingly made using
+                traditional recipes and vacuum-packed to keep it fresh longer.
+                <br /><br />
+                We specialize in:
+                <br />
+                <strong>• Authentic dishes made with real Sri Lankan spices</strong>
+                <br />
+                • No added preservatives or artificial ingredients
+                <br />
+                • Convenient vacuum-packed meals and snacks that stay fresh for weeks
+                <br />
+                • Local delivery across Sri Lanka and global shipping for our community abroad
+                <br /><br />
+                Whether you are in Canada, Australia, Germany, or just down
+                the road in Colombo, we make it easy to enjoy the food you
+                grew up with. Anytime. Anywhere.
+                <br /><br />
+                Explore our collection and taste the difference.
+              </>
             }
           />
           <CommonButtons1 title="Get to know more" />
