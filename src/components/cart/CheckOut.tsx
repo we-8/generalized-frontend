@@ -59,14 +59,14 @@ const CheckOut = ({ title, total }: CheckOutProps) => {
     setLoading(true);
     try {
       // 1️⃣ Create the order
-      const orderResponse = await fetch("http://139.59.65.41/v1/orders", {
+      const orderResponse = await fetch("http://139.59.65.41/v1/orders/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Token ${token}`,
         },
         body: JSON.stringify({
-          total_price: total,
+          total_price: Number(total.toFixed(2)),
           status: "pending",
           address: "User address here",
           number: "User number here",
@@ -74,9 +74,14 @@ const CheckOut = ({ title, total }: CheckOutProps) => {
         }),
       });
 
+    
+
       if (!orderResponse.ok) throw new Error("Failed to create order");
+  
       const orderData = await orderResponse.json();
-      const orderId = orderData.order_id || orderData.id;
+      console.log("Order Response:", orderData);
+
+      const orderId = orderData.order_id;
 
       // 2️⃣ Create order items
       const itemsPromises = cart.items.map((item) =>
