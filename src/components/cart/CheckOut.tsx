@@ -12,7 +12,7 @@ interface CheckOutProps {
 }
 
 const CheckOut = ({ title, total }: CheckOutProps) => {
-  const { cart, getCartTotal, clearCart } = useCart();
+  const { cart, clearCart } = useCart();
   const router = useRouter();
   const { toast } = useToast();
   const [loading, setLoading] = React.useState(false);
@@ -21,9 +21,22 @@ const CheckOut = ({ title, total }: CheckOutProps) => {
 
   React.useEffect(() => {
     setUserId(localStorage.getItem("user_id"));
-    console.log(userId)
     setToken(localStorage.getItem("token"));
   }, []);
+
+  const openWhatsApp = (businessPhone: string, message: string) => {
+    const encodedMessage = encodeURIComponent(message);
+    const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+
+    if (isMobile) {
+      window.location.href = `https://wa.me/${businessPhone}?text=${encodedMessage}`;
+    } else {
+      window.open(
+        `https://web.whatsapp.com/send?phone=${businessPhone}&text=${encodedMessage}`,
+        "_blank"
+      );
+    }
+  };
 
   const handleCheckout = async () => {
     if (!userId || !token) {
@@ -55,8 +68,8 @@ const CheckOut = ({ title, total }: CheckOutProps) => {
         body: JSON.stringify({
           total_price: total,
           status: "pending",
-          address: "User address here", // TODO: replace with real user input
-          number: "User number here", // TODO: replace with real user input
+          address: "User address here",
+          number: "User number here",
           user_id: userId,
         }),
       });
@@ -85,19 +98,15 @@ const CheckOut = ({ title, total }: CheckOutProps) => {
       await Promise.all(itemsPromises);
       await clearCart();
 
-      // 3️⃣ Only now open WhatsApp link
+      // 3️⃣ Open WhatsApp with message (order ID + product name + quantity)
       const cartItems = cart.items
-        .map(
-          (item) =>
-            `${item.product_name} x${item.quantity} - $${item.product_price}`
-        )
+        .map((item) => `${item.product_name} x${item.quantity}`)
         .join("\n");
 
-      const whatsappMessage = `Hello! I'd like to place an order:\n${cartItems}\nTotal: $${getCartTotal()}`;
+      const whatsappMessage = `Hello! I'd like to place an order (Order ID: ${orderId}):\n${cartItems}`;
       const businessPhone = "94702182114";
-      const encodedMessage = encodeURIComponent(whatsappMessage);
-      const whatsappUrl = `https://wa.me/${businessPhone}?text=${encodedMessage}`;
-      window.open(whatsappUrl, "_blank");
+
+      openWhatsApp(businessPhone, whatsappMessage);
 
       toast({
         title: "Order Successful",
