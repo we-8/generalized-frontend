@@ -13,7 +13,12 @@ import QuantitySelector from "@/components/cart/QuantitySelector";
 import { useCurrency } from "@/hooks/useCurrency";
 
 const Cart = () => {
-  const { cart: cartFromContext, removeFromCart, updateQuantity, getCartTotal } = useCart();
+  const {
+    cart: cartFromContext,
+    removeFromCart,
+    updateQuantity,
+    getCartTotal,
+  } = useCart();
   const cart = cartFromContext ?? { items: [] };
   const [selectedCurrency, setSelectedCurrency] = useState("LKR");
   const { formatPrice } = useCurrency(selectedCurrency);
@@ -31,7 +36,7 @@ const Cart = () => {
 
   const calculateItemTotal = (price: string, quantity: number) => {
     const lkrTotal = parseFloat(price) * quantity;
-    return formatPrice(lkrTotal).replace(/[^0-9.]/g, '');
+    return formatPrice(lkrTotal).replace(/[^0-9.]/g, "");
   };
 
   // All calculations remain in LKR for checkout
@@ -67,7 +72,7 @@ const Cart = () => {
                         <div className="flex items-center space-x-4">
                           <div className="flex-shrink-0">
                             <img
-                              src={item.product_image}
+                              src={`http://139.59.65.41/${item.product_image}`}
                               alt={item.product_name}
                               className="w-20 h-20 object-cover rounded-lg border border-border"
                             />
@@ -92,10 +97,13 @@ const Cart = () => {
 
                             <div className="text-right min-w-0">
                               <p className="text-lg font-bold text-primary">
-                                {formatPrice(parseFloat(item.product_price) * item.quantity)}
+                                {formatPrice(
+                                  parseFloat(item.product_price) * item.quantity
+                                )}
                               </p>
                               <p className="text-xs text-muted-foreground">
-                                {formatPrice(parseFloat(item.product_price))} / per item
+                                {formatPrice(parseFloat(item.product_price))} /
+                                per item
                               </p>
                             </div>
 
@@ -106,7 +114,9 @@ const Cart = () => {
                           </div>
                         </div>
 
-                        {index < cart.items.length - 1 && <Separator className="mt-6" />}
+                        {index < cart.items.length - 1 && (
+                          <Separator className="mt-6" />
+                        )}
                       </div>
                     ))}
                   </div>
@@ -126,7 +136,9 @@ const Cart = () => {
                   <div className="space-y-3">
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Subtotal:</span>
-                      <span className="font-medium">{formatPrice(subtotal)}</span>
+                      <span className="font-medium">
+                        {formatPrice(subtotal)}
+                      </span>
                     </div>
 
                     <div className="flex justify-between">
@@ -137,7 +149,9 @@ const Cart = () => {
                     </div>
 
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Shipping cost:</span>
+                      <span className="text-muted-foreground">
+                        Shipping cost:
+                      </span>
                       <span className="font-medium">
                         {shipping === 0 ? "Free" : formatPrice(shipping)}
                       </span>
@@ -162,10 +176,16 @@ const Cart = () => {
               <Card className="bg-card border-border shadow-lg">
                 <CardContent className="p-6">
                   <TitleL title="Currency" />
-                  <RadioGroup value={selectedCurrency} onValueChange={handleOptionChange}>
+                  <RadioGroup
+                    value={selectedCurrency}
+                    onValueChange={handleOptionChange}
+                  >
                     <div className="grid grid-cols-2 gap-3">
                       {radioButtons.map((item) => (
-                        <div key={item.value} className="flex items-center space-x-2">
+                        <div
+                          key={item.value}
+                          className="flex items-center space-x-2"
+                        >
                           <RadioGroupItem
                             value={item.value}
                             id={item.htmlfor}
