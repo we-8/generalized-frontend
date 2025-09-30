@@ -14,52 +14,50 @@ const Footer = () => {
           We care your dreams.</p>
           <div className='social-media'>
             <div className='social-media-icon-div'>
-              <Image src={Youtube} alt="youtube image"/>
+              <a href="https://www.instagram.com/ceylonrichproducts__?igsh=cDJ6b2pzMDgxZmNz" target="_blank" rel="noopener noreferrer">
+                <Image src={Instagram} alt="instagram image"/>
+              </a>
             </div>
             <div className='social-media-icon-div'>
-              <Image src={Instagram} alt="instagram image"/>
+              <a href="https://www.tiktok.com/@ceylon_rich_products?_t=ZS-909QH04laEC&_r=1" target="_blank" rel="noopener noreferrer">
+                <Image src={Tiktok} alt="tiktok image"/>
+              </a>
             </div>
             <div className='social-media-icon-div'>
-              <Image src={Tiktok} alt="tiktok image"/>
-            </div>
-            <div className='social-media-icon-div'>
-              <Image src={Facebook} alt="facebook image"/>
+              <a href="https://www.facebook.com/share/1BWsz1UhKu/" target="_blank" rel="noopener noreferrer">
+                <Image src={Facebook} alt="facebook image"/>
+              </a>
             </div>
           </div>
         </div>
         <div className='app__footer-upper-elements'>
-          <p className='footer-title'>My Account</p>
+          <p className='footer-title'>Quick Links</p>
           <div className='links'>
-            <a href='#'>My Account</a>
-            <a href='#'>Contact</a>
-            <a href='#'>Shop</a>
-            <a href='#'>Shopping Cart</a>
-            <a href='#'>Services Login</a>
-          </div>
-        </div>
-        <div className='app__footer-upper-elements'>
-          <p className='footer-title'>Services</p>
-          <div className='links'>
-            <a href='#'>Delivery</a>
-            <a href='#'>Warrenty</a>
-            <a href='#'>Build</a>
-            <a href='#'>Shopping Cart</a>
-            <a href='#'>Services Login</a>
+            <ul>
+              <li>
+              <a href="/contact-us">Contact</a>
+            </li>
+            <li>
+              <a href="/product">Shop</a>
+            </li>
+            <li>
+              <a href="/cart-item">Shopping Cart</a>
+            </li>
+            </ul>
           </div>
         </div>
         <div className='app__footer-upper-elements'>
           <p className='footer-title'>Contact Info</p>
           <div className='Info'>
-            <p>Address : 142/1/1 Kotugoda rd, Mukalangamuwa, Seeduwa</p>
-            <p>Phone : +94(0) 741002005</p>
+            <p>Address : S.K CINEMA BUILDING, Matara 81000</p>
+            <p>Phone : +94(0) 702182114</p>
             <p>email : crp@gmail.com</p>
-            <p>crp.lk</p>
           </div>
         </div>
       </div>
       <div className="footer-line"/>
       <div className='app__footer-lower-section'>
-        <p className="lower-section-p1">Ceylon Rich Products © 2024</p>
+        <p className="lower-section-p1">Ceylon Rich Products © 2025</p>
         <p className="lower-section-p2">Designed & developed We8</p>
       </div>
     </div>
