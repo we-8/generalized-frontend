@@ -1,5 +1,5 @@
 'use client'
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Image from "next/image";
@@ -11,7 +11,7 @@ import { GoogleButton, Login } from "../CommonButtons/CommonButtons";
 import { useRouter } from 'next/navigation';
 
 // API Configuration
-const API_BASE_URL = " http://139.59.65.41/v1/";
+const API_BASE_URL = "http://139.59.65.41/v1/";
 
 // Types
 interface SignUpRequest {
@@ -51,34 +51,40 @@ const SignUpSchema = Yup.object().shape({
     .required("Password is required"),
   confirmPassword: Yup.string()
     .oneOf([Yup.ref('password')], 'Passwords must match')
-    .required("Please confirm your password"),});
+    .required("Please confirm your password"),
+});
 
 const SignUpForm: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [apiError, setApiError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const router = useRouter();
-
+  const isSubmitting = useRef(false); // Prevent duplicate submissions
 
   // API Function - Sign Up User
   const signUpUser = async (data: SignUpRequest): Promise<AuthResponse> => {
     try {
+      const payload = {
+        username: data.name,
+        first_name: data.name,
+        last_name: "",
+        email: data.email,
+        password: data.password,
+        is_superuser: false,   
+      };
+
+      console.log('📤 Sending to backend:', payload);
+
       const response = await fetch(`${API_BASE_URL}sign-up/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          username: data.name,
-          first_name: data.name,  // or split the name if needed
-          last_name: "",          // empty or split the name
-          email: data.email,
-          password: data.password,
-          is_superuser: false,   
-        }),
+        body: JSON.stringify(payload),
       });
 
       const result = await response.json();
+      console.log('📥 Backend response:', { status: response.status, result });
 
       if (response.ok) {
         return {
@@ -88,9 +94,41 @@ const SignUpForm: React.FC = () => {
           token: result.token,
         };
       } else {
+        // Better error handling for 400 errors
+        let errorMessage = 'Registration failed';
+        
+        // Handle Django REST Framework style errors
+        const errorResult = result as any; // Type assertion for error handling
+        
+        if (errorResult.username && Array.isArray(errorResult.username)) {
+          errorMessage = `Username: ${errorResult.username.join(', ')}`;
+        } else if (errorResult.email && Array.isArray(errorResult.email)) {
+          errorMessage = `Email: ${errorResult.email.join(', ')}`;
+        } else if (errorResult.password && Array.isArray(errorResult.password)) {
+          errorMessage = `Password: ${errorResult.password.join(', ')}`;
+        } else if (errorResult.error) {
+          errorMessage = errorResult.error;
+        } else if (errorResult.message) {
+          errorMessage = errorResult.message;
+        } else if (errorResult.detail) {
+          errorMessage = errorResult.detail;
+        } else if (typeof errorResult === 'string') {
+          errorMessage = errorResult;
+        } else {
+          // Handle any field errors
+          const firstError = Object.entries(errorResult).find(([key, value]) => 
+            Array.isArray(value) && value.length > 0
+          );
+          if (firstError) {
+            errorMessage = `${firstError[0]}: ${(firstError[1] as string[]).join(', ')}`;
+          }
+        }
+        
+        console.error('❌ Backend error:', result);
+        
         return {
           success: false,
-          message: result.error || 'Registration failed',
+          message: errorMessage,
         };
       }
     } catch (error) {
@@ -110,7 +148,15 @@ const SignUpForm: React.FC = () => {
   };
 
   const onSubmit = async (values: SignUpFormData) => {
+    // Prevent duplicate submissions
+    if (isSubmitting.current || isLoading) {
+      return;
+    }
+
+    isSubmitting.current = true;
     setIsLoading(true);
+    
+    // Clear previous messages IMMEDIATELY
     setApiError("");
     setSuccessMessage("");
 
@@ -124,9 +170,11 @@ const SignUpForm: React.FC = () => {
       const result = await signUpUser(signUpData);
 
       if (result.success) {
+        // Only set success message, clear error
+        setApiError("");
         setSuccessMessage(result.message);
         
-        // Store user data in localStorage
+        // Store user data
         if (result.user) {
           localStorage.setItem('user', JSON.stringify(result.user));
         }
@@ -134,18 +182,25 @@ const SignUpForm: React.FC = () => {
           localStorage.setItem('token', result.token);
         }
 
-        // Redirect to sign-in page or dashboard after 2 seconds
+        // Redirect after 2 seconds
         setTimeout(() => {
-          router.push('/sign-in'); // Or '/dashboard' if you want direct login
+          router.push('/sign-in');
         }, 2000);
       } else {
+        // Only set error message, clear success
+        setSuccessMessage("");
         setApiError(result.message);
       }
     } catch (error) {
+      setSuccessMessage("");
       setApiError("An unexpected error occurred. Please try again.");
       console.error('Unexpected error:', error);
     } finally {
       setIsLoading(false);
+      // Reset submission flag after a short delay
+      setTimeout(() => {
+        isSubmitting.current = false;
+      }, 1000);
     }
   };
 
@@ -160,7 +215,7 @@ const SignUpForm: React.FC = () => {
           validationSchema={SignUpSchema}
           onSubmit={onSubmit}
         >
-          {({ errors, touched }) => (
+          {({ errors, touched, isSubmitting: formikIsSubmitting }) => (
             <>
               <div>
                 <TitleL title="Welcome to" />
@@ -173,7 +228,7 @@ const SignUpForm: React.FC = () => {
               </div>
 
               {/* Success Message */}
-              {successMessage && (
+              {successMessage && !apiError && (
                 <div className="success-message" style={{ 
                   color: 'green', 
                   marginBottom: '1rem',
@@ -189,7 +244,7 @@ const SignUpForm: React.FC = () => {
               )}
 
               {/* Error Message */}
-              {apiError && (
+              {apiError && !successMessage && (
                 <div className="api-error-message" style={{ 
                   color: '#dc3545', 
                   marginBottom: '1rem',
@@ -215,7 +270,7 @@ const SignUpForm: React.FC = () => {
                       className={`app__inputField-main-div-input ${
                         errors.username && touched.username ? "input-error" : ""
                       }`}
-                      disabled={isLoading}
+                      disabled={isLoading || formikIsSubmitting}
                     />
                     <ErrorMessage
                       name="username"
@@ -233,7 +288,7 @@ const SignUpForm: React.FC = () => {
                       className={`app__inputField-main-div-input ${
                         errors.email && touched.email ? "input-error" : ""
                       }`}
-                      disabled={isLoading}
+                      disabled={isLoading || formikIsSubmitting}
                     />
                     <ErrorMessage
                       name="email"
@@ -251,7 +306,7 @@ const SignUpForm: React.FC = () => {
                       className={`app__inputField-main-div-input ${
                         errors.password && touched.password ? "input-error" : ""
                       }`}
-                      disabled={isLoading}
+                      disabled={isLoading || formikIsSubmitting}
                     />
                     <ErrorMessage
                       name="password"
@@ -269,7 +324,7 @@ const SignUpForm: React.FC = () => {
                       className={`app__inputField-main-div-input ${
                         errors.confirmPassword && touched.confirmPassword ? "input-error" : ""
                       }`}
-                      disabled={isLoading}
+                      disabled={isLoading || formikIsSubmitting}
                     />
                     <ErrorMessage
                       name="confirmPassword"
@@ -287,17 +342,19 @@ const SignUpForm: React.FC = () => {
                     </div>
                     <div className="login-button">
                       <div 
-                        onClick={!isLoading ? () => {
-                          // Trigger form submission
-                          const form = document.querySelector('form');
-                          if (form) {
-                            form.requestSubmit();
+                        onClick={(e) => {
+                          if (!isLoading && !formikIsSubmitting) {
+                            e.preventDefault();
+                            const form = e.currentTarget.closest('form');
+                            if (form) {
+                              form.requestSubmit();
+                            }
                           }
-                        } : undefined}
+                        }}
                         style={{
-                          opacity: isLoading ? 0.6 : 1,
-                          cursor: isLoading ? 'not-allowed' : 'pointer',
-                          pointerEvents: isLoading ? 'none' : 'auto'
+                          opacity: (isLoading || formikIsSubmitting) ? 0.6 : 1,
+                          cursor: (isLoading || formikIsSubmitting) ? 'not-allowed' : 'pointer',
+                          pointerEvents: (isLoading || formikIsSubmitting) ? 'none' : 'auto'
                         }}
                       >
                         <Login title={isLoading ? "Creating Account..." : "SIGN UP"} />
