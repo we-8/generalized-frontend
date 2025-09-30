@@ -33,7 +33,7 @@ const ProductDetailsModal: React.FC<ProductDetailsModalProps> = ({
         {/* Product Image */}
         <div className="w-full h-80 flex items-center justify-center overflow-hidden rounded-xl">
           <ProductImage
-            src={product.product_image}
+            src={`http://139.59.65.41/${product.product_image}`}
             alt={product.product_name}
             className="max-h-full max-w-full object-contain"
           />
@@ -41,14 +41,14 @@ const ProductDetailsModal: React.FC<ProductDetailsModalProps> = ({
 
         {/* Product Info */}
         <h2 className="text-2xl font-bold mb-2">{product.product_name}</h2>
-        <p className="text-gray-600 dark:text-gray-300 mb-4">
+        <p className="text-gray-800 dark:text-gray-500 mb-4">
           {product.product_description}
         </p>
 
         {product.product_features && (
           <div className="mb-4">
             <h4 className="font-semibold">Features:</h4>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
+            <p className="text-sm text-gray-700 dark:text-gray-500">
               {product.product_features}
             </p>
           </div>
@@ -56,7 +56,7 @@ const ProductDetailsModal: React.FC<ProductDetailsModalProps> = ({
 
         <div className="flex items-center justify-between mb-6">
           <span className="text-2xl font-bold text-primary">
-            {product.product_price}
+            Rs.{product.product_price}
           </span>
           <span
             className={`text-sm px-3 py-1 rounded-full ${
@@ -77,17 +77,7 @@ const ProductDetailsModal: React.FC<ProductDetailsModalProps> = ({
           >
             Close
           </button>
-          <button
-            onClick={() => onAddToCart(product.product_id)}
-            disabled={product.availability_status.toLowerCase() !== "in stock"}
-            className={`px-4 py-2 rounded-lg text-black font-semibold outline-1 ${
-              product.availability_status.toLowerCase() === "in stock"
-                ? "bg-primary hover:bg-primary/90"
-                : "bg-gray-400 cursor-not-allowed"
-            }`}
-          >
-            Add to Cart
-          </button>
+         
         </div>
       </div>
     </div>

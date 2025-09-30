@@ -41,9 +41,8 @@ const Cart = () => {
 
   // All calculations remain in LKR for checkout
   const subtotal = getCartTotal();
-  const discount = subtotal * 0.1;
   const shipping = subtotal > 500 ? 0 : 50;
-  const total = subtotal - discount + shipping;
+  const total = subtotal + shipping;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-secondary">
@@ -141,12 +140,7 @@ const Cart = () => {
                       </span>
                     </div>
 
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">Discount:</span>
-                      <span className="font-medium text-green-600">
-                        -{formatPrice(discount)}
-                      </span>
-                    </div>
+                    
 
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">

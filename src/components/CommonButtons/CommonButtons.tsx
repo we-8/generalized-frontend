@@ -5,6 +5,8 @@ import { Google } from '@/assets';
 import Image from 'next/image';
 import { signIn, useSession } from "next-auth/react"
 import { useState } from 'react'
+import React from "react";
+import { useRouter } from 'next/navigation';
 
 type buttonProps = {
   title:string
@@ -19,13 +21,20 @@ const CommonButtons:React.FC<buttonProps> = () => {
     <div>CommonButtons</div>
   )
 }
-const CommonButtons1:React.FC<buttonProps> = ({title}) => {
+
+const AboutUs: React.FC<buttonProps> = ({ title }) => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push("/about-us"); // 👈 redirects to /aboutus
+  };
+
   return (
     <div className="app__CommonButton1">
-      <button>{title}</button>
+      <button onClick={handleClick}>{title}</button>
     </div>
-  )
-}
+  );
+};
 const OrderNow:React.FC<buttonProps> = ({title}) =>{
   return(
     <div className='app__OrderNow'>
@@ -68,6 +77,7 @@ const BackToShop:React.FC<buttonProps> = ({title}) =>{
     </div>
   )
 }
+
 const Login:React.FC<buttonProps> = ({title}) =>{
   return(
     <div className='app__Login'>
@@ -143,4 +153,4 @@ const ProfileSaveChange:React.FC<buttonProps> = ({title}) =>{
 
 
 
-export {ProfileSaveChange,AddtoCartSingleProdocut ,ProductFilter,GoogleButton,Login,BackToShop,CommonButtons, CommonButtons1 ,OrderNow , OrderNow2, AddtoCart ,RemoveButton, CheckOut};
+export {ProfileSaveChange,AddtoCartSingleProdocut ,ProductFilter,GoogleButton,Login,BackToShop,CommonButtons ,OrderNow , OrderNow2, AddtoCart ,RemoveButton, CheckOut, AboutUs};

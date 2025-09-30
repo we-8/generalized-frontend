@@ -149,7 +149,7 @@ const ProductSection = () => {
         {/* Filters Section */}
         <div className="bg-card rounded-xl shadow-md p-6 mb-8 border border-border">
           <div className="flex flex-col lg:flex-row gap-6 items-center">
-            <div className="flex-1 w-full lg:w-auto">
+            <div className="flex-1 w-full lg:w-auto ustify-center lg:justify-start">
               <SearchBar
                 value={searchInput}
                 onChange={setSearchInput}
@@ -157,7 +157,7 @@ const ProductSection = () => {
               />
             </div>
 
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
               {categories.map((category) => (
                 <ProductFilter
                   key={category.category_id}

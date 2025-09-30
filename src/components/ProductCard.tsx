@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import StarRating from "./StarRating";
 import ProductImage from "./ProductImg/ProducImage";
 import QuantitySelector from "./cart/QuantitySelector";
 import AddToCartButton from "./AddToCartButton";
+import { useCart } from "@/contexts/CartContext";
 
 export interface Product {
   product_id: string;
@@ -25,11 +26,34 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product, onAddToCart, onClick }: ProductCardProps) => {
-  const [quantity, setQuantity] = useState(1);
+  const { cart: cartFromContext, updateQuantity } = useCart();
+  const cart = cartFromContext ?? { items: [] };
+  // check if this product already exists in cart
+  const cartItem = cart.items.find(
+    (item) => item.product_id === product.product_id
+  );
+
+  // local state, initialized from cart if product exists
+  const [quantity, setQuantity] = useState(cartItem ? cartItem.quantity : 1);
+
+  // whenever cart changes, update local state
+  useEffect(() => {
+    if (cartItem) {
+      setQuantity(cartItem.quantity);
+    }
+  }, [cartItem]);
+
   const isAvailable = product.availability_status.toLowerCase() === "in stock";
 
-  // Calculate total price based on quantity
+  // calculate total price
   const totalPrice = parseFloat(product.product_price) * quantity;
+
+  const handleQuantityChange = (val: number) => {
+    setQuantity(val);
+    if (cartItem) {
+      updateQuantity(cartItem.cart_item_id, val);
+    }
+  };
 
   return (
     <Card
@@ -117,7 +141,7 @@ const ProductCard = ({ product, onAddToCart, onClick }: ProductCardProps) => {
             <div onClick={(e) => e.stopPropagation()}>
               <QuantitySelector
                 value={quantity}
-                onChange={setQuantity}
+                onChange={handleQuantityChange}
                 size="sm"
                 min={1}
                 max={10}

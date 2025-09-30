@@ -59,9 +59,7 @@ const PeopleReview = () => {
                 <p className='review-title'>{review.productName}</p>
                 <p className='review-description'>{review.description.length} {review.description.length>140 ? (review.description.slice(0,100)+'...'):(review.description)}</p>
                 <div className='review-person-details'>
-                  <Image className='review-image' src={review.image} alt="reviewed person image" />
                   <div>
-                    <p className='review-person-name'>{review.name}</p>
                     <p className='review-date'>{review.date}</p>
                   </div>
                 </div>

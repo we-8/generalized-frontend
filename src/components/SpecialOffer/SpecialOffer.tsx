@@ -6,6 +6,8 @@ import Image from 'next/image';
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { OrderNow } from '../CommonButtons/CommonButtons';
 import { TitleL } from '@/components';
+import Link from "next/link";
+
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -224,73 +226,101 @@ const SpecialOffers = () => {
 
   return (
     <div className="app__specialOffer--main-div">
-      <TitleL title='Special Offers'/>
-      
+      <TitleL title="Special Offers" />
+
       {products.length === 1 ? (
         // Single product - render without slider
-        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}>
-          <div className="app__specialOffer--item-div" style={{ maxWidth: '400px', width: '100%' }}>
-            <div className='item-inside'>
-              <p className='offer-title'>{products[0].productName}</p>
-              <div className='offer-details'>
-                <div className='offer-prices'>
-                  <p className='offer-oldprice'><del>Rs {products[0].old_price}</del></p>
-                  <p className='offer-newprice'>Rs {products[0].new_price}</p>
-                  <OrderNow title="ORDER NOW"/>
-                </div>
-                <div className="app__specialOffer-img">
-                  <Image 
-                    className="specialOffer-image" 
-                    src={products[0].image} 
-                    alt={`${products[0].productName} special offer`}
-                    width={160}
-                    height={160}
-                    unoptimized
-                    style={{ objectFit: 'cover' }}
-                  />
+        <Link href={`/product/${products[0].id}`} passHref>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              marginTop: "2rem",
+            }}
+          >
+            <div
+              className="app__specialOffer--item-div"
+              style={{ maxWidth: "400px", width: "100%" }}
+            >
+              <div className="item-inside">
+                <p className="offer-title">{products[0].productName}</p>
+                <div className="offer-details">
+                  <div className="offer-prices">
+                    <p className="offer-oldprice">
+                      <del>Rs {products[0].old_price}</del>
+                    </p>
+                    <p className="offer-newprice">Rs {products[0].new_price}</p>
+                   
+                  </div>
+                  <div className="app__specialOffer-img">
+                    <Image
+                      className="specialOffer-image"
+                      src={products[0].image}
+                      alt={`${products[0].productName} special offer`}
+                      width={160}
+                      height={160}
+                      unoptimized
+                      style={{ objectFit: "cover" }}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </Link>
       ) : (
         // Multiple products - render with slider
         <>
-          <button className='prev-button' onClick={() => sliderRef.current?.slickPrev()}>
-            <IoIosArrowBack color="#FFCF2C" fontWeight={600} size={40}/>
+          <button
+            className="prev-button"
+            onClick={() => sliderRef.current?.slickPrev()}
+          >
+            <IoIosArrowBack color="#FFCF2C" fontWeight={600} size={40} />
           </button>
-          
+
           {/* Key prop added to force re-render when products change */}
           <Slider key={products.length} ref={sliderRef} {...settings}>
-            {products.map((product: TransformedSpecialProduct, index: number) => (
-              <div className="app__specialOffer--item-div" key={product.id || index}>
-                <div className='item-inside'>
-                  <p className='offer-title'>{product.productName}</p>
-                  <div className='offer-details'>
-                    <div className='offer-prices'>
-                      <p className='offer-oldprice'><del>Rs {product.old_price}</del></p>
-                      <p className='offer-newprice'>Rs {product.new_price}</p>
-                      <OrderNow title="ORDER NOW"/>
-                    </div>
-                    <div className="app__specialOffer-img">
-                      <Image 
-                        className="specialOffer-image" 
-                        src={product.image} 
-                        alt={`${product.productName} special offer`}
-                        width={160} // Reduced size to match original
-                        height={160}
-                        unoptimized
-                        style={{ objectFit: 'cover' }} // Ensure proper image scaling
-                      />
+            {products.map(
+              (product: TransformedSpecialProduct, index: number) => (
+                <div
+                  className="app__specialOffer--item-div"
+                  key={product.id || index}
+                > 
+                 <Link href={`/product`} passHref>
+                  <div className="item-inside">
+                    <p className="offer-title">{product.productName}</p>
+                    <div className="offer-details">
+                      <div className="offer-prices">
+                        <p className="offer-oldprice">
+                          <del>Rs {product.old_price}</del>
+                        </p>
+                        <p className="offer-newprice">Rs {product.new_price}</p>
+                       
+                      </div>
+                      <div className="app__specialOffer-img">
+                        <Image
+                          className="specialOffer-image"
+                          src={product.image}
+                          alt={`${product.productName} special offer`}
+                          width={160} // Reduced size to match original
+                          height={160}
+                          unoptimized
+                          style={{ objectFit: "cover" }} // Ensure proper image scaling
+                        />
+                      </div>
                     </div>
                   </div>
+                  </Link>
                 </div>
-              </div>
-            ))}
+              )
+            )}
           </Slider>
-          
-          <button className='next-button' onClick={() => sliderRef.current?.slickNext()}>
-            <IoIosArrowForward color="#FFCF2C" fontWeight={600} size={40}/>
+
+          <button
+            className="next-button"
+            onClick={() => sliderRef.current?.slickNext()}
+          >
+            <IoIosArrowForward color="#FFCF2C" fontWeight={600} size={40} />
           </button>
         </>
       )}

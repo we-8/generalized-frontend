@@ -58,8 +58,14 @@
   width: 50%;
   align-items: center;
   justify-content: center;
+  text-align: left;
   margin-left: 1rem;
 }
+.app__home--Who-we-are-details .description {
+  text-align: left;      /* left align text only */
+  width: 100%;           /* span full width so left-align works nicely */
+}
+
 .app__home--Who-we-are .who-image {
   width: 40%;
   height: auto;

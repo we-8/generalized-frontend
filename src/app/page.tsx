@@ -11,6 +11,7 @@ import {
 import { home_banner, test1, who, Cashew, who_we_are } from "@/assets";
 import "../styles/main-pages-css/HomePage.css";
 import Link from "next/link";
+import { AboutUs } from "@/components/CommonButtons/CommonButtons";
 
 type Category = {
   title: string;
@@ -65,43 +66,56 @@ export default function Home() {
       </div>
 
       <div className="app__home--Who-we-are section__padding">
-        <Image className="who-image" src={who_we_are} alt="Who we are section image" />
+        <Image
+          className="who-image"
+          src={who_we_are}
+          alt="Who we are section image"
+        />
         <div className="app__home--Who-we-are-details">
           <Title title="Who we are" />
           <Description
             description={
               <>
                 Missing the flavors of home? You are not alone. For many Sri
-                Lankans living overseas, finding real, homemade Sri Lankan
-                food can feel impossible. Even if you are still on the island,
+                Lankans living overseas, finding real, homemade Sri Lankan food
+                can feel impossible. Even if you are still on the island,
                 sometimes you just want a delicious meal without the hassle of
                 cooking.
-                <br /><br />
+                <br />
+                <br />
                 That is where we come in.
-                <br /><br />
-                Ceylon Rich Products is your trusted source for ready-to-eat
-                Sri Lankan meals and snacks. Each item is lovingly made using
+                <br />
+                <br />
+                Ceylon Rich Products is your trusted source for ready-to-eat Sri
+                Lankan meals and snacks. Each item is lovingly made using
                 traditional recipes and vacuum-packed to keep it fresh longer.
-                <br /><br />
+                <br />
+                <br />
                 We specialize in:
                 <br />
-                <strong>• Authentic dishes made with real Sri Lankan spices</strong>
+                <strong>
+                  • Authentic dishes made with real Sri Lankan spices
+                </strong>
                 <br />
                 • No added preservatives or artificial ingredients
                 <br />
-                • Convenient vacuum-packed meals and snacks that stay fresh for weeks
+                • Convenient vacuum-packed meals and snacks that stay fresh for
+                weeks
                 <br />
-                • Local delivery across Sri Lanka and global shipping for our community abroad
-                <br /><br />
-                Whether you are in Canada, Australia, Germany, or just down
-                the road in Colombo, we make it easy to enjoy the food you
-                grew up with. Anytime. Anywhere.
-                <br /><br />
+                • Local delivery across Sri Lanka and global shipping for our
+                community abroad
+                <br />
+                <br />
+                Whether you are in Canada, Australia, Germany, or just down the
+                road in Colombo, we make it easy to enjoy the food you grew up
+                with. Anytime. Anywhere.
+                <br />
+                <br />
                 Explore our collection and taste the difference.
               </>
             }
           />
-          <CommonButtons1 title="Get to know more" />
+          <AboutUs title="Get to know more" />
         </div>
       </div>
       <div className="app__home--Special-offer">
