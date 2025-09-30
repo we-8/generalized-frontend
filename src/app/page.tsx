@@ -4,7 +4,7 @@ import {
   Title,
   PeopleReview,
   Description,
-  CommonButtons1,
+ 
   SpecialOffers,
   LatestProducts,
 } from "@/components";
