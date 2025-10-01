@@ -44,6 +44,21 @@ const ProductCard = ({ product, onAddToCart, onClick }: ProductCardProps) => {
   }, [cartItem]);
 
   const isAvailable = product.availability_status.toLowerCase() === "in stock";
+  const status = product.availability_status.toLowerCase();
+
+  let badgeClasses = "";
+  let badgeVariant: "default" | "destructive" = "default";
+
+  if (status === "in stock") {
+    badgeClasses = "bg-green-600 text-white border-green-500";
+    badgeVariant = "default";
+  } else if (status === "limited stock") {
+    badgeClasses = "bg-yellow-500 text-black border-yellow-400";
+    badgeVariant = "default";
+  } else {
+    badgeClasses = "bg-red-600 text-white border-red-500";
+    badgeVariant = "destructive";
+  }
 
   // calculate total price
   const totalPrice = parseFloat(product.product_price) * quantity;
@@ -70,15 +85,8 @@ const ProductCard = ({ product, onAddToCart, onClick }: ProductCardProps) => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         <div className="absolute top-3 right-3">
           <Badge
-            variant={isAvailable ? "default" : "destructive"}
-            className={`
-              shadow-lg backdrop-blur-sm font-medium px-3 py-1 text-xs
-              ${
-                isAvailable
-                  ? "bg-green-600 text-white border-green-500"
-                  : "bg-red-600 text-white border-red-500"
-              }
-            `}
+            variant={badgeVariant}
+            className={`shadow-lg backdrop-blur-sm font-medium px-3 py-1 text-xs ${badgeClasses}`}
           >
             {product.availability_status}
           </Badge>
@@ -150,7 +158,7 @@ const ProductCard = ({ product, onAddToCart, onClick }: ProductCardProps) => {
           </div>
 
           <AddToCartButton
-            isAvailable={isAvailable}
+            isAvailable={status !== "out of stock"}
             productId={product.product_id}
             productName={product.product_name}
             productDescription={product.product_description}

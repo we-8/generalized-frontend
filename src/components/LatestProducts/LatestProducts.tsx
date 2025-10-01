@@ -225,7 +225,7 @@ const LatestProducts = () => {
 
   return (
     <section className="py-16 px-4 bg-background">
-      <div className="container mx-auto max-w-7xl">
+      <div className="w-full px-4">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-foreground">
           What&apos;s New
         </h2>
@@ -253,11 +253,7 @@ const LatestProducts = () => {
 
           <Slider ref={sliderRef} {...settings}>
             {products.map((product) => (
-              <div
-                key={product.id}
-                style={{ width: "1200px" }}
-                className="px-4 py-2"
-              >
+              <div key={product.id} className="px-4 py-2">
                 <div className="group relative bg-card rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 border border-border h-[320px]">
                   <div className="flex flex-col md:flex-row h-full">
                     {/* Image Section - Fixed width and height */}

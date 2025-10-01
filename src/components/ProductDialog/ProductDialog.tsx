@@ -70,10 +70,10 @@ const ProductDetailsModal: React.FC<ProductDetailsModalProps> = ({
         </div>
 
         {/* Actions */}
-        <div className="flex justify-end gap-4">
+        <div className="flex justify-end gap-4 ">
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-100"
+            className="px-4 py-2 rounded-lg border border-red-500 text-red-600 hover:bg-red-100"
           >
             Close
           </button>

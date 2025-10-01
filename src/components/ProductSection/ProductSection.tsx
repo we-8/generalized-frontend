@@ -10,11 +10,9 @@ import { useToast } from "@/hooks/use-toast";
 
 const ProductSection = () => {
   const [searchInput, setSearchInput] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [products, setProducts] = useState<Product[]>([]);
-  const [categories, setCategories] = useState<
-    { category_id: string; category_name: string }[]
-  >([]);
+  const [categories, setCategories] = useState<{ category_name: string }[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,19 +21,15 @@ const ProductSection = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch(" http://139.59.65.41/v1/categories/");
+        const response = await fetch("http://139.59.65.41/v1/categories/");
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        // Correct type for API response
-        const apiCategories: { category_id: string; category_name: string }[] =
+        const apiCategories: { category_name: string }[] =
           await response.json();
         console.log("api data", apiCategories);
 
-        setCategories([
-          { category_id: "all", category_name: "All" },
-          ...apiCategories,
-        ]);
+        setCategories([{ category_name: "All" }, ...apiCategories]);
       } catch (error) {
         console.error("Error fetching categories:", error);
         toast({
@@ -43,14 +37,13 @@ const ProductSection = () => {
           description: "Failed to load categories. Please try again.",
           variant: "destructive",
         });
-        setCategories([{ category_id: "all", category_name: "All" }]); // Fallback
+        setCategories([{ category_name: "All" }]); // Fallback
       }
     };
 
     fetchCategories();
   }, [toast]);
 
-  // Simulate API call
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -62,11 +55,9 @@ const ProductSection = () => {
         }
 
         const apiData: Product[] = await response.json();
+        console.log("Fetched Products:", apiData);
 
-        // Store products
         setProducts(apiData);
-
-        // Extract unique categories
       } catch (error) {
         console.error("Error fetching products:", error);
         toast({
@@ -82,7 +73,7 @@ const ProductSection = () => {
     fetchProducts();
   }, [toast]);
 
-  // Filter products based on search and category
+  // 🔹 Filter products by category_name instead of category_id
   const filteredProducts = products
     .filter((product) => {
       const matchesSearch =
@@ -93,19 +84,18 @@ const ProductSection = () => {
           .toLowerCase()
           .includes(searchInput.toLowerCase());
       const matchesCategory =
-        selectedCategory === "all" || product.category === selectedCategory;
+        selectedCategory === "All" || product.category === selectedCategory;
 
       return matchesSearch && matchesCategory;
     })
     .sort((a, b) => {
-      // Sort "In Stock" first, "Out of Stock" last
       const aAvailable = a.availability_status.toLowerCase() === "in stock";
       const bAvailable = b.availability_status.toLowerCase() === "in stock";
       return aAvailable === bAvailable ? 0 : aAvailable ? -1 : 1;
     });
 
-  const handleCategoryClick = (categoryId: string) => {
-    setSelectedCategory(categoryId);
+  const handleCategoryClick = (categoryName: string) => {
+    setSelectedCategory(categoryName);
   };
 
   const handleAddToCart = (productId: string) => {
@@ -149,7 +139,7 @@ const ProductSection = () => {
         {/* Filters Section */}
         <div className="bg-card rounded-xl shadow-md p-6 mb-8 border border-border">
           <div className="flex flex-col lg:flex-row gap-6 items-center">
-            <div className="flex-1 w-full lg:w-auto ustify-center lg:justify-start">
+            <div className="flex-1 w-full lg:w-auto justify-center lg:justify-start">
               <SearchBar
                 value={searchInput}
                 onChange={setSearchInput}
@@ -160,10 +150,10 @@ const ProductSection = () => {
             <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
               {categories.map((category) => (
                 <ProductFilter
-                  key={category.category_id}
+                  key={category.category_name}
                   title={category.category_name}
-                  isSelected={selectedCategory === category.category_id}
-                  onClick={() => handleCategoryClick(category.category_id)}
+                  isSelected={selectedCategory === category.category_name}
+                  onClick={() => handleCategoryClick(category.category_name)}
                 />
               ))}
             </div>
