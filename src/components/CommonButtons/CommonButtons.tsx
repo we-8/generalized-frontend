@@ -100,7 +100,7 @@ const GoogleButton: React.FC<buttonProps> = ({ title }) => {
     try {
       console.log("Calling signIn...")
       const result = await signIn("google", { 
-        callbackUrl: "/dashboard",
+        callbackUrl: "/",
         redirect: true 
       }) // Removed redirect: false
       console.log("SignIn result:", result)
