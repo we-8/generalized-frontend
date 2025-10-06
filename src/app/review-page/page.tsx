@@ -1,8 +1,12 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
-import "./ReviewPage.css";
-import { Herobanner2 } from "@/components";
-import { Contact_us_banner } from "@/assets";
+import { Button } from "@/components/ui/button";
+// Update the import path below if the actual location or filename is different
+import { Input } from "@/components/ui/input";
+import { Herobanner } from "@/components";
+import { home_banner } from "@/assets";
+import { Textarea } from "@/components/ui/textarea";
 
 interface AppState {
   rating: number | null;
@@ -35,7 +39,6 @@ const Review: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [isCheckingAuth, setIsCheckingAuth] = useState<boolean>(true);
 
-  // Check for authentication token on component mount
   useEffect(() => {
     const token =
       localStorage.getItem("token") ||
@@ -45,16 +48,11 @@ const Review: React.FC = () => {
       sessionStorage.getItem("authToken") ||
       sessionStorage.getItem("access_token");
 
-    console.log("Token found:", token); // Debug log
-    console.log("All localStorage keys:", Object.keys(localStorage)); // Debug log
-
     if (token) {
       setAuthToken(token);
       setIsAuthenticated(true);
-      console.log("User is authenticated"); // Debug log
     } else {
       setIsAuthenticated(false);
-      console.log("No token found, user not authenticated"); // Debug log
     }
 
     setIsCheckingAuth(false);
@@ -66,7 +64,6 @@ const Review: React.FC = () => {
     };
 
     if (authToken) {
-      // Use Token format for Django Token Authentication
       headers.Authorization = `Token ${authToken}`;
     }
 
@@ -169,7 +166,6 @@ const Review: React.FC = () => {
         return;
       }
 
-      // Prepare payload - no email field, backend gets user from token
       const payload = {
         product: matchedProduct.product_id,
         rating: state.rating,
@@ -186,10 +182,7 @@ const Review: React.FC = () => {
       if (response.ok) {
         const contentType = response.headers.get("content-type");
         if (contentType && contentType.includes("application/json")) {
-          const result = await response.json();
-          console.log("Review submitted successfully!", result);
-        } else {
-          console.log("Review submitted successfully!");
+          await response.json();
         }
 
         setState({
@@ -208,7 +201,6 @@ const Review: React.FC = () => {
         alert("Session expired. Please log in again.");
       } else {
         const errorText = await response.text();
-        console.error("Backend error:", errorText);
         throw new Error(`HTTP ${response.status}: ${errorText}`);
       }
     } catch (error) {
@@ -227,8 +219,10 @@ const Review: React.FC = () => {
     return [1, 2, 3, 4, 5].map((value) => (
       <button
         key={value}
-        className={`star-btn ${
-          state.rating && state.rating >= value ? "selected" : ""
+        className={`text-5xl transition-colors ${
+          state.rating && state.rating >= value
+            ? "text-price-special"
+            : "text-muted hover:text-price-special/50"
         }`}
         onClick={() => handleRatingSelect(value)}
         type="button"
@@ -239,52 +233,55 @@ const Review: React.FC = () => {
   };
 
   return (
-    <div className="main">
-      <div>
-        <Herobanner2
-          backgroundImage={Contact_us_banner}
-          title="Contact Us"
-          description="Body text for your whole article or post. We’ll put in some lorem ipsum to show how a filled-out page might look:"
-        />
-      </div>
-      <div className="feedback-container">
+    <div className="min-h-screen bg-background">
+      <Herobanner
+        backgroundImage={home_banner}
+        title="Review Products"
+        description="The real taste of Sri Lanka, delivered fresh to your doorstep."
+      />
+
+      {/* Review Form */}
+      <section className="max-w-3xl mx-auto px-4 py-16">
         {isCheckingAuth ? (
-          <div>
-            <h1>Loading...</h1>
-            <p>Checking authentication...</p>
+          <div className="text-center">
+            <h2 className="text-2xl font-bold mb-4">Loading...</h2>
+            <p className="text-muted-foreground">Checking authentication...</p>
           </div>
         ) : !isAuthenticated ? (
-          <div className="auth-required">
-            <h1>Authentication Required</h1>
-            <p>Please log in to submit a review</p>
-            <button
-              className="submit-btn"
+          <div className="text-center bg-card rounded-lg p-8 shadow-lg border border-border">
+            <h2 className="text-2xl font-bold mb-4">Authentication Required</h2>
+            <p className="text-muted-foreground mb-6">
+              Please log in to submit a review
+            </p>
+            <Button
               onClick={() => {
-                window.location.href = "/sign-in"; // Update this to your actual login route
+                window.location.href = "/sign-in";
               }}
             >
               Go to Login
-            </button>
+            </Button>
           </div>
         ) : (
-          <>
-            <h1>How do you feel about this product?</h1>
-            <p>
+          <div className="bg-card rounded-lg p-8 shadow-lg border border-border">
+            <h2 className="text-3xl font-bold mb-2 text-center">
+              How do you feel about this product?
+            </h2>
+            <p className="text-muted-foreground text-center mb-8">
               Your input is valuable in helping us better understand your needs
               and tailor our services accordingly
             </p>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="space-y-6">
               {/* Star Rating */}
-              <div className="rating-container">
-                <div className="stars-wrapper">{renderStars()}</div>
-              </div>
+              <div className="flex justify-center gap-2">{renderStars()}</div>
 
-              {/* Review Header Input */}
-              <div className="header-container">
-                <input
+              {/* Product Name Input */}
+              <div>
+                <label className="block text-sm font-medium mb-2">
+                  Product Name
+                </label>
+                <Input
                   type="text"
-                  className="header-input"
                   placeholder="Enter product name..."
                   value={state.header}
                   onChange={handleHeaderChange}
@@ -294,26 +291,32 @@ const Review: React.FC = () => {
               </div>
 
               {/* Comment textarea */}
-              <textarea
-                className="comment-box"
-                placeholder="Add a comment..."
-                value={state.comment}
-                onChange={handleCommentChange}
-                maxLength={500}
-              />
+              <div>
+                <label className="block text-sm font-medium mb-2">
+                  Your Review
+                </label>
+                <Textarea
+                  placeholder="Add a comment..."
+                  value={state.comment}
+                  onChange={handleCommentChange}
+                  maxLength={500}
+                  rows={6}
+                />
+              </div>
 
               {/* Submit button */}
-              <button
-                className="submit-btn"
+              <Button
                 type="submit"
                 disabled={isSubmitting || !state.rating}
+                className="mx-auto block w-[150px] border border-gray-400 text-black hover:bg-color-gray-500 transition-all duration-300"
+                size="lg"
               >
-                {isSubmitting ? "Submitting..." : "Submit now"}
-              </button>
+                {isSubmitting ? "Submitting..." : "Submit Review"}
+              </Button>
             </form>
-          </>
+          </div>
         )}
-      </div>
+      </section>
     </div>
   );
 };
