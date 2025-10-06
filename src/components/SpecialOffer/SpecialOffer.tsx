@@ -264,12 +264,12 @@ const SpecialOffers = () => {
                         <h3 className="text-xl md:text-2xl font-bold text-card-foreground mb-3 line-clamp-2">
                           {product.productName}
                         </h3>
-                        <p className="text-muted-foreground text-sm leading-relaxed mb-4 line-clamp-2">
+                        <p className="text-muted-foreground text-sm leading-relaxed mb-4 ">
                           {product.description}
                         </p>
                       </div>
 
-                      <div className="space-y-3">
+                      <div className="space-y-1">
                         <div className="flex items-baseline gap-3">
                           <span className="text-sm text-price-old line-through">
                             Rs {product.old_price}
