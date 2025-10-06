@@ -16,17 +16,7 @@
   /* Removed min-height since we only want to increase width */
 }
 
-h1 {
-  font-size: 38px;
-  margin-bottom: 10px;
-  color: #333;
-}
 
-p {
-  font-size: 18px;
-  color: #666;
-  margin-bottom: 20px;
-}
 
 /* Rating container and emoji buttons */
 .rating-container {

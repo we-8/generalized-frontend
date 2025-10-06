@@ -46,6 +46,17 @@
   opacity: 1;
   transition: 0.2s ease-in;
 }
+.description-container {
+  text-align: center;
+}
+.home-page-bullet-points {
+  text-align: left;
+  display: inline-block;
+  margin: 0 auto;
+  line-height: 1.8;
+  font-size: 1rem;
+  /* creates a nice indent for bullets */
+}
 
 /* who we are */
 .app__home--Who-we-are {
@@ -62,8 +73,8 @@
   margin-left: 1rem;
 }
 .app__home--Who-we-are-details .description {
-  text-align: left;      /* left align text only */
-  width: 100%;           /* span full width so left-align works nicely */
+  text-align: center; /* left align text only */
+  width: 100%; /* span full width so left-align works nicely */
 }
 
 .app__home--Who-we-are .who-image {

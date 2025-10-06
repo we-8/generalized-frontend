@@ -1,6 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import "./ReviewPage.css";
+import { Herobanner2 } from "@/components";
+import { Contact_us_banner } from "@/assets";
 
 interface AppState {
   rating: number | null;
@@ -35,25 +37,26 @@ const Review: React.FC = () => {
 
   // Check for authentication token on component mount
   useEffect(() => {
-    const token = localStorage.getItem('token') || 
-                 localStorage.getItem('authToken') || 
-                 localStorage.getItem('access_token') || 
-                 sessionStorage.getItem('token') ||
-                 sessionStorage.getItem('authToken') ||
-                 sessionStorage.getItem('access_token');
-    
-    console.log('Token found:', token); // Debug log
-    console.log('All localStorage keys:', Object.keys(localStorage)); // Debug log
-    
+    const token =
+      localStorage.getItem("token") ||
+      localStorage.getItem("authToken") ||
+      localStorage.getItem("access_token") ||
+      sessionStorage.getItem("token") ||
+      sessionStorage.getItem("authToken") ||
+      sessionStorage.getItem("access_token");
+
+    console.log("Token found:", token); // Debug log
+    console.log("All localStorage keys:", Object.keys(localStorage)); // Debug log
+
     if (token) {
       setAuthToken(token);
       setIsAuthenticated(true);
-      console.log('User is authenticated'); // Debug log
+      console.log("User is authenticated"); // Debug log
     } else {
       setIsAuthenticated(false);
-      console.log('No token found, user not authenticated'); // Debug log
+      console.log("No token found, user not authenticated"); // Debug log
     }
-    
+
     setIsCheckingAuth(false);
   }, []);
 
@@ -98,10 +101,10 @@ const Review: React.FC = () => {
           throw new Error("Server returned non-JSON response");
         }
       } else if (response.status === 401) {
-        localStorage.removeItem('token');
-        localStorage.removeItem('authToken');
-        sessionStorage.removeItem('token');
-        sessionStorage.removeItem('authToken');
+        localStorage.removeItem("token");
+        localStorage.removeItem("authToken");
+        sessionStorage.removeItem("token");
+        sessionStorage.removeItem("authToken");
         setIsAuthenticated(false);
         throw new Error("Session expired. Please log in again.");
       } else {
@@ -114,16 +117,24 @@ const Review: React.FC = () => {
     }
   };
 
-  const findProductByTitle = (products: Product[], title: string): Product | null => {
-    return products.find(product => 
-      product.product_name && title && 
-      product.product_name.toLowerCase().trim() === title.toLowerCase().trim()
-    ) || null;
+  const findProductByTitle = (
+    products: Product[],
+    title: string
+  ): Product | null => {
+    return (
+      products.find(
+        (product) =>
+          product.product_name &&
+          title &&
+          product.product_name.toLowerCase().trim() ===
+            title.toLowerCase().trim()
+      ) || null
+    );
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!isAuthenticated || !authToken) {
       alert("Please log in to submit a review");
       return;
@@ -145,10 +156,15 @@ const Review: React.FC = () => {
       const productsData = await fetchProducts();
       setProducts(productsData);
 
-      const matchedProduct = findProductByTitle(productsData, state.header.trim());
+      const matchedProduct = findProductByTitle(
+        productsData,
+        state.header.trim()
+      );
 
       if (!matchedProduct) {
-        alert(`Product "${state.header}" not found. Please check the product name.`);
+        alert(
+          `Product "${state.header}" not found. Please check the product name.`
+        );
         setIsSubmitting(false);
         return;
       }
@@ -175,19 +191,19 @@ const Review: React.FC = () => {
         } else {
           console.log("Review submitted successfully!");
         }
-        
+
         setState({
           rating: null,
           header: "",
           comment: "",
         });
-        
+
         alert("Thank you for your review!");
       } else if (response.status === 401) {
-        localStorage.removeItem('token');
-        localStorage.removeItem('authToken');
-        sessionStorage.removeItem('token');
-        sessionStorage.removeItem('authToken');
+        localStorage.removeItem("token");
+        localStorage.removeItem("authToken");
+        sessionStorage.removeItem("token");
+        sessionStorage.removeItem("authToken");
         setIsAuthenticated(false);
         alert("Session expired. Please log in again.");
       } else {
@@ -211,7 +227,9 @@ const Review: React.FC = () => {
     return [1, 2, 3, 4, 5].map((value) => (
       <button
         key={value}
-        className={`star-btn ${state.rating && state.rating >= value ? "selected" : ""}`}
+        className={`star-btn ${
+          state.rating && state.rating >= value ? "selected" : ""
+        }`}
         onClick={() => handleRatingSelect(value)}
         type="button"
       >
@@ -222,6 +240,13 @@ const Review: React.FC = () => {
 
   return (
     <div className="main">
+      <div>
+        <Herobanner2
+          backgroundImage={Contact_us_banner}
+          title="Contact Us"
+          description="Body text for your whole article or post. We’ll put in some lorem ipsum to show how a filled-out page might look:"
+        />
+      </div>
       <div className="feedback-container">
         {isCheckingAuth ? (
           <div>
@@ -232,10 +257,10 @@ const Review: React.FC = () => {
           <div className="auth-required">
             <h1>Authentication Required</h1>
             <p>Please log in to submit a review</p>
-            <button 
-              className="submit-btn" 
+            <button
+              className="submit-btn"
               onClick={() => {
-                window.location.href = '/sign-in'; // Update this to your actual login route
+                window.location.href = "/sign-in"; // Update this to your actual login route
               }}
             >
               Go to Login
@@ -245,16 +270,14 @@ const Review: React.FC = () => {
           <>
             <h1>How do you feel about this product?</h1>
             <p>
-              Your input is valuable in helping us better understand your needs and
-              tailor our services accordingly
+              Your input is valuable in helping us better understand your needs
+              and tailor our services accordingly
             </p>
 
             <form onSubmit={handleSubmit}>
               {/* Star Rating */}
               <div className="rating-container">
-                <div className="stars-wrapper">
-                  {renderStars()}
-                </div>
+                <div className="stars-wrapper">{renderStars()}</div>
               </div>
 
               {/* Review Header Input */}
@@ -280,8 +303,8 @@ const Review: React.FC = () => {
               />
 
               {/* Submit button */}
-              <button 
-                className="submit-btn" 
+              <button
+                className="submit-btn"
                 type="submit"
                 disabled={isSubmitting || !state.rating}
               >

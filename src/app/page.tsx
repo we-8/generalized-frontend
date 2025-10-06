@@ -4,9 +4,9 @@ import {
   Title,
   PeopleReview,
   Description,
- 
   SpecialOffers,
   LatestProducts,
+  DescriptionL,
 } from "@/components";
 import { home_banner, test1, who, Cashew, who_we_are } from "@/assets";
 import "../styles/main-pages-css/HomePage.css";
@@ -73,7 +73,7 @@ export default function Home() {
         />
         <div className="app__home--Who-we-are-details">
           <Title title="Who we are" />
-          <Description
+          <DescriptionL
             description={
               <>
                 Missing the flavors of home? You are not alone. For many Sri
@@ -93,18 +93,22 @@ export default function Home() {
                 <br />
                 We specialize in:
                 <br />
-                <strong>
-                  • Authentic dishes made with real Sri Lankan spices
-                </strong>
-                <br />
-                • No added preservatives or artificial ingredients
-                <br />
-                • Convenient vacuum-packed meals and snacks that stay fresh for
-                weeks
-                <br />
-                • Local delivery across Sri Lanka and global shipping for our
-                community abroad
-                <br />
+                <div className="description-container">
+                  <div className="home-page-bullet-points">
+                    <strong>
+                      • Authentic dishes made with real Sri Lankan spices
+                    </strong>
+                    <br />
+                    • No added preservatives or artificial ingredients
+                    <br />
+                    • Convenient vacuum-packed meals and snacks that stay fresh
+                    for weeks
+                    <br />
+                    • Local delivery across Sri Lanka and global shipping for
+                    our community abroad
+                    <br />
+                  </div>
+                </div>
                 <br />
                 Whether you are in Canada, Australia, Germany, or just down the
                 road in Colombo, we make it easy to enjoy the food you grew up
