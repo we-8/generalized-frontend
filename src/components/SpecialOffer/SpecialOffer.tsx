@@ -5,9 +5,10 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useRouter } from "next/navigation";
 
 interface BackendProduct {
-  id?: string;
+  product_id: string;
   product_name: string;
   product_description: string;
   product_features: string;
@@ -20,7 +21,7 @@ interface BackendProduct {
 }
 
 interface TransformedSpecialProduct {
-  id?: string;
+  id: string;
   productName: string;
   new_price: string;
   old_price: string;
@@ -35,6 +36,7 @@ const SpecialOffers = () => {
   const [products, setProducts] = useState<TransformedSpecialProduct[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
 
   const calculateOldPrice = (currentPrice: string): string => {
     const price = parseFloat(currentPrice);
@@ -54,6 +56,7 @@ const SpecialOffers = () => {
         }
 
         const data: BackendProduct[] = await response.json();
+        console.log("backend data: ", data);
 
         if (data.length > 0) {
           const hasSpecialOffersField = "special_offers" in data[0];
@@ -62,7 +65,7 @@ const SpecialOffers = () => {
             const specialProducts = data.slice(0, 5);
             const transformedProducts: TransformedSpecialProduct[] =
               specialProducts.map((product: BackendProduct) => ({
-                id: product.id,
+                id: product.product_id,
                 productName: product.product_name,
                 new_price: product.product_price,
                 old_price: calculateOldPrice(product.product_price),
@@ -73,6 +76,7 @@ const SpecialOffers = () => {
                 features: product.product_features,
                 availability: product.availability_status,
               }));
+              console.log("special products", specialProducts)
 
             setProducts(transformedProducts);
             return;
@@ -85,7 +89,7 @@ const SpecialOffers = () => {
 
         const transformedProducts: TransformedSpecialProduct[] =
           specialProducts.map((product: BackendProduct) => ({
-            id: product.id,
+            id: product.product_id,
             productName: product.product_name,
             new_price: product.product_price,
             old_price: calculateOldPrice(product.product_price),
@@ -216,6 +220,7 @@ const SpecialOffers = () => {
     );
   }
 
+  console.log("special offers: ", products);
   return (
     <section className="py-16 px-4 bg-background">
       <div className="w-full px-4">
@@ -246,7 +251,11 @@ const SpecialOffers = () => {
 
           <Slider ref={sliderRef} {...settings}>
             {products.map((product) => (
-              <div key={product.id} className="px-4 py-2">
+              <div
+                key={product.id}
+                className="px-4 py-2"
+                onClick={() => router.push(`/product/${product.id}`)}
+              >
                 <div className="relative bg-card rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 border border-border h-[320px]">
                   <div className="flex flex-col md:flex-row h-full">
                     {/* Image Section */}

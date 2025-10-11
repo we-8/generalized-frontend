@@ -10,10 +10,12 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import { useRouter } from "next/navigation";
+
 
 // Type definitions
 interface BackendProduct {
-  id?: string;
+  product_id: string;
   product_name: string;
   product_description: string;
   product_features: string;
@@ -40,6 +42,7 @@ const LatestProducts = () => {
   const [products, setProducts] = useState<TransformedLatestProduct[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
 
   // Fetch products with whats_new: true
   useEffect(() => {
@@ -76,7 +79,7 @@ const LatestProducts = () => {
 
             const transformedProducts: TransformedLatestProduct[] =
               latestProducts.map((product: BackendProduct) => ({
-                id: product.id,
+                id: product.product_id,
                 productName: product.product_name,
                 new_price: `Rs ${product.product_price}`,
                 description: product.product_description,
@@ -105,7 +108,7 @@ const LatestProducts = () => {
         // Transform the data to match your component structure
         const transformedProducts: TransformedLatestProduct[] =
           latestProducts.map((product: BackendProduct) => ({
-            id: product.id,
+            id: product.product_id,
             productName: product.product_name,
             new_price: `Rs ${product.product_price}`,
             description: product.product_description,
@@ -253,7 +256,11 @@ const LatestProducts = () => {
 
           <Slider ref={sliderRef} {...settings}>
             {products.map((product) => (
-              <div key={product.id} className="px-4 py-2">
+              <div
+                key={product.id}
+                className="px-4 py-2"
+                onClick={() => router.push(`/product/${product.id}`)}
+              >
                 <div className="group relative bg-card rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 border border-border h-[320px]">
                   <div className="flex flex-col md:flex-row h-full">
                     {/* Image Section - Fixed width and height */}

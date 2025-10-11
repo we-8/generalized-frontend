@@ -5,8 +5,10 @@ import { ProductFilter } from "../CommonButtons/CommonButtons";
 import "../../styles/components-css/ProductSection.css";
 
 import ProductCard, { Product } from "../ProductCard";
-import ProductDetailsModal from "../ProductDialog/ProductDialog";
+// import ProductDetailsModal from "../ProductDialog/ProductDialog";
 import { useToast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
+
 
 const ProductSection = () => {
   const [searchInput, setSearchInput] = useState("");
@@ -14,9 +16,10 @@ const ProductSection = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<{ category_name: string }[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
   const { toast } = useToast();
+  const router = useRouter();
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -108,15 +111,15 @@ const ProductSection = () => {
     }
   };
 
-  const handleProductClick = (product: Product) => {
-    setSelectedProduct(product);
-    setIsModalOpen(true);
-  };
+  // const handleProductClick = (product: Product) => {
+  //   setSelectedProduct(product);
+  //   setIsModalOpen(true);
+  // };
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    setSelectedProduct(null);
-  };
+  // const handleCloseModal = () => {
+  //   setIsModalOpen(false);
+  //   setSelectedProduct(null);
+  // };
 
   if (loading) {
     return (
@@ -168,7 +171,7 @@ const ProductSection = () => {
                 key={product.product_id}
                 product={product}
                 onAddToCart={handleAddToCart}
-                onClick={handleProductClick}
+                onClick={() => router.push(`/product/${product.product_id}`)}
               />
             ))
           ) : (
@@ -180,12 +183,12 @@ const ProductSection = () => {
           )}
         </div>
       </div>
-      <ProductDetailsModal
+      {/* <ProductDetailsModal
         product={selectedProduct}
         isOpen={isModalOpen}
         onClose={handleCloseModal}
         onAddToCart={handleAddToCart}
-      />
+      /> */}
     </div>
   );
 };
