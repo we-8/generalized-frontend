@@ -5,10 +5,10 @@
   text-align: center;
 }
 .app__description-left p{
-  font-size: 1rem;
-  opacity: 0.6;
-  margin-bottom: 2rem ;
-  text-align: left;
+  font-size: 1.2rem; /* slightly larger */
+  color: #4b4b4b; /* better contrast on dark bg */
+  line-height: 1.6; /* improves readability */
+  margin-bottom: 1.5rem;
 }
 .app__description-right{
   font-size: 1rem;

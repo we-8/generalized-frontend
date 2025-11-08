@@ -29,6 +29,10 @@ import Products_banner from "./images/Products_banner.jpg";
 import who_we_are from "./images/who_we_are.png";
 import our_story from "./images/our_story.png";
 import our_comitment from "./images/our_comitment.png";
+import person1 from "./images/customer-1.jpg"
+import person2 from "./images/customer-2.jpg";
+import person3 from "./images/customer-3.jpg";
+
 
 export {
   testImage,
@@ -62,4 +66,7 @@ export {
   who_we_are,
   our_story,
   our_comitment,
+  person1,
+  person2,
+  person3,
 };

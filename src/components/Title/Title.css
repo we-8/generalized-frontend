@@ -1,9 +1,11 @@
 .app__main-title-center p{
-  font-weight: bold;
-  font-size: 2rem;
-  text-align: center;
+  font-family: var(--heading-font); /* replace with your heading font, e.g., Poppins */
+  font-size: 3.5rem; /* text-4xl ~ 2.25rem, adjusting slightly bigger for emphasis */
+  font-weight: 700; /* font-bold */
+  color: #d18f4b; /* text-brand-warm */
+  letter-spacing: -0.5px; /* tracking-tight */
+  line-height: 1.2; /* leading-tight */
   margin-bottom: 1rem;
-  font-family: var(--base-font);
 }
 .app__main-title-left p{
   font-weight: bold;

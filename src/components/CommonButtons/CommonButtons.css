@@ -1,11 +1,38 @@
-.app__CommonButton1 button {
-  background-color: var(--bg-color-primary);
-  color: #fff;
-  padding: 1rem 1.2rem;
-  font-size: 0.8rem;
-  border-radius: 10px;
-  border: none;
+.app__CommonButton1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.app__CommonButton1 button {
+  background: linear-gradient(135deg, #ffd500, #ffbb00); /* bright yellow gradient */
+  color: #000;
+  padding: 0.5rem 1rem;
+  font-family: var(--base-font);
+  font-size: 0.8rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 18px rgba(255, 187, 0, 0.5);
+}
+
+/* Hover effect — glow + slight lift */
+.app__CommonButton1 button:hover {
+  background: linear-gradient(135deg, #ffea00, #ffc400);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(255, 200, 0, 0.7);
+}
+
+/* Click / active effect */
+.app__CommonButton1 button:active {
+  transform: scale(0.97);
+  box-shadow: 0 3px 10px rgba(255, 200, 0, 0.6);
+}
+
 .app__OrderNow button {
   background-color: var(--bg-color-primary);
   color: #fff;

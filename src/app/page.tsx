@@ -99,13 +99,20 @@ export default function Home() {
                       • Authentic dishes made with real Sri Lankan spices
                     </strong>
                     <br />
-                    • No added preservatives or artificial ingredients
+                    <strong>
+                      • No added preservatives or artificial ingredients
+                    </strong>
                     <br />
-                    • Convenient vacuum-packed meals and snacks that stay fresh
-                    for weeks
+                    <strong>
+                      • Convenient vacuum-packed meals and snacks that stay
+                      fresh for weeks
+                    </strong>
                     <br />
-                    • Local delivery across Sri Lanka and global shipping for
-                    our community abroad
+                    <strong>
+                      • Local delivery across Sri Lanka and global shipping for
+                      our community abroad
+                    </strong>
+
                     <br />
                   </div>
                 </div>
