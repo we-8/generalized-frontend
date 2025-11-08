@@ -1,7 +1,7 @@
 "use client";
 
 import "../../styles/components-css/PeopleReview.css";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import React, { useRef } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { IoStarSharp } from "react-icons/io5";
@@ -16,7 +16,7 @@ interface Review {
   productName: string;
   name: string;
   description: string;
-  image: string; // Keep this as string if person1, person2, person3 are static imports
+  image: string | StaticImageData; // Keep this as string if person1, person2, person3 are static imports
   starRating: number;
 }
 
