@@ -16,17 +16,16 @@ interface Review {
   productName: string;
   name: string;
   description: string;
-  image: string | StaticImageData; // Keep this as string if person1, person2, person3 are static imports
+  image: string | StaticImageData;
   starRating: number;
 }
 
 const PeopleReview = () => {
   const sliderRef = useRef<Slider | null>(null);
 
-  // Updated reviews array to match the screenshot
   const reviews: Review[] = [
     {
-      productName: "Traditional Curry Pack", // Changed from "Cashews"
+      productName: "Traditional Curry Pack",
       name: "Priya Wickramasinghe",
       description:
         "Absolutely incredible! The flavors transported me right back to my grandmother's kitchen. The vacuum packing keeps everything so fresh, and it tastes like it was just made. A must-try for anyone missing authentic Sri Lankan food.",
@@ -34,15 +33,15 @@ const PeopleReview = () => {
       starRating: 5,
     },
     {
-      productName: "Roasted Cashews", // Changed from "Roasted Almonds"
+      productName: "Roasted Cashews",
       name: "Rajiv Fernando",
       description:
-        "I've been ordering from Ceylon Rich Products for months now, and the quality never disappoints. The cashews are perfectly roasted with just the right amount of seasoning. It's become my go-to snack!", // Updated text to match
+        "I've been ordering from Ceylon Rich Products for months now, and the quality never disappoints. The cashews are perfectly roasted with just the right amount of seasoning. It's become my go-to snack!",
       image: person2,
       starRating: 5,
     },
     {
-      productName: "Spice Selection Box", // Changed from "Spice Box"
+      productName: "Spice Selection Box",
       name: "Amara Silva",
       description:
         "Living abroad, I was so happy to find Ceylon Rich Products. The spices are aromatic and authentic, and the packaging ensures they arrive fresh. The delivery to Australia was smooth and quick. Highly recommended!",
@@ -75,7 +74,6 @@ const PeopleReview = () => {
         <IoIosArrowBack color="#FFCF2C" fontWeight={600} size={40} />
       </button>
 
-      {/* Updated Title and added Subtitle */}
       <TitleL title="What Our Customers Say" />
       <p className="app__peopleReview--subtitle">
         Hear from our happy customers who have experienced the authentic taste
@@ -83,14 +81,26 @@ const PeopleReview = () => {
       </p>
 
       <div className="app_peopleReview-inside-div">
-        {/* Removed the "Latest reviews" paragraph */}
         <Slider ref={sliderRef} {...settings}>
           {reviews.map((review, index) => (
             <div className="app__peopleReview--item-div" key={index}>
               <div className="peopleReview-item-inside">
-                {/* 1. Person Details (Moved to top) */}
+                
+                {/* 1. Stars (At top) */}
+                <div className="app__review--stars">
+                  {[...Array(review.starRating)].map((_, i) => (
+                    <IoStarSharp key={i} fontSize={25} color="#FFCF2C" />
+                  ))}
+                </div>
+
+                {/* 2. Description (In middle) */}
+                <div className="review-details">
+                  <p className="review-description">{review.description}</p>
+                </div>
+
+                {/* 3. Person Details (At bottom - Photo + Name side by side) */}
                 <div className="review-person-details">
-                  <div className="review-person-info">
+                  <div className="review-person-info" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                     <Image
                       src={review.image}
                       alt={review.name}
@@ -98,29 +108,10 @@ const PeopleReview = () => {
                       height={50}
                       className="rounded-full"
                     />
-                    {/* Wrapped name and product in a div for stacking */}
-                    <div className="review-person-text-content">
-                      <p className="review-name">{review.name}</p>
-                      {/* Moved product name here */}
-                      <p className="review-person-product">
-                        {review.productName}
-                      </p>
-                    </div>
+                    <p className="review-name" style={{ margin: 0 }}>{review.name}</p>
                   </div>
                 </div>
 
-                {/* 2. Stars (Moved to second) */}
-                <div className="app__review--stars">
-                  {[...Array(review.starRating)].map((_, i) => (
-                    <IoStarSharp key={i} fontSize={25} color="#FFCF2C" />
-                  ))}
-                </div>
-
-                {/* 3. Description (Moved to last) */}
-                <div className="review-details">
-                  {/* Removed the slice/truncation */}
-                  <p className="review-description">{review.description}</p>
-                </div>
               </div>
             </div>
           ))}

@@ -94,7 +94,7 @@ const AboutUs = () => {
           <TitleR title="Our Mission" />
           <DescriptionR
             description={
-              <p style={{ textAlign: "justify" }}>
+              <p style={{ textAlign: "justify" ,fontWeight: 600, fontFamily: "var(--base-font)",fontSize: "1.2rem"}}>
                 At Ceylon Rich Products, our mission is simple but powerful. We
                 want to bring a genuine taste of home to every Sri Lankan, no
                 matter where life has taken them. Each bite of our food is made
