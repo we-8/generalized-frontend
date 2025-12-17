@@ -140,14 +140,14 @@ const Cart = () => {
                       </span>
                     </div>
 
-                    
-
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">
                         Shipping cost:
                       </span>
                       <span className="font-medium">
-                        {shipping === 0 ? "Free" : formatPrice(shipping)}
+                        {shipping === 0
+                          ? "To be calculated"
+                          : formatPrice(shipping)}
                       </span>
                     </div>
 
@@ -160,7 +160,7 @@ const Cart = () => {
                   </div>
 
                   <div className="mt-6 space-y-3">
-                    <CheckOut title="Proceed to Checkout" total={total} />
+                    <CheckOut total={total} />
                     <BackToShop title="Continue Shopping" />
                   </div>
                 </CardContent>

@@ -1,12 +1,10 @@
 "use client";
-
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-// Update the import path below if the actual location or filename is different
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Herobanner } from "@/components";
 import { home_banner } from "@/assets";
-import { Textarea } from "@/components/ui/textarea";
 
 interface AppState {
   rating: number | null;
@@ -219,13 +217,14 @@ const Review: React.FC = () => {
     return [1, 2, 3, 4, 5].map((value) => (
       <button
         key={value}
-        className={`text-5xl transition-colors ${
+        className={`text-5xl transition-all duration-300 ${
           state.rating && state.rating >= value
-            ? "text-price-special"
-            : "text-muted hover:text-price-special/50"
+            ? "text-accent scale-110"
+            : "text-muted hover:text-accent/60 hover:scale-110"
         }`}
         onClick={() => handleRatingSelect(value)}
         type="button"
+        aria-label={`Rate ${value} stars`}
       >
         ★
       </button>
@@ -240,20 +239,26 @@ const Review: React.FC = () => {
         description="The real taste of Sri Lanka, delivered fresh to your doorstep."
       />
 
-      {/* Review Form */}
-      <section className="max-w-3xl mx-auto px-4 py-16">
+      <section className="max-w-4xl mx-auto px-8 py-16 md:py-24">
         {isCheckingAuth ? (
-          <div className="text-center">
-            <h2 className="text-2xl font-bold mb-4">Loading...</h2>
-            <p className="text-muted-foreground">Checking authentication...</p>
+          <div className="text-center bg-card rounded-2xl p-16 shadow-strong border border-border">
+            <h2 className="font-heading text-2xl font-bold mb-4 text-foreground">
+              Loading...
+            </h2>
+            <p className="font-body text-muted-foreground">
+              Checking authentication...
+            </p>
           </div>
         ) : !isAuthenticated ? (
-          <div className="text-center bg-card rounded-lg p-8 shadow-lg border border-border">
-            <h2 className="text-2xl font-bold mb-4">Authentication Required</h2>
-            <p className="text-muted-foreground mb-6">
+          <div className="text-center bg-card rounded-2xl p-16 shadow-strong border border-border">
+            <h2 className="font-heading text-3xl font-bold mb-6 text-foreground">
+              Authentication Required
+            </h2>
+            <p className="font-body text-lg text-muted-foreground mb-8">
               Please log in to submit a review
             </p>
             <Button
+              className="mx-auto block w-[150px] border border-gray-400 text-black hover:bg-color-gray-500 transition-all duration-300"
               onClick={() => {
                 window.location.href = "/sign-in";
               }}
@@ -262,22 +267,24 @@ const Review: React.FC = () => {
             </Button>
           </div>
         ) : (
-          <div className="bg-card rounded-lg p-8 shadow-lg border border-border">
-            <h2 className="text-3xl font-bold mb-2 text-center">
+          <div className="bg-gradient-to-br from-brand-cream to-background rounded-2xl p-12 md:p-16 shadow-strong border border-border/50">
+            <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4 text-center text-brand-warm">
               How do you feel about this product?
             </h2>
-            <p className="text-muted-foreground text-center mb-8">
+            <p className="font-body text-lg text-muted-foreground text-center mb-12 leading-relaxed">
               Your input is valuable in helping us better understand your needs
               and tailor our services accordingly
             </p>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-8">
               {/* Star Rating */}
-              <div className="flex justify-center gap-2">{renderStars()}</div>
+              <div className="flex justify-center gap-3 py-4">
+                {renderStars()}
+              </div>
 
               {/* Product Name Input */}
               <div>
-                <label className="block text-sm font-medium mb-2">
+                <label className="block font-body text-base font-semibold mb-3 text-foreground">
                   Product Name
                 </label>
                 <Input
@@ -287,12 +294,13 @@ const Review: React.FC = () => {
                   onChange={handleHeaderChange}
                   maxLength={100}
                   required
+                  className="w-full text-base"
                 />
               </div>
 
               {/* Comment textarea */}
               <div>
-                <label className="block text-sm font-medium mb-2">
+                <label className="block font-body text-base font-semibold mb-3 text-foreground">
                   Your Review
                 </label>
                 <Textarea
@@ -301,18 +309,20 @@ const Review: React.FC = () => {
                   onChange={handleCommentChange}
                   maxLength={500}
                   rows={6}
+                  className="w-full text-base resize-none"
                 />
               </div>
 
               {/* Submit button */}
-              <Button
-                type="submit"
-                disabled={isSubmitting || !state.rating}
-                className="mx-auto block w-[150px] border border-gray-400 text-black hover:bg-color-gray-500 transition-all duration-300"
-                size="lg"
-              >
-                {isSubmitting ? "Submitting..." : "Submit Review"}
-              </Button>
+              <div className="flex justify-center pt-4">
+                <Button
+                  type="submit"
+                  disabled={isSubmitting || !state.rating}
+                  className="mx-auto block w-[150px] border border-gray-400 text-black hover:bg-color-gray-500 transition-all duration-300"
+                >
+                  {isSubmitting ? "Submitting..." : "Submit Review"}
+                </Button>
+              </div>
             </form>
           </div>
         )}

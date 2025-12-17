@@ -3,6 +3,7 @@ import "../styles/global.css";
 import { CartProvider } from "@/contexts/CartContext";
 import { SessionProvider } from "next-auth/react";
 import { Footer, Navbar } from "@/layouts";
+import { AuthProvider } from "@/layouts/Authcontext";
 
 export const metadata: Metadata = {
   title: "Ceylon Rich",
@@ -17,13 +18,15 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning={true}>
       <body suppressHydrationWarning={true}>
-        <SessionProvider>
-          <CartProvider>
-            <Navbar />
-            {children}
-            <Footer />
-          </CartProvider>
-        </SessionProvider>
+        <AuthProvider>
+          <SessionProvider>
+            <CartProvider>
+              <Navbar />
+              {children}
+              <Footer />
+            </CartProvider>
+          </SessionProvider>
+        </AuthProvider>
       </body>
     </html>
   );

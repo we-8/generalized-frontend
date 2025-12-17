@@ -10,28 +10,40 @@ import { FaUserCircle } from "react-icons/fa";
 import { useCart } from "@/contexts/CartContext";
 import { ShoppingCart } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { useAuth } from "./Authcontext";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
-
+  const { isLoggedIn, logout } = useAuth();
   const { cart } = useCart();
   const [itemCount, setItemCount] = useState(0);
 
- useEffect(() => {
-   if (cart) {
-     const count = cart.items.reduce((acc, item) => acc + item.quantity, 0);
-     setItemCount(count);
-   } else {
-     setItemCount(0);
-   }
+  useEffect(() => {
+    if (cart) {
+      const count = cart.items.reduce((acc, item) => acc + item.quantity, 0);
+      setItemCount(count);
+    } else {
+      setItemCount(0);
+    }
 
-   // Optional: check if user is logged in
-   const user = sessionStorage.getItem("user_id");
-   setLoggedIn(!!user);
- }, [cart]); // re-run whenever cart changes
+    // Optional: check if user is logged in
+    const user = sessionStorage.getItem("user_id");
+    setLoggedIn(!!user);
+  }, [cart]); // re-run whenever cart changes
 
- const handleCloseNavbar = () => setToggle(false);
+  const handleCloseNavbar = () => setToggle(false);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user_id");
+
+    // Optional but recommended
+    setLoggedIn(false);
+
+    // If you want to clear cart on logout
+    window.location.href = "/sign-in";
+  };
 
   return (
     <div className="app__navbar--main-div">
@@ -112,14 +124,12 @@ const Navbar = () => {
                   <Link href="/contact-us">Contact Us</Link>
                 </li>
 
-                {loggedIn ? (
-                  <p />
-                ) : (
-                  <p className="p__text">
-                    <Link href="/sign-in" onClick={handleCloseNavbar}>
-                      Sign In
-                    </Link>
+                {isLoggedIn ? (
+                  <p className="p__text cursor-pointer" onClick={logout}>
+                    Logout
                   </p>
+                ) : (
+                  <Link href="/sign-in">Sign In</Link>
                 )}
               </ul>
             </div>

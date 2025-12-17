@@ -232,7 +232,7 @@ const SpecialOffers = () => {
           {products.length > 2 && (
             <>
               <button
-                className="hidden lg:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 z-10 w-12 h-12 items-center justify-center rounded-full bg-card border-2 border-border hover:bg-accent hover:border-accent transition-all duration-300 shadow-lg"
+                className="hidden lg:flex absolute top-1/2 -translate-y-1/2 left-2 z-10 w-12 h-12 items-center justify-center rounded-full bg-card border-2 border-border hover:bg-accent hover:border-accent transition-all duration-300 shadow-lg"
                 onClick={() => sliderRef.current?.slickPrev()}
                 aria-label="Previous product"
               >
@@ -240,7 +240,7 @@ const SpecialOffers = () => {
               </button>
 
               <button
-                className="hidden lg:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 z-10 w-12 h-12 items-center justify-center rounded-full bg-card border-2 border-border hover:bg-accent hover:border-accent transition-all duration-300 shadow-lg"
+                className="hidden lg:flex absolute top-1/2 -translate-y-1/2 right-2 z-10 w-12 h-12 items-center justify-center rounded-full bg-card border-2 border-border hover:bg-accent hover:border-accent transition-all duration-300 shadow-lg"
                 onClick={() => sliderRef.current?.slickNext()}
                 aria-label="Next product"
               >
@@ -256,10 +256,10 @@ const SpecialOffers = () => {
                 className="px-4 py-2"
                 onClick={() => router.push(`/product/${product.id}`)}
               >
-                <div className="relative bg-card rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 border border-border h-[320px]">
+                <div className="relative bg-card rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 border border-border min-h-[320px]">
                   <div className="flex flex-col md:flex-row h-full">
                     {/* Image Section */}
-                    <div className="md:w-2.5/5 relative overflow-hidden bg-muted h-48 md:h-full flex-shrink-0">
+                    <div className="md:w-2.5/5 relative overflow-hidden bg-muted h-48 md:h-[260px] flex-shrink-0">
                       <img
                         src={product.image}
                         alt={product.productName}
@@ -273,7 +273,7 @@ const SpecialOffers = () => {
                         <h3 className="text-xl md:text-2xl font-bold text-card-foreground mb-3 line-clamp-2">
                           {product.productName}
                         </h3>
-                        <p className="text-muted-foreground text-sm leading-relaxed mb-4 ">
+                        <p className="text-muted-foreground text-sm leading-relaxed mb-4 line-clamp-3">
                           {product.description}
                         </p>
                       </div>
