@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
@@ -23,28 +24,38 @@ const AddToCartButton = ({
   quantity,
   onClick,
 }: AddToCartButtonProps) => {
-  const { addToCart, loading } = useCart();
+  const { addToCart } = useCart();
+  // ✅ Use LOCAL loading state instead of global one
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
 
-    if (isAvailable && !loading) {
-      await addToCart(
-        productId,
-        productName,
-        productDescription,
-        productPrice,
-        productImage,
-        quantity
-      );
+    if (isAvailable && !isLoading) {
+      setIsLoading(true);
+      try {
+        await addToCart(
+          productId,
+          productName,
+          productDescription,
+          productPrice,
+          productImage,
+          quantity
+        );
+      } catch (error) {
+        console.error("Error adding to cart:", error);
+      } finally {
+        setIsLoading(false);
+      }
     }
 
     onClick?.(event);
   };
+
   return (
     <Button
       onClick={handleClick}
-      disabled={!isAvailable || loading}
+      disabled={!isAvailable || isLoading}
       variant={isAvailable ? "default" : "outline"}
       className={`
         w-full transition-all duration-200 flex items-center gap-2
@@ -56,7 +67,7 @@ const AddToCartButton = ({
       `}
     >
       <ShoppingCart className="h-4 w-4" />
-      {loading ? "Adding..." : isAvailable ? "Add to Cart" : "Out of Stock"}
+      {isLoading ? "Adding..." : isAvailable ? "Add to Cart" : "Out of Stock"}
     </Button>
   );
 };

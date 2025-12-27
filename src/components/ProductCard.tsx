@@ -78,7 +78,7 @@ const ProductCard = ({ product, onAddToCart, onClick }: ProductCardProps) => {
     >
       <div className="relative overflow-hidden bg-gradient-to-br from-secondary/30 to-accent/10">
         <ProductImage
-          src={`http://139.59.65.41/${product.product_image}`}
+          src={`https://ceylonrichproducts.lk/${product.product_image}`}
           alt={product.product_name}
           className="h-64"
         />
@@ -158,15 +158,18 @@ const ProductCard = ({ product, onAddToCart, onClick }: ProductCardProps) => {
             </div>
           </div>
 
-          <AddToCartButton
-            isAvailable={status !== "out of stock"}
-            productId={product.product_id}
-            productName={product.product_name}
-            productDescription={product.product_description}
-            productPrice={product.product_price}
-            productImage={product.product_image}
-            quantity={quantity}
-          />
+          {/* Add to Cart Button - Wrapped to stop propagation */}
+          <div onClick={(e) => e.stopPropagation()}>
+            <AddToCartButton
+              isAvailable={status !== "out of stock"}
+              productId={product.product_id}
+              productName={product.product_name}
+              productDescription={product.product_description}
+              productPrice={product.product_price}
+              productImage={product.product_image}
+              quantity={quantity}
+            />
+          </div>
         </div>
       </CardContent>
     </Card>

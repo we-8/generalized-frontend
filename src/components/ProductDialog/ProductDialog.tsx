@@ -33,7 +33,7 @@ const ProductDetailsModal: React.FC<ProductDetailsModalProps> = ({
         {/* Product Image */}
         <div className="w-full h-80 flex items-center justify-center overflow-hidden rounded-xl">
           <ProductImage
-            src={`http://139.59.65.41/${product.product_image}`}
+            src={`https://ceylonrichproducts.lk/${product.product_image}`}
             alt={product.product_name}
             className="max-h-full max-w-full object-contain"
           />

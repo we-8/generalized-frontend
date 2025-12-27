@@ -60,7 +60,7 @@ const ProductDetail = () => {
     const fetchProduct = async () => {
       try {
         setLoading(true);
-        const res = await fetch("http://139.59.65.41/v1/products/");
+        const res = await fetch("https://ceylonrichproducts.lk/v1/products/");
         if (!res.ok) throw new Error("Failed to fetch products");
 
         const products: Product[] = await res.json();
@@ -182,7 +182,7 @@ const ProductDetail = () => {
           {/* Product Image */}
           <Card className="overflow-hidden">
             <ProductImage
-              src={`http://139.59.65.41/${product.product_image}`}
+              src={`https://ceylonrichproducts.lk/${product.product_image}`}
               alt={product.product_name}
               className="h-[600px] w-full"
             />
@@ -287,7 +287,7 @@ const ProductDetail = () => {
                       onClick={() => router.push(`/product/${rec.product_id}`)}
                     >
                       <ProductImage
-                        src={`http://139.59.65.41/${rec.product_image}`}
+                        src={`https://ceylonrichproducts.lk/${rec.product_image}`}
                         alt={rec.product_name}
                         className="h-66"
                       />

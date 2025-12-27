@@ -82,7 +82,7 @@ const Review: React.FC = () => {
 
   const fetchProducts = async (): Promise<Product[]> => {
     try {
-      const response = await fetch("http://139.59.65.41/v1/products/", {
+      const response = await fetch("https://ceylonrichproducts.lk/v1/products/", {
         method: "GET",
         headers: getAuthHeaders(),
       });
@@ -171,7 +171,7 @@ const Review: React.FC = () => {
         comment: state.comment,
       };
 
-      const response = await fetch("http://139.59.65.41/v1/ratings/", {
+      const response = await fetch("https://ceylonrichproducts.lk/v1/ratings/", {
         method: "POST",
         headers: getAuthHeaders(),
         body: JSON.stringify(payload),

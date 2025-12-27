@@ -71,7 +71,7 @@ const Cart = () => {
                         <div className="flex items-center space-x-4">
                           <div className="flex-shrink-0">
                             <img
-                              src={`http://139.59.65.41/${item.product_image}`}
+                              src={`https://ceylonrichproducts.lk/${item.product_image}`}
                               alt={item.product_name}
                               className="w-20 h-20 object-cover rounded-lg border border-border"
                             />

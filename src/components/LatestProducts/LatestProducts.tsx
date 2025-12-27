@@ -49,7 +49,7 @@ const LatestProducts = () => {
     const fetchLatestProducts = async () => {
       try {
         setLoading(true);
-        const response = await fetch("http://139.59.65.41/v1/products/");
+        const response = await fetch("https://ceylonrichproducts.lk/v1/products/");
 
         if (!response.ok) {
           throw new Error("Failed to fetch products");
@@ -84,7 +84,7 @@ const LatestProducts = () => {
                 new_price: `Rs ${product.product_price}`,
                 description: product.product_description,
                 image: product.product_image
-                  ? `http://139.59.65.41/${product.product_image}`
+                  ? `https://ceylonrichproducts.lk/${product.product_image}`
                   : test3,
                 features: product.product_features,
                 availability: product.availability_status,
@@ -114,7 +114,7 @@ const LatestProducts = () => {
             description: product.product_description,
             // Use correct server path for product images
             image: product.product_image
-              ? `http://139.59.65.41/${product.product_image}`
+              ? `https://ceylonrichproducts.lk/${product.product_image}`
               : test3,
             features: product.product_features,
             availability: product.availability_status,

@@ -49,7 +49,7 @@ const SpecialOffers = () => {
     const fetchSpecialOfferProducts = async () => {
       try {
         setLoading(true);
-        const response = await fetch("http://139.59.65.41/v1/products/");
+        const response = await fetch("https://ceylonrichproducts.lk/v1/products/");
 
         if (!response.ok) {
           throw new Error("Failed to fetch products");
@@ -71,7 +71,7 @@ const SpecialOffers = () => {
                 old_price: calculateOldPrice(product.product_price),
                 description: product.product_description,
                 image: product.product_image
-                  ? `http://139.59.65.41/${product.product_image}`
+                  ? `https://ceylonrichproducts.lk/${product.product_image}`
                   : "https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=400&h=400&fit=crop",
                 features: product.product_features,
                 availability: product.availability_status,
@@ -95,7 +95,7 @@ const SpecialOffers = () => {
             old_price: calculateOldPrice(product.product_price),
             description: product.product_description,
             image: product.product_image
-              ? `http://139.59.65.41/${product.product_image}`
+              ? `https://ceylonrichproducts.lk/${product.product_image}`
               : "https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=400&h=400&fit=crop",
             features: product.product_features,
             availability: product.availability_status,
