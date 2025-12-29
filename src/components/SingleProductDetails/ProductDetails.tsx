@@ -5,13 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  ArrowLeft,
-  ShoppingCart,
-  Truck,
-  Shield,
-  RefreshCw,
-} from "lucide-react";
+import { ArrowLeft, ShoppingCart, Shield, RefreshCw } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 import { useToast } from "@/hooks/use-toast";
 import QuantitySelector from "@/components/cart/QuantitySelector";
@@ -25,6 +19,16 @@ import {
 } from "@/components/ui/carousel";
 import ProductImage from "@/components/ProductImg/ProducImage";
 
+interface Rating {
+  id: string;
+  product: string;
+  user: string;
+  rating: number;
+  title: string;
+  comment: string;
+  created_at: string;
+}
+
 interface Product {
   product_id: string;
   product_name: string;
@@ -34,40 +38,58 @@ interface Product {
   availability_status: string;
   product_image: string;
   category: string;
-  ratings: { rating_count: number }[];
 }
 
 const ProductDetail = () => {
   const params = useParams();
   const router = useRouter();
-  const id = params?.id; // dynamic product id from URL
+  const id = params?.id;
 
   const { addToCart, cart } = useCart();
   const { toast } = useToast();
 
   const [product, setProduct] = useState<Product | null>(null);
+  const [ratings, setRatings] = useState<Rating[]>([]);
   const [recommendations, setRecommendations] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
 
-  // Fetch product by ID
+  // Fetch product by ID and its ratings
   useEffect(() => {
     if (!id) {
       router.push("/product");
       return;
     }
 
-    const fetchProduct = async () => {
+    const fetchProductAndRatings = async () => {
       try {
         setLoading(true);
-        const res = await fetch("https://ceylonrichproducts.lk/v1/products/");
-        if (!res.ok) throw new Error("Failed to fetch products");
 
-        const products: Product[] = await res.json();
+        // Fetch all products
+        const productsRes = await fetch(
+          "https://ceylonrichproducts.lk/v1/products/"
+        );
+        if (!productsRes.ok) throw new Error("Failed to fetch products");
+
+        const products: Product[] = await productsRes.json();
         const found = products.find((p) => p.product_id === id);
 
         if (found) {
           setProduct(found);
+
+          // Fetch ratings for this specific product
+          try {
+            const ratingsRes = await fetch(
+              `https://ceylonrichproducts.lk/v1/products/${id}/ratings/`
+            );
+            if (ratingsRes.ok) {
+              const ratingsData: Rating[] = await ratingsRes.json();
+              setRatings(ratingsData);
+            }
+          } catch (err) {
+            console.error("Failed to fetch ratings:", err);
+            // Continue without ratings if fetch fails
+          }
 
           // Recommendations: same category, excluding current product
           const relatedProducts = products
@@ -98,7 +120,7 @@ const ProductDetail = () => {
       }
     };
 
-    fetchProduct();
+    fetchProductAndRatings();
   }, [id, router, toast]);
 
   // Sync quantity with cart
@@ -141,6 +163,12 @@ const ProductDetail = () => {
     });
   };
 
+  // Calculate average rating
+  const averageRating =
+    ratings.length > 0
+      ? ratings.reduce((sum, r) => sum + r.rating, 0) / ratings.length
+      : 0;
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -172,7 +200,11 @@ const ProductDetail = () => {
     <div className="min-h-screen bg-gradient-to-br from-background to-secondary">
       <div className="container mx-auto px-4 py-8">
         {/* Back Button */}
-        <Button variant="ghost" onClick={() => router.push('/product')} className="mb-6">
+        <Button
+          variant="ghost"
+          onClick={() => router.push("/product")}
+          className="mb-6"
+        >
           <ArrowLeft className="mr-2 h-4 w-4" />
           Back to Products
         </Button>
@@ -197,7 +229,13 @@ const ProductDetail = () => {
               <h1 className="text-4xl font-bold text-foreground mb-4">
                 {product.product_name}
               </h1>
-              <StarRating ratings={product.ratings} />
+              <div className="flex items-center gap-2">
+                <StarRating rating={averageRating} />
+                <span className="text-sm text-muted-foreground">
+                  ({ratings.length}{" "}
+                  {ratings.length === 1 ? "review" : "reviews"})
+                </span>
+              </div>
             </div>
 
             <div className="border-y border-border py-6">
@@ -252,11 +290,7 @@ const ProductDetail = () => {
             </div>
 
             {/* Trust Badges */}
-            <div className="grid grid-cols-3 gap-4 pt-6 border-t border-border">
-              <div className="text-center">
-                <Truck className="h-8 w-8 mx-auto mb-2 text-primary" />
-                <p className="text-xs text-muted-foreground">Free Shipping</p>
-              </div>
+            <div className="grid grid-cols-2 gap-4 pt-6 border-t border-border">
               <div className="text-center">
                 <Shield className="h-8 w-8 mx-auto mb-2 text-primary" />
                 <p className="text-xs text-muted-foreground">Secure Payment</p>
@@ -268,6 +302,35 @@ const ProductDetail = () => {
             </div>
           </div>
         </div>
+
+        {/* Reviews Section */}
+        {ratings.length > 0 && (
+          <div className="mb-12">
+            <h2 className="text-3xl font-bold text-foreground mb-6">
+              Customer Reviews
+            </h2>
+            <div className="grid gap-4">
+              {ratings.map((rating) => (
+                <Card key={rating.id}>
+                  <CardContent className="p-6">
+                    <div className="flex items-start justify-between mb-2">
+                      <div>
+                        <h4 className="font-semibold text-lg">
+                          {rating.title}
+                        </h4>
+                        <StarRating rating={rating.rating} />
+                      </div>
+                      <span className="text-sm text-muted-foreground">
+                        {new Date(rating.created_at).toLocaleDateString()}
+                      </span>
+                    </div>
+                    <p className="text-muted-foreground">{rating.comment}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Recommendations */}
         {recommendations.length > 0 && (
@@ -299,7 +362,6 @@ const ProductDetail = () => {
                           <span className="text-xl font-bold text-primary">
                             Rs.{rec.product_price}
                           </span>
-                          <StarRating ratings={rec.ratings} />
                         </div>
                       </CardContent>
                     </Card>

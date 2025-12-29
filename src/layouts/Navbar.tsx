@@ -17,22 +17,10 @@ const Navbar = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const { isLoggedIn, logout } = useAuth();
   const { cart } = useCart();
-  const [itemCount, setItemCount] = useState(0);
-
-  useEffect(() => {
-    if (cart) {
-      const count = cart.items.reduce((acc, item) => acc + item.quantity, 0);
-      setItemCount(count);
-    } else {
-      setItemCount(0);
-    }
-
-    // Optional: check if user is logged in
-    const user = sessionStorage.getItem("user_id");
-    setLoggedIn(!!user);
-  }, [cart]); // re-run whenever cart changes
 
   const handleCloseNavbar = () => setToggle(false);
+  const itemCount =
+    cart?.items?.reduce((total, item) => total + item.quantity, 0) ?? 0;
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -44,6 +32,7 @@ const Navbar = () => {
     // If you want to clear cart on logout
     window.location.href = "/sign-in";
   };
+  console.log("NAVBAR CART:", cart);
 
   return (
     <div className="app__navbar--main-div">
@@ -72,13 +61,27 @@ const Navbar = () => {
       </div>
 
       <div className="app__navbar--services">
-        <Link href="/cart-item">
-          <ShoppingCart className="h-5 w-5" />
+        <Link
+          href="/cart-item"
+          className="relative inline-flex items-center p-2 hover:opacity-70 transition-opacity"
+        >
+          <ShoppingCart className="h-6 w-6 text-black" strokeWidth={2} />
 
           {itemCount > 0 && (
-            <Badge variant="destructive" className="ml-auto">
-              {itemCount}
-            </Badge>
+            <span
+              className="absolute top-0 right-0 
+        bg-red-500 text-white 
+        text-[11px] font-bold 
+        min-w-[18px] h-[18px] 
+        rounded-full 
+        flex items-center justify-center
+        leading-none
+        px-1
+        shadow-lg
+        transform translate-x-1/2 -translate-y-1/2 border-2 border-black"
+            >
+              {itemCount > 99 ? "99+" : itemCount}
+            </span>
           )}
         </Link>
         <div />

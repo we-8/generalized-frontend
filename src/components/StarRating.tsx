@@ -1,42 +1,50 @@
-import { Star } from "lucide-react";
+import React from "react";
+import { Star, StarHalf } from "lucide-react";
 
 interface StarRatingProps {
-  ratings: Array<{ rating_count: number }>;
+  rating?: number; // Average rating value (0-5), optional with default
+  size?: number; // Icon size
+  showValue?: boolean; // Show numeric value
 }
 
-const StarRating = ({ ratings }: StarRatingProps) => {
-  // Calculate average rating from ratings array (index + 1 = star value)
-  const calculateAverageRating = () => {
-    if (!ratings || ratings.length === 0) return 0;
-    
-    const totalRatings = ratings.reduce((sum, rating) => sum + rating.rating_count, 0);
-    if (totalRatings === 0) return 0;
-    
-    const weightedSum = ratings.reduce((sum, rating, index) => {
-      return sum + (rating.rating_count * (index + 1));
-    }, 0);
-    
-    return weightedSum / totalRatings;
-  };
+const StarRating: React.FC<StarRatingProps> = ({
+  rating = 0, // Default to 0 if undefined
+  size = 20,
+  showValue = false,
+}) => {
+  // Ensure rating is a valid number and between 0 and 5
+  const validRating = typeof rating === "number" && !isNaN(rating) ? rating : 0;
+  const clampedRating = Math.max(0, Math.min(5, validRating));
 
-  const averageRating = calculateAverageRating();
-  const totalReviews = ratings?.reduce((sum, rating) => sum + rating.rating_count, 0) || 0;
+  const fullStars = Math.floor(clampedRating);
+  const hasHalfStar = clampedRating % 1 >= 0.5;
+  const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
 
   return (
     <div className="flex items-center gap-1">
-      {[1, 2, 3, 4, 5].map((star) => (
+      {/* Full stars */}
+      {[...Array(fullStars)].map((_, i) => (
         <Star
-          key={star}
-          className={`h-4 w-4 ${
-            star <= averageRating 
-              ? "fill-accent text-accent" 
-              : "text-muted-foreground"
-          }`}
+          key={`full-${i}`}
+          size={size}
+          className="fill-yellow-400 text-yellow-400"
         />
       ))}
-      {totalReviews > 0 && (
-        <span className="text-sm text-muted-foreground ml-1">
-          ({totalReviews} reviews)
+
+      {/* Half star */}
+      {hasHalfStar && (
+        <StarHalf size={size} className="fill-yellow-400 text-yellow-400" />
+      )}
+
+      {/* Empty stars */}
+      {[...Array(emptyStars)].map((_, i) => (
+        <Star key={`empty-${i}`} size={size} className="text-gray-300" />
+      ))}
+
+      {/* Optional rating value */}
+      {showValue && (
+        <span className="ml-2 text-sm font-medium text-muted-foreground">
+          {clampedRating.toFixed(1)}
         </span>
       )}
     </div>

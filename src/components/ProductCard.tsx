@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState, useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -36,6 +36,33 @@ const ProductCard = ({ product, onAddToCart, onClick }: ProductCardProps) => {
 
   // local state, initialized from cart if product exists
   const [quantity, setQuantity] = useState(cartItem ? cartItem.quantity : 1);
+  const [averageRating, setAverageRating] = useState(0);
+  const [ratingsCount, setRatingsCount] = useState(0);
+
+  // Fetch ratings for this product
+  useEffect(() => {
+    const fetchRatings = async () => {
+      try {
+        const response = await fetch(
+          `https://ceylonrichproducts.lk/v1/products/${product.product_id}/ratings/`
+        );
+        if (response.ok) {
+          const ratingsData = await response.json();
+          if (ratingsData && ratingsData.length > 0) {
+            const avg =
+              ratingsData.reduce((sum: number, r: any) => sum + r.rating, 0) /
+              ratingsData.length;
+            setAverageRating(avg);
+            setRatingsCount(ratingsData.length);
+          }
+        }
+      } catch (err) {
+        console.error("Failed to fetch ratings:", err);
+      }
+    };
+
+    fetchRatings();
+  }, [product.product_id]);
 
   // whenever cart changes, update local state
   useEffect(() => {
@@ -101,8 +128,10 @@ const ProductCard = ({ product, onAddToCart, onClick }: ProductCardProps) => {
           </h3>
 
           <div className="flex items-center gap-2">
-            <StarRating ratings={product.ratings} />
-            <span className="text-xs text-muted-foreground/80"></span>
+            <StarRating rating={averageRating} />
+            <span className="text-xs text-muted-foreground/80">
+              {ratingsCount > 0 && `(${ratingsCount})`}
+            </span>
           </div>
 
           <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed">
@@ -138,7 +167,7 @@ const ProductCard = ({ product, onAddToCart, onClick }: ProductCardProps) => {
               <div className="text-xs text-success font-medium">
                 ✓ Fast Delivery
               </div>
-              <div className="text-xs text-muted-foreground">Free Shipping</div>
+              {/* <div className="text-xs text-muted-foreground">Free Shipping</div> */}
             </div>
           </div>
 

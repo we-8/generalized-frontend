@@ -5,9 +5,7 @@ import Navbar from "./Navbar";
 
 const WrappedNavbar = () => {
   return (
-    <CartProvider>
       <Navbar />
-    </CartProvider>
   );
 };
 
