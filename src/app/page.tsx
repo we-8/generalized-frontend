@@ -50,21 +50,6 @@ export default function Home() {
         description="The real taste of Sri Lanka, delivered fresh to your doorstep."
       />
 
-      <div className="app__home--category-section section__padding">
-        {categories.map((categories, index) => (
-          <div key={index} className="app__home--category-item">
-            <Image
-              className="category-image"
-              src={test1}
-              alt="category image"
-            />
-            {/* <Link href="/single-product">
-              <p className="category-title">{categories.title}</p>
-            </Link> */}
-          </div>
-        ))}
-      </div>
-
       <div className="app__home--Who-we-are section__padding">
         <Image
           className="who-image"
