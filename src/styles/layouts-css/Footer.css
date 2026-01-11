@@ -43,11 +43,7 @@
   margin: 1rem 0;
   font-weight: 600;
 }
-.app__footer-upper-elements .links {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem 0;
-}
+
 .links a {
   font-size: 1rem;
 }

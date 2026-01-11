@@ -57,6 +57,9 @@ const Footer = () => {
                 <li>
                   <a href="/cart-item">Shopping Cart</a>
                 </li>
+                <li>
+                  <a href="/policies">Polices & Delivery Info</a>
+                </li>
               </ul>
             </div>
           </div>
